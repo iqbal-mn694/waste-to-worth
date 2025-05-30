@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waste to Worth - Marketplace</title>
+    <title>Waste to Worth - Pasar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* All the CSS from the homepage */
         :root {
             --primary: #2e7d32;
             --primary-light: #60ad5e;
@@ -69,6 +69,12 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-on-primary);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
         }
 
         nav ul {
@@ -171,6 +177,78 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 25px;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-on-primary);
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--primary-dark);
+            padding: 5rem 2rem;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu a {
+            color: var(--text-on-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu .user-actions {
+            margin-top: 2rem;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         /* Main Content Styles */
@@ -580,20 +658,18 @@
         }
 
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 1.5rem;
+            /* Hide desktop nav */
+            nav.desktop-nav {
+                display: none;
             }
             
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
+            /* Show hamburger */
+            .hamburger {
+                display: flex;
             }
             
-            .user-actions {
-                margin-top: 1rem;
+            .user-actions .btn {
+                display: none;
             }
             
             .product-grid {
@@ -608,6 +684,10 @@
         }
 
         @media (max-width: 576px) {
+            header {
+                padding: 1rem;
+            }
+            
             .product-grid {
                 grid-template-columns: 1fr;
             }
@@ -633,44 +713,69 @@
             <img src="https://via.placeholder.com/40" alt="Waste to Worth Logo">
             <h1>Waste to Worth</h1>
         </a>
-        <nav>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="marketplace.html" class="active">Marketplace</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="education.html">Education</a></li>
-                <li><a href="profile.html">Profile</a></li>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="marketplace.html" class="active">Pasar</a></li>
+                <li><a href="community.html">Komunitas</a></li>
+                <li><a href="education.html">Edukasi</a></li>
+                <li><a href="profile.html">Profil</a></li>
             </ul>
         </nav>
+        
         <div class="user-actions">
-            <button class="btn btn-secondary">Log In</button>
-            <button class="btn btn-primary">Sign Up</button>
+            <button class="btn btn-secondary">Masuk</button>
+            <button class="btn btn-primary">Daftar</button>
             <div class="user-profile">
-                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <img src="https://via.placeholder.com/40" alt="Profil Pengguna">
             </div>
         </div>
     </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="marketplace.html" class="active">Pasar</a></li>
+            <li><a href="community.html">Komunitas</a></li>
+            <li><a href="education.html">Edukasi</a></li>
+            <li><a href="profile.html">Profil</a></li>
+        </ul>
+        <div class="user-actions">
+            <button class="btn btn-secondary">Masuk</button>
+            <button class="btn btn-primary">Daftar</button>
+        </div>
+    </div>
 
     <main>
         <div class="section-title">
-            <h2>Marketplace</h2>
-            <p>Find materials or products for your upcycling projects</p>
+            <h2>Pasar</h2>
+            <p>Temukan bahan atau produk untuk proyek daur ulang Anda</p>
         </div>
 
         <div class="marketplace-header">
-            <h3>Available Materials & Products</h3>
+            <h3>Bahan & Produk Tersedia</h3>
             <div class="filter-controls">
                 <select class="filter-select">
-                    <option value="">All Categories</option>
-                    <option value="fabric">Fabric & Textiles</option>
-                    <option value="wood">Wood & Furniture</option>
-                    <option value="plastic">Plastic</option>
-                    <option value="metal">Metal</option>
-                    <option value="glass">Glass</option>
-                    <option value="electronics">Electronics</option>
+                    <option value="">Semua Kategori</option>
+                    <option value="fabric">Kain & Tekstil</option>
+                    <option value="wood">Kayu & Furnitur</option>
+                    <option value="plastic">Plastik</option>
+                    <option value="metal">Logam</option>
+                    <option value="glass">Kaca</option>
+                    <option value="electronics">Elektronik</option>
                 </select>
                 <select class="filter-select">
-                    <option value="">All Locations</option>
+                    <option value="">Semua Lokasi</option>
                     <option value="jakarta">Jakarta</option>
                     <option value="bandung">Bandung</option>
                     <option value="surabaya">Surabaya</option>
@@ -678,40 +783,40 @@
                     <option value="bali">Bali</option>
                 </select>
                 <select class="filter-select">
-                    <option value="">Sort By</option>
-                    <option value="newest">Newest</option>
-                    <option value="price-low">Price: Low to High</option>
-                    <option value="price-high">Price: High to Low</option>
-                    <option value="popular">Most Popular</option>
+                    <option value="">Urutkan</option>
+                    <option value="newest">Terbaru</option>
+                    <option value="price-low">Harga: Rendah ke Tinggi</option>
+                    <option value="price-high">Harga: Tinggi ke Rendah</option>
+                    <option value="popular">Paling Populer</option>
                 </select>
             </div>
         </div>
 
         <div class="product-grid">
             <div class="product-card">
-                <div class="product-badge">Best Match</div>
+                <div class="product-badge">Paling Cocok</div>
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
-                    <h3>Denim Fabric Scraps</h3>
-                    <p>Various sizes and colors, perfect for upcycling projects</p>
+                    <h3>Potongan Kain Denim</h3>
+                    <p>Berbagai ukuran dan warna, cocok untuk proyek daur ulang</p>
                     <div class="product-price">Rp 25.000/kg</div>
                     <div class="product-actions">
-                        <button class="btn btn-secondary">Save</button>
-                        <button class="btn btn-primary">Buy Now</button>
+                        <button class="btn btn-secondary">Simpan</button>
+                        <button class="btn btn-primary">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-badge">Popular</div>
+                <div class="product-badge">Populer</div>
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1586023492128-395c9b005323?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
-                    <h3>Wooden Pallets</h3>
-                    <p>Standard size, good condition for furniture projects</p>
-                    <div class="product-price">Rp 50.000/pallet</div>
+                    <h3>Palet Kayu</h3>
+                    <p>Ukuran standar, kondisi baik untuk proyek furnitur</p>
+                    <div class="product-price">Rp 50.000/palet</div>
                     <div class="product-actions">
-                        <button class="btn btn-secondary">Save</button>
-                        <button class="btn btn-primary">Buy Now</button>
+                        <button class="btn btn-secondary">Simpan</button>
+                        <button class="btn btn-primary">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
@@ -719,12 +824,12 @@
             <div class="product-card">
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
-                    <h3>Plastic Bottles (Clean)</h3>
-                    <p>500ml, various colors, ready for upcycling</p>
-                    <div class="product-price">Rp 5.000/bottle</div>
+                    <h3>Botol Plastik (Bersih)</h3>
+                    <p>500ml, berbagai warna, siap untuk daur ulang</p>
+                    <div class="product-price">Rp 5.000/botol</div>
                     <div class="product-actions">
-                        <button class="btn btn-secondary">Save</button>
-                        <button class="btn btn-primary">Buy Now</button>
+                        <button class="btn btn-secondary">Simpan</button>
+                        <button class="btn btn-primary">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
@@ -732,26 +837,26 @@
             <div class="product-card">
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
-                    <h3>Glass Jars Collection</h3>
-                    <p>Various sizes with lids, perfect for storage</p>
-                    <div class="product-price">Rp 10.000/jar</div>
+                    <h3>Koleksi Toples Kaca</h3>
+                    <p>Berbagai ukuran dengan tutup, cocok untuk penyimpanan</p>
+                    <div class="product-price">Rp 10.000/toples</div>
                     <div class="product-actions">
-                        <button class="btn btn-secondary">Save</button>
-                        <button class="btn btn-primary">Buy Now</button>
+                        <button class="btn btn-secondary">Simpan</button>
+                        <button class="btn btn-primary">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-badge">New</div>
+                <div class="product-badge">Baru</div>
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1557200134-90327ee9fafa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
-                    <h3>Recycled Spunbond Fabric</h3>
-                    <p>Durable material for bags and accessories</p>
+                    <h3>Kain Spunbond Daur Ulang</h3>
+                    <p>Material kuat untuk tas dan aksesoris</p>
                     <div class="product-price">Rp 35.000/meter</div>
                     <div class="product-actions">
-                        <button class="btn btn-secondary">Save</button>
-                        <button class="btn btn-primary">Buy Now</button>
+                        <button class="btn btn-secondary">Simpan</button>
+                        <button class="btn btn-primary">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
@@ -759,26 +864,26 @@
             <div class="product-card">
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1596496181871-9681eac976e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
-                    <h3>Used Bicycle Parts</h3>
-                    <p>Various components for creative projects</p>
+                    <h3>Komponen Sepeda Bekas</h3>
+                    <p>Berbagai bagian untuk proyek kreatif</p>
                     <div class="product-price">Rp 15.000 - 75.000</div>
                     <div class="product-actions">
-                        <button class="btn btn-secondary">Save</button>
-                        <button class="btn btn-primary">Buy Now</button>
+                        <button class="btn btn-secondary">Simpan</button>
+                        <button class="btn btn-primary">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-badge">Limited</div>
+                <div class="product-badge">Terbatas</div>
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
-                    <h3>Ceramic Tile Scraps</h3>
-                    <p>Colorful pieces for mosaic art projects</p>
+                    <h3>Potongan Keramik</h3>
+                    <p>Potongan warna-warni untuk proyek mozaik</p>
                     <div class="product-price">Rp 30.000/kg</div>
                     <div class="product-actions">
-                        <button class="btn btn-secondary">Save</button>
-                        <button class="btn btn-primary">Buy Now</button>
+                        <button class="btn btn-secondary">Simpan</button>
+                        <button class="btn btn-primary">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
@@ -786,12 +891,12 @@
             <div class="product-card">
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
-                    <h3>Vintage Buttons Collection</h3>
-                    <p>Assorted styles for crafts and fashion</p>
-                    <div class="product-price">Rp 8.000/pack</div>
+                    <h3>Koleksi Kancing Vintage</h3>
+                    <p>Berbagai gaya untuk kerajinan dan fashion</p>
+                    <div class="product-price">Rp 8.000/paket</div>
                     <div class="product-actions">
-                        <button class="btn btn-secondary">Save</button>
-                        <button class="btn btn-primary">Buy Now</button>
+                        <button class="btn btn-secondary">Simpan</button>
+                        <button class="btn btn-primary">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
@@ -807,18 +912,18 @@
     </main>
 
     <div class="chatbot-container">
-        <button class="chatbot-btn" id="chatbotBtn">💬</button>
+        <button class="chatbot-btn" id="chatbotBtn"><i class="fas fa-comment-dots"></i></button>
         <div class="chatbot-window" id="chatbotWindow">
             <div class="chatbot-header">
-                <h3>Waste to Worth Assistant</h3>
+                <h3>Asisten Waste to Worth</h3>
                 <button class="chatbot-close" id="chatbotClose">×</button>
             </div>
             <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">Hello! I'm your Waste to Worth assistant. How can I help you with marketplace items today?</div>
+                <div class="message bot-message">Halo! Saya asisten Waste to Worth. Bagaimana saya bisa membantu Anda dengan produk di pasar hari ini?</div>
             </div>
             <div class="chatbot-input">
-                <input type="text" id="chatbotInput" placeholder="Type your message...">
-                <button class="chatbot-send" id="chatbotSend">Send</button>
+                <input type="text" id="chatbotInput" placeholder="Ketik pesan Anda...">
+                <button class="chatbot-send" id="chatbotSend">Kirim</button>
             </div>
         </div>
     </div>
@@ -826,48 +931,66 @@
     <footer>
         <div class="footer-content">
             <div class="footer-column">
-                <h3>Company</h3>
+                <h3>Perusahaan</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Mission</a></li>
-                    <li><a href="#">Team</a></li>
-                    <li><a href="#">Careers</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> Tentang Kami</a></li>
+                    <li><a href="#"><i class="fas fa-bullseye"></i> Misi Kami</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Tim</a></li>
+                    <li><a href="#"><i class="fas fa-briefcase"></i> Karir</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Resources</h3>
+                <h3>Sumber Daya</h3>
                 <ul>
-                    <li><a href="#">How It Works</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Sustainability Reports</a></li>
+                    <li><a href="#"><i class="fas fa-cogs"></i> Cara Kerja</a></li>
+                    <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Laporan Keberlanjutan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Support</h3>
+                <h3>Dukungan</h3>
                 <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#"><i class="fas fa-question"></i> Pusat Bantuan</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Hubungi Kami</a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</a></li>
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Syarat Layanan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Connect</h3>
+                <h3>Terhubung</h3>
                 <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2023 Waste to Worth. All rights reserved.
+            &copy; 2023 Waste to Worth. Semua hak dilindungi.
         </div>
     </footer>
 
     <script>
+        // Hamburger Menu Functionality
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
         // Chatbot functionality
         const chatbotBtn = document.getElementById('chatbotBtn');
         const chatbotWindow = document.getElementById('chatbotWindow');
@@ -908,14 +1031,14 @@
                 
                 // Simulate bot response
                 setTimeout(() => {
-                    if (message.toLowerCase().includes('price') || message.toLowerCase().includes('harga')) {
-                        addBotMessage("Prices are set by the sellers and vary based on material type and quantity. You can filter products by price range using the 'Sort By' dropdown in the marketplace.");
-                    } else if (message.toLowerCase().includes('delivery') || message.toLowerCase().includes('pengiriman')) {
-                        addBotMessage("Delivery options depend on the seller's location and your address. Most sellers offer regular and express shipping. You'll see shipping options during checkout.");
-                    } else if (message.toLowerCase().includes('quality') || message.toLowerCase().includes('kualitas')) {
-                        addBotMessage("All materials are verified by our team before listing. You can check the condition in the product description and see reviews from other buyers.");
+                    if (message.toLowerCase().includes('harga')) {
+                        addBotMessage("Harga ditetapkan oleh penjual dan bervariasi berdasarkan jenis material dan kuantitas. Anda bisa menyaring produk berdasarkan rentang harga menggunakan dropdown 'Urutkan' di pasar.");
+                    } else if (message.toLowerCase().includes('pengiriman')) {
+                        addBotMessage("Opsi pengiriman tergantung pada lokasi penjual dan alamat Anda. Kebanyakan penjual menawarkan pengiriman reguler dan ekspres. Anda akan melihat opsi pengiriman saat checkout.");
+                    } else if (message.toLowerCase().includes('kualitas')) {
+                        addBotMessage("Semua material diverifikasi oleh tim kami sebelum ditampilkan. Anda bisa memeriksa kondisi pada deskripsi produk dan melihat ulasan dari pembeli lain.");
                     } else {
-                        addBotMessage("I can help you with finding materials, understanding pricing, or explaining the purchasing process. What would you like to know more about?");
+                        addBotMessage("Saya bisa membantu Anda menemukan material, memahami harga, atau menjelaskan proses pembelian. Apa yang ingin Anda ketahui lebih lanjut?");
                     }
                 }, 1000);
             }
@@ -955,9 +1078,19 @@
                 // Don't navigate if clicking on buttons
                 if (!e.target.classList.contains('btn')) {
                     // In a real app, this would go to product detail page
-                    console.log(`Viewing product: ${card.querySelector('h3').textContent}`);
+                    console.log(`Melihat produk: ${card.querySelector('h3').textContent}`);
                 }
             });
+        });
+
+        // Active nav link
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
         });
     </script>
 </body>
