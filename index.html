@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste to Worth - Home</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #60ad5e;
+            --primary-dark: #005005;
+            --secondary: #ffab00;
+            --secondary-light: #ffdd4b;
+            --secondary-dark: #c67c00;
+            --background: #f8f9fa;
+            --surface: #ffffff;
+            --error: #c62828;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --text-on-primary: #ffffff;
+            --text-on-secondary: #000000;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-on-primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-on-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            opacity: 0.9;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius);
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--text-on-secondary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-on-primary);
+            border: 1px solid var(--text-on-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .user-profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid var(--secondary);
+            transition: var(--transition);
+        }
+
+        .user-profile:hover {
+            transform: scale(1.05);
+        }
+
+        .user-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 200px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            color: var(--text-on-primary);
+            padding: 4rem 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 2;
+            opacity: 0.9;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="white"><path d="M30,10L50,30L70,10L90,30L70,50L90,70L70,90L50,70L30,90L10,70L30,50L10,30L30,10Z"/></svg>');
+            background-size: 100px;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border: none;
+            font-size: 1rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.3);
+        }
+
+        .search-btn {
+            padding: 0 2rem;
+            background-color: var(--secondary);
+            color: var(--text-on-secondary);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background-color: var(--secondary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            margin-bottom: 4rem;
+        }
+
+        .use-case {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            transition: var(--transition);
+        }
+
+        .use-case:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .use-case-icon {
+            font-size: 2rem;
+            color: var(--secondary-dark);
+            min-width: 50px;
+            background-color: rgba(255, 171, 0, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .use-case-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+        }
+
+        .use-case-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .use-case-result {
+            background-color: rgba(46, 125, 50, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            font-size: 0.95rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            margin-top: 1rem;
+        }
+
+        /* Trending Products */
+        .trending-products {
+            margin-bottom: 4rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 220px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .product-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            min-height: 40px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+
+        .product-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .product-transactions {
+            color: var(--secondary-dark);
+            font-weight: 600;
+        }
+
+        /* Eco Impact Section */
+        .eco-impact {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            margin-bottom: 4rem;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .eco-impact h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+        }
+
+        .impact-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            min-width: 180px;
+            background-color: rgba(46, 125, 50, 0.05);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(46, 125, 50, 0.1);
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .impact-graph {
+            height: 220px;
+            background-color: #f5f5f5;
+            border-radius: var(--border-radius);
+            margin-top: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .graph-bar {
+            position: absolute;
+            bottom: 0;
+            width: 15%;
+            background-color: var(--primary);
+            transition: height 1s ease, background-color 0.3s ease;
+        }
+
+        .graph-bar:nth-child(1) {
+            left: 10%;
+            height: 70%;
+            background-color: var(--primary-light);
+        }
+
+        .graph-bar:nth-child(2) {
+            left: 30%;
+            height: 40%;
+            background-color: var(--primary);
+        }
+
+        .graph-bar:nth-child(3) {
+            left: 50%;
+            height: 90%;
+            background-color: var(--secondary);
+        }
+
+        .graph-bar:nth-child(4) {
+            left: 70%;
+            height: 60%;
+            background-color: var(--secondary-dark);
+        }
+
+        .graph-labels {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Visual Search */
+        .visual-search-container {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            margin-bottom: 4rem;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .visual-search-title {
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+        }
+
+        .visual-search-box {
+            border: 2px dashed #ccc;
+            border-radius: var(--border-radius);
+            padding: 3rem 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-search-box:hover {
+            border-color: var(--primary);
+            background-color: rgba(46, 125, 50, 0.05);
+        }
+
+        .visual-search-icon {
+            font-size: 3.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .visual-search-box:hover .visual-search-icon {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .visual-search-text {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .visual-search-btn {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            box-shadow: var(--box-shadow);
+        }
+
+        .visual-search-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .search-results {
+            display: none;
+            margin-top: 2rem;
+            text-align: left;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .search-result-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .search-result-item:hover {
+            background-color: rgba(46, 125, 50, 0.03);
+        }
+
+        .search-result-image {
+            width: 90px;
+            height: 90px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--border-radius);
+            flex-shrink: 0;
+        }
+
+        .search-result-info h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .search-result-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .match-badge {
+            background-color: var(--secondary);
+            color: var(--text-on-secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .chatbot-btn {
+            background-color: var(--secondary);
+            color: var(--text-on-secondary);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .chatbot-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            background-color: var(--secondary-light);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transform-origin: bottom right;
+            animation: scaleUp 0.3s ease;
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .chatbot-header {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: var(--text-on-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chatbot-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            background-color: var(--surface);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .user-message {
+            background-color: var(--primary-light);
+            color: var(--text-on-primary);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            background-color: var(--surface);
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 20px 0 0 20px;
+            outline: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--primary);
+        }
+
+        .chatbot-send {
+            padding: 0 1.2rem;
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            border: none;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chatbot-send:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-on-primary);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            display: inline-block;
+        }
+
+        .footer-column a:hover {
+            color: var(--text-on-primary);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .user-actions {
+                margin-top: 1rem;
+            }
+            
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+            
+            .search-btn {
+                width: 100%;
+                padding: 1rem;
+            }
+            
+            .use-case {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .impact-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .chatbot-window {
+                width: 300px;
+                height: 450px;
+                right: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 2.5rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .impact-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-item {
+                min-width: 100%;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="https://via.placeholder.com/40" alt="Waste to Worth Logo">
+            <h1>Waste to Worth</h1>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="marketplace.html">Marketplace</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <button class="btn btn-secondary">Log In</button>
+            <button class="btn btn-primary">Sign Up</button>
+            <div class="user-profile">
+                <img src="https://via.placeholder.com/40" alt="User Profile">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <h2>Transform Waste into Worth</h2>
+            <p>Connect with sustainable artisans and businesses to give new life to materials that would otherwise go to waste</p>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for materials or products (e.g. 'denim fabric 30x30cm')">
+                <button class="search-btn">Search</button>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>AI Smart Product Matching</h3>
+                <p>Find exactly what you need with our intelligent matching system that understands your requirements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📷</div>
+                <h3>AI Visual Search</h3>
+                <p>Search with images when you don't know the name or details of what you're looking for.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>AI Chatbot Assistant</h3>
+                <p>Get instant help with any questions about using our platform or finding materials.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌱</div>
+                <h3>Eco-Impact Tracker</h3>
+                <p>See the positive environmental impact of your transactions in real-time.</p>
+            </div>
+        </section>
+
+        <section class="use-cases">
+            <div class="section-title">
+                <h2>Real Use Cases</h2>
+                <p>See how Waste to Worth helps real people transform waste into valuable products</p>
+            </div>
+
+            <div class="use-case">
+                <div class="use-case-icon">🔍</div>
+                <div class="use-case-content">
+                    <h3>AI Smart Product Matching</h3>
+                    <p><strong>Bu Rina</strong> searches for "denim fabric at least 30x30cm for bags" and instantly sees 5 matching suppliers, with two marked "100% match". The system also suggests canvas as an alternative material.</p>
+                    <div class="use-case-result">
+                        <strong>Result:</strong> Bu Rina completes her transaction in under 5 minutes by connecting directly with the best supplier.
+                    </div>
+                </div>
+            </div>
+
+            <div class="use-case">
+                <div class="use-case-icon">📷</div>
+                <div class="use-case-content">
+                    <h3>AI Visual Search</h3>
+                    <p><strong>Deni</strong> sees a wooden pallet shoe rack on Instagram but doesn't know what it's called. He uploads a screenshot and our AI identifies similar products in our catalog.</p>
+                    <div class="use-case-result">
+                        <strong>Result:</strong> Deni finds and purchases the exact product without needing to know technical terms.
+                    </div>
+                </div>
+            </div>
+
+            <div class="visual-search-container">
+                <h3 class="visual-search-title">Try Our Visual Search</h3>
+                <div class="visual-search-box" id="visualSearchBox">
+                    <div class="visual-search-icon">📷</div>
+                    <div class="visual-search-text">Drag & drop an image here or click to browse</div>
+                    <button class="visual-search-btn">Upload Image</button>
+                </div>
+                <div class="search-results" id="searchResults">
+                    <div class="search-result-item">
+                        <div class="search-result-image" style="background-image: url('https://via.placeholder.com/90');"></div>
+                        <div class="search-result-info">
+                            <h4>Wooden Pallet Shoe Rack</h4>
+                            <p>Material: Recycled pine pallet wood</p>
+                            <span class="match-badge">85% match</span>
+                        </div>
+                    </div>
+                    <div class="search-result-item">
+                        <div class="search-result-image" style="background-image: url('https://via.placeholder.com/90');"></div>
+                        <div class="search-result-info">
+                            <h4>Minimalist Bookshelf</h4>
+                            <p>Material: Reclaimed pallet wood</p>
+                            <span class="match-badge">72% match</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="use-case">
+                <div class="use-case-icon">🤖</div>
+                <div class="use-case-content">
+                    <h3>AI Chatbot Assistant</h3>
+                    <p><strong>Ani</strong> asks our chatbot "How do I sell plastic bottle waste from home?" and gets step-by-step guidance on uploading her materials to the platform.</p>
+                    <div class="use-case-result">
+                        <strong>Result:</strong> Ani gets immediate help without reading lengthy manuals, and the chatbot even offers to help fill out the form.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="trending-products">
+            <div class="section-title">
+                <h2>Trending Upcycled Products</h2>
+                <p>Popular items this week based on AI analysis of transaction trends</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://via.placeholder.com/300');"></div>
+                    <div class="product-info">
+                        <h3>Recycled Spunbond Tote Bag</h3>
+                        <p>Made from upcycled spunbond fabric</p>
+                        <div class="product-price">Rp 120.000</div>
+                        <div class="product-stats">
+                            <span>Jakarta</span>
+                            <span class="product-transactions">+85 transactions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://via.placeholder.com/300');"></div>
+                    <div class="product-info">
+                        <h3>Upcycled Tin Can Pencil Holder</h3>
+                        <p>Decorative holder from recycled cans</p>
+                        <div class="product-price">Rp 45.000</div>
+                        <div class="product-stats">
+                            <span>Bandung</span>
+                            <span class="product-transactions">+72 transactions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://via.placeholder.com/300');"></div>
+                    <div class="product-info">
+                        <h3>Pallet Wood Chair</h3>
+                        <p>Rustic chair from reclaimed pallets</p>
+                        <div class="product-price">Rp 350.000</div>
+                        <div class="product-stats">
+                            <span>Surabaya</span>
+                            <span class="product-transactions">+66 transactions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://via.placeholder.com/300');"></div>
+                    <div class="product-info">
+                        <h3>Denim Fabric Wallet</h3>
+                        <p>Handmade from recycled jeans</p>
+                        <div class="product-price">Rp 85.000</div>
+                        <div class="product-stats">
+                            <span>Yogyakarta</span>
+                            <span class="product-transactions">+58 transactions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="eco-impact">
+            <h3>Your Environmental Impact</h3>
+            <p>See how your transactions are making a difference</p>
+            <div class="impact-stats">
+                <div class="stat-item">
+                    <div class="stat-value">7 kg</div>
+                    <div class="stat-label">Waste Diverted</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Equivalent Trees Planted</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">15 kWh</div>
+                    <div class="stat-label">Energy Saved</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Transactions</div>
+                </div>
+            </div>
+            <div class="impact-graph">
+                <div class="graph-bar"></div>
+                <div class="graph-bar"></div>
+                <div class="graph-bar"></div>
+                <div class="graph-bar"></div>
+            </div>
+            <div class="graph-labels">
+                <div>Plastic</div>
+                <div>Fabric</div>
+                <div>Wood</div>
+                <div>Metal</div>
+            </div>
+        </section>
+
+        <div class="visual-search-container">
+            <h3 class="visual-search-title">Automatic Waste Classification</h3>
+            <div class="use-case">
+                <div class="use-case-icon">🗂️</div>
+                <div class="use-case-content">
+                    <p><strong>Pak Budi</strong> uploads a photo of used cable rolls. Our AI automatically classifies it as electronic waste, identifies copper and plastic components, warns about toxicity if burned, and highlights high recycling potential for metals.</p>
+                    <div class="use-case-result">
+                        <strong>Result:</strong> The listing appears with complete details without manual input, attracting more buyers with clear information.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="chatbot-container">
+        <button class="chatbot-btn" id="chatbotBtn">💬</button>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h3>Waste to Worth Assistant</h3>
+                <button class="chatbot-close" id="chatbotClose">×</button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">Hello! I'm your Waste to Worth assistant. How can I help you today?</div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your message...">
+                <button class="chatbot-send" id="chatbotSend">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Sustainability Reports</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Waste to Worth. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Chatbot functionality
+        const chatbotBtn = document.getElementById('chatbotBtn');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+
+        chatbotBtn.addEventListener('click', () => {
+            chatbotWindow.style.display = 'flex';
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.style.display = 'none';
+        });
+
+        function addBotMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        chatbotSend.addEventListener('click', () => {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                addUserMessage(message);
+                chatbotInput.value = '';
+                
+                // Simulate bot response
+                setTimeout(() => {
+                    if (message.toLowerCase().includes('sell') || message.toLowerCase().includes('jual')) {
+                        addBotMessage("To sell waste materials, click the 'Upload Waste' button on your dashboard. You can then select the type of waste, add photos, and set your price. Would you like me to guide you through the process?");
+                    } else if (message.toLowerCase().includes('buy') || message.toLowerCase().includes('beli')) {
+                        addBotMessage("You can browse materials by category or use our search feature. What type of material are you looking for? I can help you find the best matches.");
+                    } else {
+                        addBotMessage("I can help you with buying, selling, or learning about our platform. What would you like to know more about?");
+                    }
+                }, 1000);
+            }
+        });
+
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                chatbotSend.click();
+            }
+        });
+
+        // Visual search functionality
+        const visualSearchBox = document.getElementById('visualSearchBox');
+        const searchResults = document.getElementById('searchResults');
+
+        visualSearchBox.addEventListener('click', () => {
+            // Simulate image upload and search
+            visualSearchBox.innerHTML = `
+                <div class="visual-search-icon">🔍</div>
+                <div class="visual-search-text">Analyzing image...</div>
+            `;
+            
+            setTimeout(() => {
+                visualSearchBox.innerHTML = `
+                    <div class="visual-search-icon">✅</div>
+                    <div class="visual-search-text">Image analysis complete!</div>
+                `;
+                searchResults.style.display = 'block';
+                
+                setTimeout(() => {
+                    visualSearchBox.innerHTML = `
+                        <div class="visual-search-icon">📷</div>
+                        <div class="visual-search-text">Drag & drop an image here or click to browse</div>
+                        <button class="visual-search-btn">Upload Image</button>
+                    `;
+                }, 2000);
+            }, 1500);
+        });
+
+        // Animate eco impact graph bars on scroll
+        window.addEventListener('scroll', () => {
+            const ecoImpact = document.querySelector('.eco-impact');
+            const position = ecoImpact.getBoundingClientRect();
+            
+            // Checking whether fully visible
+            if(position.top >= 0 && position.bottom <= window.innerHeight) {
+                const bars = document.querySelectorAll('.graph-bar');
+                bars.forEach((bar, index) => {
+                    setTimeout(() => {
+                        bar.style.height = ['70%', '40%', '90%', '60%'][index];
+                    }, index * 300);
+                });
+            }
+        });
+
+        // Simulate smart search
+        const searchInput = document.querySelector('.search-input');
+        const searchBtn = document.querySelector('.search-btn');
+
+        searchBtn.addEventListener('click', () => {
+            if (searchInput.value.toLowerCase().includes('denim') || 
+                searchInput.value.toLowerCase().includes('kain')) {
+                alert("Showing 5 matches for your search. Two are marked as '100% match' for your requirements!");
+            } else {
+                alert("Searching for: " + searchInput.value);
+            }
+        });
+
+        // Active nav link
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('nav a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

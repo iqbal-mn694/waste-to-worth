@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste to Worth - Profile</title>
+    <style>
+        /* All the CSS from the homepage */
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #60ad5e;
+            --primary-dark: #005005;
+            --secondary: #ffab00;
+            --secondary-light: #ffdd4b;
+            --secondary-dark: #c67c00;
+            --background: #f8f9fa;
+            --surface: #ffffff;
+            --error: #c62828;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --text-on-primary: #ffffff;
+            --text-on-secondary: #000000;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-on-primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-on-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            opacity: 0.9;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius);
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--text-on-secondary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-on-primary);
+            border: 1px solid var(--text-on-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .user-profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid var(--secondary);
+            transition: var(--transition);
+        }
+
+        .user-profile:hover {
+            transform: scale(1.05);
+        }
+
+        .user-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 200px);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Profile Specific Styles */
+        .profile-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #eee;
+            background-image: url('https://via.placeholder.com/120');
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--secondary);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .profile-bio {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.5rem 1rem;
+            background-color: rgba(46, 125, 50, 0.05);
+            border-radius: var(--border-radius);
+            min-width: 100px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .profile-nav {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            scrollbar-width: none; /* For Firefox */
+        }
+
+        .profile-nav::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari and Opera */
+        }
+
+        .profile-nav-item {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            position: relative;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .profile-nav-item:hover {
+            color: var(--primary);
+        }
+
+        .profile-nav-item.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .profile-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .profile-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-section.active {
+            display: block;
+        }
+
+        /* Overview Section */
+        .overview-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .overview-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .overview-card {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .overview-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .recent-activity {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            align-items: flex-start;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .activity-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            background-color: rgba(46, 125, 50, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            margin-bottom: 0.3rem;
+        }
+
+        .activity-time {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .quick-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem 1rem;
+            background-color: rgba(46, 125, 50, 0.05);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .quick-action:hover {
+            background-color: rgba(46, 125, 50, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .quick-action-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+
+        .quick-action-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Listings Section */
+        .listings-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1.5rem;
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .listing-card {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .listing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .listing-image {
+            height: 180px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+
+        .listing-card:hover .listing-image {
+            transform: scale(1.05);
+        }
+
+        .listing-info {
+            padding: 1.5rem;
+        }
+
+        .listing-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .listing-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .listing-price {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .listing-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .listing-views {
+            color: var(--text-secondary);
+        }
+
+        .listing-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-pending {
+            background-color: #fff8e1;
+            color: #ff8f00;
+        }
+
+        .status-sold {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .listing-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .listing-actions .btn {
+            flex: 1;
+            padding: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        /* Orders Section */
+        .orders-container {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders-table th, .orders-table td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .orders-table th {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            font-weight: 500;
+        }
+
+        .orders-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .orders-table tr:hover td {
+            background-color: rgba(46, 125, 50, 0.03);
+        }
+
+        .order-id {
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .order-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .order-items {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .order-total {
+            font-weight: 600;
+        }
+
+        .order-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-processing {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .status-shipped {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-delivered {
+            background-color: #e0f7fa;
+            color: #00838f;
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .order-actions .btn {
+            padding: 0.5rem 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        /* Saved Section */
+        .saved-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .saved-item {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .saved-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .saved-image {
+            height: 160px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .saved-info {
+            padding: 1.2rem;
+        }
+
+        .saved-title {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .saved-price {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .saved-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .saved-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .saved-actions .btn {
+            flex: 1;
+            padding: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        /* Settings Section */
+        .settings-form {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .avatar-upload {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .avatar-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--secondary);
+            flex-shrink: 0;
+        }
+
+        .avatar-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-on-primary);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            display: inline-block;
+        }
+
+        .footer-column a:hover {
+            color: var(--text-on-primary);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-stats {
+                justify-content: center;
+            }
+            
+            .profile-actions {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .user-actions {
+                margin-top: 1rem;
+            }
+            
+            .profile-nav {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            
+            .orders-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .profile-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .profile-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .profile-actions .btn {
+                width: 100%;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="https://via.placeholder.com/40" alt="Waste to Worth Logo">
+            <h1>Waste to Worth</h1>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="marketplace.html">Marketplace</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <button class="btn btn-secondary">Log In</button>
+            <button class="btn btn-primary">Sign Up</button>
+            <div class="user-profile">
+                <img src="https://via.placeholder.com/40" alt="User Profile">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="profile-header">
+            <div class="profile-avatar"></div>
+            <div class="profile-info">
+                <h1 class="profile-name">Budi Santoso</h1>
+                <p class="profile-bio">Upcycling enthusiast and sustainable product creator from Jakarta</p>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">24</div>
+                        <div class="stat-label">Listings</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">156</div>
+                        <div class="stat-label">Followers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">89</div>
+                        <div class="stat-label">Following</div>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn btn-primary">Edit Profile</button>
+                    <button class="btn btn-secondary">Share Profile</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-nav">
+            <div class="profile-nav-item active" data-tab="overview">Overview</div>
+            <div class="profile-nav-item" data-tab="listings">My Listings</div>
+            <div class="profile-nav-item" data-tab="orders">Orders</div>
+            <div class="profile-nav-item" data-tab="saved">Saved Items</div>
+            <div class="profile-nav-item" data-tab="settings">Settings</div>
+        </div>
+
+        <!-- Overview Section -->
+        <div class="profile-section active" id="overview-section">
+            <div class="overview-content">
+                <div class="overview-card">
+                    <h3><span>📊</span> Recent Activity</h3>
+                    <div class="recent-activity">
+                        <div class="activity-item">
+                            <div class="activity-icon">📦</div>
+                            <div class="activity-content">
+                                <div class="activity-text">Order #WTW2023-009 has been shipped</div>
+                                <div class="activity-time">2 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">💬</div>
+                            <div class="activity-content">
+                                <div class="activity-text">New comment on your denim bag post</div>
+                                <div class="activity-time">1 day ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🔄</div>
+                            <div class="activity-content">
+                                <div class="activity-text">Your pallet wood listing was favorited</div>
+                                <div class="activity-time">3 days ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">⭐</div>
+                            <div class="activity-content">
+                                <div class="activity-text">You received a 5-star review for your recycled glass products</div>
+                                <div class="activity-time">5 days ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="overview-card">
+                    <h3><span>⚡</span> Quick Actions</h3>
+                    <div class="quick-actions">
+                        <div class="quick-action">
+                            <div class="quick-action-icon">➕</div>
+                            <div class="quick-action-text">Add Listing</div>
+                        </div>
+                        <div class="quick-action">
+                            <div class="quick-action-icon">📊</div>
+                            <div class="quick-action-text">View Stats</div>
+                        </div>
+                        <div class="quick-action">
+                            <div class="quick-action-icon">✉️</div>
+                            <div class="quick-action-text">Messages</div>
+                        </div>
+                        <div class="quick-action">
+                            <div class="quick-action-icon">📚</div>
+                            <div class="quick-action-text">Resources</div>
+                        </div>
+                        <div class="quick-action">
+                            <div class="quick-action-icon">🔔</div>
+                            <div class="quick-action-text">Notifications</div>
+                        </div>
+                        <div class="quick-action">
+                            <div class="quick-action-icon">🌱</div>
+                            <div class="quick-action-text">Eco Impact</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Listings Section -->
+        <div class="profile-section" id="listings-section">
+            <div class="listings-actions">
+                <button class="btn btn-primary">➕ Add New Listing</button>
+            </div>
+            <div class="listings-grid">
+                <div class="listing-card">
+                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="listing-info">
+                        <h3 class="listing-title">Denim Fabric Scraps</h3>
+                        <p class="listing-description">Various sizes of denim fabric perfect for upcycling projects</p>
+                        <div class="listing-price">Rp 25.000/kg</div>
+                        <div class="listing-meta">
+                            <div class="listing-views">124 views</div>
+                            <span class="listing-status status-active">Active</span>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary">Edit</button>
+                            <button class="btn btn-primary">View</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="listing-card">
+                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="listing-info">
+                        <h3 class="listing-title">Wooden Pallets</h3>
+                        <p class="listing-description">Used wooden pallets in good condition for furniture projects</p>
+                        <div class="listing-price">Rp 50.000/pallet</div>
+                        <div class="listing-meta">
+                            <div class="listing-views">87 views</div>
+                            <span class="listing-status status-pending">Pending</span>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary">Edit</button>
+                            <button class="btn btn-primary">View</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="listing-card">
+                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="listing-info">
+                        <h3 class="listing-title">Glass Bottles</h3>
+                        <p class="listing-description">Assorted glass bottles for DIY home decor projects</p>
+                        <div class="listing-price">Rp 8.000/bottle</div>
+                        <div class="listing-meta">
+                            <div class="listing-views">156 views</div>
+                            <span class="listing-status status-sold">Sold Out</span>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary">Edit</button>
+                            <button class="btn btn-primary">View</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="listing-card">
+                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="listing-info">
+                        <h3 class="listing-title">Plastic Bottle Caps</h3>
+                        <p class="listing-description">Colorful plastic bottle caps for art and craft projects</p>
+                        <div class="listing-price">Rp 2.000/cap</div>
+                        <div class="listing-meta">
+                            <div class="listing-views">92 views</div>
+                            <span class="listing-status status-active">Active</span>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary">Edit</button>
+                            <button class="btn btn-primary">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div class="profile-section" id="orders-section">
+            <div class="orders-container">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>Order #</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="order-id">WTW2023-009</div>
+                                <div class="order-date">May 15, 2023</div>
+                            </td>
+                            <td>2 Wooden Pallets</td>
+                            <td>Rp 115.000</td>
+                            <td><span class="order-status status-shipped">Shipped</span></td>
+                            <td>
+                                <div class="order-actions">
+                                    <button class="btn btn-secondary">Track</button>
+                                    <button class="btn btn-primary">Details</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="order-id">WTW2023-008</div>
+                                <div class="order-date">May 10, 2023</div>
+                            </td>
+                            <td>5kg Denim Fabric</td>
+                            <td>Rp 140.000</td>
+                            <td><span class="order-status status-delivered">Delivered</span></td>
+                            <td>
+                                <div class="order-actions">
+                                    <button class="btn btn-secondary">Review</button>
+                                    <button class="btn btn-primary">Details</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="order-id">WTW2023-007</div>
+                                <div class="order-date">May 5, 2023</div>
+                            </td>
+                            <td>10 Glass Bottles</td>
+                            <td>Rp 95.000</td>
+                            <td><span class="order-status status-processing">Processing</span></td>
+                            <td>
+                                <div class="order-actions">
+                                    <button class="btn btn-secondary">Cancel</button>
+                                    <button class="btn btn-primary">Details</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Saved Items Section -->
+        <div class="profile-section" id="saved-section">
+            <div class="saved-grid">
+                <div class="saved-item">
+                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="saved-info">
+                        <h3 class="saved-title">Recycled Plastic Beads</h3>
+                        <div class="saved-price">Rp 15.000/pack</div>
+                        <div class="saved-meta">
+                            <span>Bandung</span>
+                            <span>25 available</span>
+                        </div>
+                        <div class="saved-actions">
+                            <button class="btn btn-secondary">Remove</button>
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="saved-item">
+                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="saved-info">
+                        <h3 class="saved-title">Upcycled Ceramic Tiles</h3>
+                        <div class="saved-price">Rp 30.000/kg</div>
+                        <div class="saved-meta">
+                            <span>Jakarta</span>
+                            <span>10 available</span>
+                        </div>
+                        <div class="saved-actions">
+                            <button class="btn btn-secondary">Remove</button>
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="saved-item">
+                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="saved-info">
+                        <h3 class="saved-title">Vintage Buttons Collection</h3>
+                        <div class="saved-price">Rp 45.000/set</div>
+                        <div class="saved-meta">
+                            <span>Surabaya</span>
+                            <span>5 available</span>
+                        </div>
+                        <div class="saved-actions">
+                            <button class="btn btn-secondary">Remove</button>
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="saved-item">
+                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="saved-info">
+                        <h3 class="saved-title">Reclaimed Wood Planks</h3>
+                        <div class="saved-price">Rp 75.000/piece</div>
+                        <div class="saved-meta">
+                            <span>Yogyakarta</span>
+                            <span>8 available</span>
+                        </div>
+                        <div class="saved-actions">
+                            <button class="btn btn-secondary">Remove</button>
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div class="profile-section" id="settings-section">
+            <div class="settings-form">
+                <div class="avatar-upload">
+                    <div class="avatar-preview" style="background-image: url('https://via.placeholder.com/120');"></div>
+                    <div class="avatar-actions">
+                        <button class="btn btn-primary">Change Photo</button>
+                        <button class="btn btn-secondary">Remove</button>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" class="form-control" value="Budi">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" class="form-control" value="Santoso">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" value="budi.santoso@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" class="form-control" value="+628123456789">
+                </div>
+                
+                <div class="form-group">
+                    <label for="bio">Bio</label>
+                    <textarea id="bio" class="form-control" rows="4">Upcycling enthusiast and sustainable product creator from Jakarta. Specializing in transforming waste materials into beautiful home decor items.</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" class="form-control" rows="3">Jl. Merdeka No. 123, Jakarta Pusat, 10110</textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-secondary">Cancel</button>
+                    <button class="btn btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Sustainability Reports</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Waste to Worth. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Profile tab navigation
+        const profileNavItems = document.querySelectorAll('.profile-nav-item');
+        const profileSections = document.querySelectorAll('.profile-section');
+
+        profileNavItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const tabId = item.getAttribute('data-tab');
+                
+                // Hide all sections
+                profileSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show selected section
+                document.getElementById(`${tabId}-section`).classList.add('active');
+                
+                // Update active nav item
+                profileNavItems.forEach(navItem => {
+                    navItem.classList.remove('active');
+                });
+                item.classList.add('active');
+            });
+        });
+
+        // Quick actions functionality
+        const quickActions = document.querySelectorAll('.quick-action');
+        quickActions.forEach(action => {
+            action.addEventListener('click', () => {
+                const actionText = action.querySelector('.quick-action-text').textContent;
+                alert(`You clicked on "${actionText}" action`);
+            });
+        });
+
+        // Form submission
+        const settingsForm = document.querySelector('.settings-form');
+        const saveButton = settingsForm.querySelector('.btn-primary');
+        
+        saveButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Profile changes saved successfully!');
+        });
+
+        // Active nav link
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('nav a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
