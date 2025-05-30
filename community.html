@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waste to Worth - Community</title>
+    <title>Waste to Worth - Komunitas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* All the CSS from the homepage */
         :root {
             --primary: #2e7d32;
             --primary-light: #60ad5e;
@@ -69,6 +69,12 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-on-primary);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
         }
 
         nav ul {
@@ -173,6 +179,78 @@
             object-fit: cover;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 25px;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-on-primary);
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--primary-dark);
+            padding: 5rem 2rem;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu a {
+            color: var(--text-on-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu .user-actions {
+            margin-top: 2rem;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         /* Main Content Styles */
         main {
             padding: 2rem;
@@ -227,6 +305,8 @@
             display: flex;
             border-bottom: 1px solid #ddd;
             margin-bottom: 2rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .community-tab {
@@ -235,6 +315,7 @@
             position: relative;
             font-weight: 500;
             color: var(--text-secondary);
+            white-space: nowrap;
         }
 
         .community-tab.active {
@@ -283,6 +364,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .post-attachments {
@@ -297,6 +380,7 @@
             font-size: 1.2rem;
             color: var(--text-secondary);
             transition: var(--transition);
+            padding: 0.5rem;
         }
 
         .attachment-btn:hover {
@@ -366,6 +450,7 @@
             gap: 1.5rem;
             padding-top: 1rem;
             border-top: 1px solid #eee;
+            flex-wrap: wrap;
         }
 
         .post-action {
@@ -605,26 +690,18 @@
         }
 
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 1.5rem;
+            /* Hide desktop nav */
+            nav.desktop-nav {
+                display: none;
             }
             
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
+            /* Show hamburger */
+            .hamburger {
+                display: flex;
             }
             
-            .user-actions {
-                margin-top: 1rem;
-            }
-            
-            .community-tabs {
-                overflow-x: auto;
-                white-space: nowrap;
-                padding-bottom: 0.5rem;
+            .user-actions .btn {
+                display: none;
             }
             
             .post-header {
@@ -657,6 +734,11 @@
             .footer-content {
                 grid-template-columns: 1fr;
             }
+            
+            .community-tab {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -666,52 +748,77 @@
             <img src="https://via.placeholder.com/40" alt="Waste to Worth Logo">
             <h1>Waste to Worth</h1>
         </a>
-        <nav>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="marketplace.html">Marketplace</a></li>
-                <li><a href="community.html" class="active">Community</a></li>
-                <li><a href="education.html">Education</a></li>
-                <li><a href="profile.html">Profile</a></li>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="marketplace.html">Pasar</a></li>
+                <li><a href="community.html" class="active">Komunitas</a></li>
+                <li><a href="education.html">Edukasi</a></li>
+                <li><a href="profile.html">Profil</a></li>
             </ul>
         </nav>
+        
         <div class="user-actions">
-            <button class="btn btn-secondary">Log In</button>
-            <button class="btn btn-primary">Sign Up</button>
+            <button class="btn btn-secondary">Masuk</button>
+            <button class="btn btn-primary">Daftar</button>
             <div class="user-profile">
-                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <img src="https://via.placeholder.com/40" alt="Profil Pengguna">
             </div>
         </div>
     </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="marketplace.html">Pasar</a></li>
+            <li><a href="community.html" class="active">Komunitas</a></li>
+            <li><a href="education.html">Edukasi</a></li>
+            <li><a href="profile.html">Profil</a></li>
+        </ul>
+        <div class="user-actions">
+            <button class="btn btn-secondary">Masuk</button>
+            <button class="btn btn-primary">Daftar</button>
+        </div>
+    </div>
 
     <main>
         <div class="section-title">
-            <h2>Community</h2>
-            <p>Connect with other eco-conscious creators and share your projects</p>
+            <h2>Komunitas</h2>
+            <p>Terhubung dengan kreator ramah lingkungan lainnya dan bagikan proyek Anda</p>
         </div>
 
         <div class="community-header">
-            <h3>Community Feed</h3>
-            <button class="btn btn-primary">Start a Discussion</button>
+            <h3>Feed Komunitas</h3>
+            <button class="btn btn-primary">Mulai Diskusi</button>
         </div>
 
         <div class="community-tabs">
-            <div class="community-tab active">All Posts</div>
-            <div class="community-tab">Popular</div>
-            <div class="community-tab">Questions</div>
-            <div class="community-tab">Showcase</div>
-            <div class="community-tab">Events</div>
+            <div class="community-tab active">Semua Postingan</div>
+            <div class="community-tab">Populer</div>
+            <div class="community-tab">Pertanyaan</div>
+            <div class="community-tab">Karya</div>
+            <div class="community-tab">Acara</div>
         </div>
 
         <div class="post-form">
-            <textarea class="post-input" placeholder="Share your upcycling project or ask a question..."></textarea>
+            <textarea class="post-input" placeholder="Bagikan proyek daur ulang Anda atau ajukan pertanyaan..."></textarea>
             <div class="post-actions">
                 <div class="post-attachments">
-                    <button class="attachment-btn" title="Add photo">📷</button>
-                    <button class="attachment-btn" title="Add video">🎥</button>
-                    <button class="attachment-btn" title="Add link">🔗</button>
+                    <button class="attachment-btn" title="Tambahkan foto"><i class="fas fa-camera"></i></button>
+                    <button class="attachment-btn" title="Tambahkan video"><i class="fas fa-video"></i></button>
+                    <button class="attachment-btn" title="Tambahkan tautan"><i class="fas fa-link"></i></button>
                 </div>
-                <button class="btn btn-primary">Post</button>
+                <button class="btn btn-primary">Posting</button>
             </div>
         </div>
 
@@ -721,17 +828,17 @@
                     <div class="post-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
                     <div>
                         <div class="post-user">Bu Rina</div>
-                        <div class="post-time">2 hours ago</div>
+                        <div class="post-time">2 jam yang lalu</div>
                     </div>
                 </div>
                 <div class="post-content">
-                    Just finished these tote bags made from recycled denim! The fabric came from Waste to Worth - perfect quality and price. What do you think?
+                    Baru saja menyelesaikan tas-tas ini yang dibuat dari denim daur ulang! Kainnya didapat dari Waste to Worth - kualitas dan harganya sempurna. Bagaimana menurut kalian?
                 </div>
-                <img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Denim tote bags" class="post-image">
+                <img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tas denim" class="post-image">
                 <div class="post-actions-bar">
-                    <div class="post-action">👍 12</div>
-                    <div class="post-action">💬 5 Comments</div>
-                    <div class="post-action">🔄 Share</div>
+                    <div class="post-action"><i class="fas fa-thumbs-up"></i> 12 Suka</div>
+                    <div class="post-action"><i class="fas fa-comment"></i> 5 Komentar</div>
+                    <div class="post-action"><i class="fas fa-share"></i> Bagikan</div>
                 </div>
             </div>
 
@@ -740,16 +847,16 @@
                     <div class="post-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
                     <div>
                         <div class="post-user">Pak Budi</div>
-                        <div class="post-time">1 day ago</div>
+                        <div class="post-time">1 hari yang lalu</div>
                     </div>
                 </div>
                 <div class="post-content">
-                    Looking for advice on working with recycled pallet wood. Any tips for removing old nails and preparing the wood for furniture projects?
+                    Mencari saran untuk bekerja dengan kayu palet bekas. Ada tips untuk menghilangkan paku lama dan mempersiapkan kayu untuk proyek furnitur?
                 </div>
                 <div class="post-actions-bar">
-                    <div class="post-action">👍 8</div>
-                    <div class="post-action">💬 7 Comments</div>
-                    <div class="post-action">🔄 Share</div>
+                    <div class="post-action"><i class="fas fa-thumbs-up"></i> 8 Suka</div>
+                    <div class="post-action"><i class="fas fa-comment"></i> 7 Komentar</div>
+                    <div class="post-action"><i class="fas fa-share"></i> Bagikan</div>
                 </div>
             </div>
 
@@ -757,18 +864,18 @@
                 <div class="post-header">
                     <div class="post-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
                     <div>
-                        <div class="post-user">Eco Craft Studio</div>
-                        <div class="post-time">3 days ago</div>
+                        <div class="post-user">Studio Eco Craft</div>
+                        <div class="post-time">3 hari yang lalu</div>
                     </div>
                 </div>
                 <div class="post-content">
-                    We're hosting a free workshop on upcycling glass jars into home decor next Saturday! Limited slots available. DM us to register. Materials will be provided.
+                    Kami mengadakan workshop gratis tentang mendaur ulang toples kaca menjadi dekorasi rumah hari Sabtu depan! Kuota terbatas. DM kami untuk mendaftar. Bahan akan disediakan.
                 </div>
-                <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Glass jar workshop" class="post-image">
+                <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Workshop toples kaca" class="post-image">
                 <div class="post-actions-bar">
-                    <div class="post-action">👍 24</div>
-                    <div class="post-action">💬 11 Comments</div>
-                    <div class="post-action">🔄 5 Shares</div>
+                    <div class="post-action"><i class="fas fa-thumbs-up"></i> 24 Suka</div>
+                    <div class="post-action"><i class="fas fa-comment"></i> 11 Komentar</div>
+                    <div class="post-action"><i class="fas fa-share"></i> 5 Bagikan</div>
                 </div>
             </div>
 
@@ -776,36 +883,36 @@
                 <div class="post-header">
                     <div class="post-avatar" style="background-image: url('https://via.placeholder.com/50');"></div>
                     <div>
-                        <div class="post-user">Ani Creative</div>
-                        <div class="post-time">5 days ago</div>
+                        <div class="post-user">Ani Kreatif</div>
+                        <div class="post-time">5 hari yang lalu</div>
                     </div>
                 </div>
                 <div class="post-content">
-                    Just completed this lampshade made from recycled plastic bottles. The process was surprisingly simple! Would anyone be interested in a tutorial?
+                    Baru menyelesaikan lampu hias ini yang dibuat dari botol plastik bekas. Prosesnya ternyata sederhana! Ada yang tertarik dengan tutorialnya?
                 </div>
-                <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Plastic bottle lampshade" class="post-image">
+                <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Lampu hias botol plastik" class="post-image">
                 <div class="post-actions-bar">
-                    <div class="post-action">👍 42</div>
-                    <div class="post-action">💬 18 Comments</div>
-                    <div class="post-action">🔄 9 Shares</div>
+                    <div class="post-action"><i class="fas fa-thumbs-up"></i> 42 Suka</div>
+                    <div class="post-action"><i class="fas fa-comment"></i> 18 Komentar</div>
+                    <div class="post-action"><i class="fas fa-share"></i> 9 Bagikan</div>
                 </div>
             </div>
         </div>
     </main>
 
     <div class="chatbot-container">
-        <button class="chatbot-btn" id="chatbotBtn">💬</button>
+        <button class="chatbot-btn" id="chatbotBtn"><i class="fas fa-comment-dots"></i></button>
         <div class="chatbot-window" id="chatbotWindow">
             <div class="chatbot-header">
-                <h3>Waste to Worth Assistant</h3>
+                <h3>Asisten Waste to Worth</h3>
                 <button class="chatbot-close" id="chatbotClose">×</button>
             </div>
             <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">Hello! I'm your Waste to Worth assistant. How can I help you with community features today?</div>
+                <div class="message bot-message">Halo! Saya asisten Waste to Worth. Bagaimana saya bisa membantu Anda dengan fitur komunitas hari ini?</div>
             </div>
             <div class="chatbot-input">
-                <input type="text" id="chatbotInput" placeholder="Type your message...">
-                <button class="chatbot-send" id="chatbotSend">Send</button>
+                <input type="text" id="chatbotInput" placeholder="Ketik pesan Anda...">
+                <button class="chatbot-send" id="chatbotSend">Kirim</button>
             </div>
         </div>
     </div>
@@ -813,48 +920,66 @@
     <footer>
         <div class="footer-content">
             <div class="footer-column">
-                <h3>Company</h3>
+                <h3>Perusahaan</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Mission</a></li>
-                    <li><a href="#">Team</a></li>
-                    <li><a href="#">Careers</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> Tentang Kami</a></li>
+                    <li><a href="#"><i class="fas fa-bullseye"></i> Misi Kami</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Tim</a></li>
+                    <li><a href="#"><i class="fas fa-briefcase"></i> Karir</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Resources</h3>
+                <h3>Sumber Daya</h3>
                 <ul>
-                    <li><a href="#">How It Works</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Sustainability Reports</a></li>
+                    <li><a href="#"><i class="fas fa-cogs"></i> Cara Kerja</a></li>
+                    <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Laporan Keberlanjutan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Support</h3>
+                <h3>Dukungan</h3>
                 <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#"><i class="fas fa-question"></i> Pusat Bantuan</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Hubungi Kami</a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</a></li>
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Syarat Layanan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Connect</h3>
+                <h3>Terhubung</h3>
                 <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2023 Waste to Worth. All rights reserved.
+            &copy; 2023 Waste to Worth. Semua hak dilindungi.
         </div>
     </footer>
 
     <script>
+        // Hamburger Menu Functionality
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
         // Chatbot functionality
         const chatbotBtn = document.getElementById('chatbotBtn');
         const chatbotWindow = document.getElementById('chatbotWindow');
@@ -895,14 +1020,14 @@
                 
                 // Simulate bot response
                 setTimeout(() => {
-                    if (message.toLowerCase().includes('post') || message.toLowerCase().includes('share')) {
-                        addBotMessage("To create a post, type your message in the text box at the top of the community page. You can add photos, videos, or links using the attachment buttons.");
-                    } else if (message.toLowerCase().includes('event') || message.toLowerCase().includes('workshop')) {
-                        addBotMessage("Community events are posted in the 'Events' tab. You can filter posts by category using the tabs at the top of the community page.");
-                    } else if (message.toLowerCase().includes('comment') || message.toLowerCase().includes('reply')) {
-                        addBotMessage("To comment on a post, click on the comment button below the post and type your response. You can also like or share posts you find interesting.");
+                    if (message.toLowerCase().includes('posting') || message.toLowerCase().includes('bagikan')) {
+                        addBotMessage("Untuk membuat postingan, ketik pesan Anda di kotak teks di bagian atas halaman komunitas. Anda bisa menambahkan foto, video, atau tautan menggunakan tombol lampiran.");
+                    } else if (message.toLowerCase().includes('acara') || message.toLowerCase().includes('workshop')) {
+                        addBotMessage("Acara komunitas diposting di tab 'Acara'. Anda bisa menyaring postingan berdasarkan kategori menggunakan tab di bagian atas halaman komunitas.");
+                    } else if (message.toLowerCase().includes('komentar') || message.toLowerCase().includes('balas')) {
+                        addBotMessage("Untuk berkomentar di postingan, klik tombol komentar di bawah postingan dan ketik tanggapan Anda. Anda juga bisa menyukai atau membagikan postingan yang menarik.");
                     } else {
-                        addBotMessage("I can help you with posting, finding events, or connecting with other members. What would you like to know more about?");
+                        addBotMessage("Saya bisa membantu Anda memposting, menemukan acara, atau terhubung dengan anggota lain. Apa yang ingin Anda ketahui lebih lanjut?");
                     }
                 }, 1000);
             }
@@ -921,7 +1046,7 @@
                 document.querySelector('.community-tab.active').classList.remove('active');
                 tab.classList.add('active');
                 // In a real app, this would filter the posts
-                console.log(`Showing ${tab.textContent} posts`);
+                console.log(`Menampilkan postingan ${tab.textContent}`);
             });
         });
 
@@ -931,7 +1056,7 @@
             action.addEventListener('click', (e) => {
                 e.stopPropagation();
                 // In a real app, this would trigger like/comment/share
-                console.log(`${action.textContent} clicked`);
+                console.log(`${action.textContent} diklik`);
             });
         });
 
@@ -940,8 +1065,18 @@
         attachmentBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 // In a real app, this would open file picker or link input
-                console.log(`Add ${btn.textContent} clicked`);
+                console.log(`Tambahkan ${btn.getAttribute('title')} diklik`);
             });
+        });
+
+        // Active nav link
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
         });
     </script>
 </body>
