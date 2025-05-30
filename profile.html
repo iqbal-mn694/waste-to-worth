@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waste to Worth - Profile</title>
+    <title>Waste to Worth - Profil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* All the CSS from the homepage */
         :root {
             --primary: #2e7d32;
             --primary-light: #60ad5e;
@@ -69,6 +69,12 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-on-primary);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
         }
 
         nav ul {
@@ -171,6 +177,78 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 25px;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-on-primary);
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--primary-dark);
+            padding: 5rem 2rem;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu a {
+            color: var(--text-on-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu .user-actions {
+            margin-top: 2rem;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         /* Main Content Styles */
@@ -875,20 +953,18 @@
         }
 
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 1.5rem;
+            /* Hide desktop nav */
+            nav.desktop-nav {
+                display: none;
             }
             
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
+            /* Show hamburger */
+            .hamburger {
+                display: flex;
             }
             
-            .user-actions {
-                margin-top: 1rem;
+            .user-actions .btn {
+                display: none;
             }
             
             .profile-nav {
@@ -930,121 +1006,146 @@
             <img src="https://via.placeholder.com/40" alt="Waste to Worth Logo">
             <h1>Waste to Worth</h1>
         </a>
-        <nav>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="marketplace.html">Marketplace</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="education.html">Education</a></li>
-                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="marketplace.html">Pasar</a></li>
+                <li><a href="community.html">Komunitas</a></li>
+                <li><a href="education.html">Edukasi</a></li>
+                <li><a href="profile.html" class="active">Profil</a></li>
             </ul>
         </nav>
+        
         <div class="user-actions">
-            <button class="btn btn-secondary">Log In</button>
-            <button class="btn btn-primary">Sign Up</button>
+            <button class="btn btn-secondary">Masuk</button>
+            <button class="btn btn-primary">Daftar</button>
             <div class="user-profile">
-                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <img src="https://via.placeholder.com/40" alt="Profil Pengguna">
             </div>
         </div>
     </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="marketplace.html">Pasar</a></li>
+            <li><a href="community.html">Komunitas</a></li>
+            <li><a href="education.html">Edukasi</a></li>
+            <li><a href="profile.html" class="active">Profil</a></li>
+        </ul>
+        <div class="user-actions">
+            <button class="btn btn-secondary">Masuk</button>
+            <button class="btn btn-primary">Daftar</button>
+        </div>
+    </div>
 
     <main>
         <div class="profile-header">
             <div class="profile-avatar"></div>
             <div class="profile-info">
                 <h1 class="profile-name">Budi Santoso</h1>
-                <p class="profile-bio">Upcycling enthusiast and sustainable product creator from Jakarta</p>
+                <p class="profile-bio">Pecinta daur ulang kreatif dan pembuat produk berkelanjutan dari Jakarta</p>
                 <div class="profile-stats">
                     <div class="stat-item">
                         <div class="stat-value">24</div>
-                        <div class="stat-label">Listings</div>
+                        <div class="stat-label">Daftar</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value">156</div>
-                        <div class="stat-label">Followers</div>
+                        <div class="stat-label">Pengikut</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value">89</div>
-                        <div class="stat-label">Following</div>
+                        <div class="stat-label">Mengikuti</div>
                     </div>
                 </div>
                 <div class="profile-actions">
-                    <button class="btn btn-primary">Edit Profile</button>
-                    <button class="btn btn-secondary">Share Profile</button>
+                    <button class="btn btn-primary">Edit Profil</button>
+                    <button class="btn btn-secondary">Bagikan Profil</button>
                 </div>
             </div>
         </div>
 
         <div class="profile-nav">
-            <div class="profile-nav-item active" data-tab="overview">Overview</div>
-            <div class="profile-nav-item" data-tab="listings">My Listings</div>
-            <div class="profile-nav-item" data-tab="orders">Orders</div>
-            <div class="profile-nav-item" data-tab="saved">Saved Items</div>
-            <div class="profile-nav-item" data-tab="settings">Settings</div>
+            <div class="profile-nav-item active" data-tab="overview">Ringkasan</div>
+            <div class="profile-nav-item" data-tab="listings">Daftar Saya</div>
+            <div class="profile-nav-item" data-tab="orders">Pesanan</div>
+            <div class="profile-nav-item" data-tab="saved">Disimpan</div>
+            <div class="profile-nav-item" data-tab="settings">Pengaturan</div>
         </div>
 
         <!-- Overview Section -->
         <div class="profile-section active" id="overview-section">
             <div class="overview-content">
                 <div class="overview-card">
-                    <h3><span>📊</span> Recent Activity</h3>
+                    <h3><i class="fas fa-chart-line"></i> Aktivitas Terkini</h3>
                     <div class="recent-activity">
                         <div class="activity-item">
-                            <div class="activity-icon">📦</div>
+                            <div class="activity-icon"><i class="fas fa-box"></i></div>
                             <div class="activity-content">
-                                <div class="activity-text">Order #WTW2023-009 has been shipped</div>
-                                <div class="activity-time">2 hours ago</div>
+                                <div class="activity-text">Pesanan #WTW2023-009 telah dikirim</div>
+                                <div class="activity-time">2 jam lalu</div>
                             </div>
                         </div>
                         <div class="activity-item">
-                            <div class="activity-icon">💬</div>
+                            <div class="activity-icon"><i class="fas fa-comment"></i></div>
                             <div class="activity-content">
-                                <div class="activity-text">New comment on your denim bag post</div>
-                                <div class="activity-time">1 day ago</div>
+                                <div class="activity-text">Komentar baru pada posting tas denim Anda</div>
+                                <div class="activity-time">1 hari lalu</div>
                             </div>
                         </div>
                         <div class="activity-item">
-                            <div class="activity-icon">🔄</div>
+                            <div class="activity-icon"><i class="fas fa-heart"></i></div>
                             <div class="activity-content">
-                                <div class="activity-text">Your pallet wood listing was favorited</div>
-                                <div class="activity-time">3 days ago</div>
+                                <div class="activity-text">Daftar kayu palet Anda difavoritkan</div>
+                                <div class="activity-time">3 hari lalu</div>
                             </div>
                         </div>
                         <div class="activity-item">
-                            <div class="activity-icon">⭐</div>
+                            <div class="activity-icon"><i class="fas fa-star"></i></div>
                             <div class="activity-content">
-                                <div class="activity-text">You received a 5-star review for your recycled glass products</div>
-                                <div class="activity-time">5 days ago</div>
+                                <div class="activity-text">Anda menerima ulasan 5 bintang untuk produk kaca daur ulang Anda</div>
+                                <div class="activity-time">5 hari lalu</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="overview-card">
-                    <h3><span>⚡</span> Quick Actions</h3>
+                    <h3><i class="fas fa-bolt"></i> Aksi Cepat</h3>
                     <div class="quick-actions">
                         <div class="quick-action">
-                            <div class="quick-action-icon">➕</div>
-                            <div class="quick-action-text">Add Listing</div>
+                            <div class="quick-action-icon"><i class="fas fa-plus"></i></div>
+                            <div class="quick-action-text">Tambah Daftar</div>
                         </div>
                         <div class="quick-action">
-                            <div class="quick-action-icon">📊</div>
-                            <div class="quick-action-text">View Stats</div>
+                            <div class="quick-action-icon"><i class="fas fa-chart-bar"></i></div>
+                            <div class="quick-action-text">Lihat Statistik</div>
                         </div>
                         <div class="quick-action">
-                            <div class="quick-action-icon">✉️</div>
-                            <div class="quick-action-text">Messages</div>
+                            <div class="quick-action-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="quick-action-text">Pesan</div>
                         </div>
                         <div class="quick-action">
-                            <div class="quick-action-icon">📚</div>
-                            <div class="quick-action-text">Resources</div>
+                            <div class="quick-action-icon"><i class="fas fa-book"></i></div>
+                            <div class="quick-action-text">Sumber Daya</div>
                         </div>
                         <div class="quick-action">
-                            <div class="quick-action-icon">🔔</div>
-                            <div class="quick-action-text">Notifications</div>
+                            <div class="quick-action-icon"><i class="fas fa-bell"></i></div>
+                            <div class="quick-action-text">Notifikasi</div>
                         </div>
                         <div class="quick-action">
-                            <div class="quick-action-icon">🌱</div>
-                            <div class="quick-action-text">Eco Impact</div>
+                            <div class="quick-action-icon"><i class="fas fa-leaf"></i></div>
+                            <div class="quick-action-text">Dampak Ekologis</div>
                         </div>
                     </div>
                 </div>
@@ -1054,70 +1155,70 @@
         <!-- Listings Section -->
         <div class="profile-section" id="listings-section">
             <div class="listings-actions">
-                <button class="btn btn-primary">➕ Add New Listing</button>
+                <button class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Daftar Baru</button>
             </div>
             <div class="listings-grid">
                 <div class="listing-card">
                     <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
                     <div class="listing-info">
-                        <h3 class="listing-title">Denim Fabric Scraps</h3>
-                        <p class="listing-description">Various sizes of denim fabric perfect for upcycling projects</p>
+                        <h3 class="listing-title">Sisa Kain Denim</h3>
+                        <p class="listing-description">Berbagai ukuran kain denim cocok untuk proyek daur ulang</p>
                         <div class="listing-price">Rp 25.000/kg</div>
                         <div class="listing-meta">
-                            <div class="listing-views">124 views</div>
-                            <span class="listing-status status-active">Active</span>
+                            <div class="listing-views">124 dilihat</div>
+                            <span class="listing-status status-active">Aktif</span>
                         </div>
                         <div class="listing-actions">
                             <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">View</button>
+                            <button class="btn btn-primary">Lihat</button>
                         </div>
                     </div>
                 </div>
                 <div class="listing-card">
                     <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
                     <div class="listing-info">
-                        <h3 class="listing-title">Wooden Pallets</h3>
-                        <p class="listing-description">Used wooden pallets in good condition for furniture projects</p>
-                        <div class="listing-price">Rp 50.000/pallet</div>
+                        <h3 class="listing-title">Palet Kayu</h3>
+                        <p class="listing-description">Palet kayu bekas dalam kondisi baik untuk proyek furnitur</p>
+                        <div class="listing-price">Rp 50.000/palet</div>
                         <div class="listing-meta">
-                            <div class="listing-views">87 views</div>
-                            <span class="listing-status status-pending">Pending</span>
+                            <div class="listing-views">87 dilihat</div>
+                            <span class="listing-status status-pending">Menunggu</span>
                         </div>
                         <div class="listing-actions">
                             <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">View</button>
+                            <button class="btn btn-primary">Lihat</button>
                         </div>
                     </div>
                 </div>
                 <div class="listing-card">
                     <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
                     <div class="listing-info">
-                        <h3 class="listing-title">Glass Bottles</h3>
-                        <p class="listing-description">Assorted glass bottles for DIY home decor projects</p>
-                        <div class="listing-price">Rp 8.000/bottle</div>
+                        <h3 class="listing-title">Botol Kaca</h3>
+                        <p class="listing-description">Berbagai botol kaca untuk proyek dekorasi rumah DIY</p>
+                        <div class="listing-price">Rp 8.000/botol</div>
                         <div class="listing-meta">
-                            <div class="listing-views">156 views</div>
-                            <span class="listing-status status-sold">Sold Out</span>
+                            <div class="listing-views">156 dilihat</div>
+                            <span class="listing-status status-sold">Habis</span>
                         </div>
                         <div class="listing-actions">
                             <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">View</button>
+                            <button class="btn btn-primary">Lihat</button>
                         </div>
                     </div>
                 </div>
                 <div class="listing-card">
                     <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
                     <div class="listing-info">
-                        <h3 class="listing-title">Plastic Bottle Caps</h3>
-                        <p class="listing-description">Colorful plastic bottle caps for art and craft projects</p>
-                        <div class="listing-price">Rp 2.000/cap</div>
+                        <h3 class="listing-title">Tutup Botol Plastik</h3>
+                        <p class="listing-description">Tutup botol plastik warna-warni untuk proyek seni dan kerajinan</p>
+                        <div class="listing-price">Rp 2.000/tutup</div>
                         <div class="listing-meta">
-                            <div class="listing-views">92 views</div>
-                            <span class="listing-status status-active">Active</span>
+                            <div class="listing-views">92 dilihat</div>
+                            <span class="listing-status status-active">Aktif</span>
                         </div>
                         <div class="listing-actions">
                             <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">View</button>
+                            <button class="btn btn-primary">Lihat</button>
                         </div>
                     </div>
                 </div>
@@ -1130,57 +1231,57 @@
                 <table class="orders-table">
                     <thead>
                         <tr>
-                            <th>Order #</th>
-                            <th>Date</th>
-                            <th>Items</th>
+                            <th>Pesanan #</th>
+                            <th>Tanggal</th>
+                            <th>Item</th>
                             <th>Total</th>
                             <th>Status</th>
-                            <th>Actions</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
                                 <div class="order-id">WTW2023-009</div>
-                                <div class="order-date">May 15, 2023</div>
+                                <div class="order-date">15 Mei 2023</div>
                             </td>
-                            <td>2 Wooden Pallets</td>
+                            <td>2 Palet Kayu</td>
                             <td>Rp 115.000</td>
-                            <td><span class="order-status status-shipped">Shipped</span></td>
+                            <td><span class="order-status status-shipped">Dikirim</span></td>
                             <td>
                                 <div class="order-actions">
-                                    <button class="btn btn-secondary">Track</button>
-                                    <button class="btn btn-primary">Details</button>
+                                    <button class="btn btn-secondary">Lacak</button>
+                                    <button class="btn btn-primary">Detail</button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="order-id">WTW2023-008</div>
-                                <div class="order-date">May 10, 2023</div>
+                                <div class="order-date">10 Mei 2023</div>
                             </td>
-                            <td>5kg Denim Fabric</td>
+                            <td>5kg Kain Denim</td>
                             <td>Rp 140.000</td>
-                            <td><span class="order-status status-delivered">Delivered</span></td>
+                            <td><span class="order-status status-delivered">Terkirim</span></td>
                             <td>
                                 <div class="order-actions">
-                                    <button class="btn btn-secondary">Review</button>
-                                    <button class="btn btn-primary">Details</button>
+                                    <button class="btn btn-secondary">Ulasan</button>
+                                    <button class="btn btn-primary">Detail</button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="order-id">WTW2023-007</div>
-                                <div class="order-date">May 5, 2023</div>
+                                <div class="order-date">5 Mei 2023</div>
                             </td>
-                            <td>10 Glass Bottles</td>
+                            <td>10 Botol Kaca</td>
                             <td>Rp 95.000</td>
-                            <td><span class="order-status status-processing">Processing</span></td>
+                            <td><span class="order-status status-processing">Diproses</span></td>
                             <td>
                                 <div class="order-actions">
-                                    <button class="btn btn-secondary">Cancel</button>
-                                    <button class="btn btn-primary">Details</button>
+                                    <button class="btn btn-secondary">Batal</button>
+                                    <button class="btn btn-primary">Detail</button>
                                 </div>
                             </td>
                         </tr>
@@ -1195,60 +1296,60 @@
                 <div class="saved-item">
                     <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
                     <div class="saved-info">
-                        <h3 class="saved-title">Recycled Plastic Beads</h3>
-                        <div class="saved-price">Rp 15.000/pack</div>
+                        <h3 class="saved-title">Manik-manik Plastik Daur Ulang</h3>
+                        <div class="saved-price">Rp 15.000/pak</div>
                         <div class="saved-meta">
                             <span>Bandung</span>
-                            <span>25 available</span>
+                            <span>25 tersedia</span>
                         </div>
                         <div class="saved-actions">
-                            <button class="btn btn-secondary">Remove</button>
-                            <button class="btn btn-primary">Buy Now</button>
+                            <button class="btn btn-secondary">Hapus</button>
+                            <button class="btn btn-primary">Beli Sekarang</button>
                         </div>
                     </div>
                 </div>
                 <div class="saved-item">
                     <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
                     <div class="saved-info">
-                        <h3 class="saved-title">Upcycled Ceramic Tiles</h3>
+                        <h3 class="saved-title">Ubin Keramik Daur Ulang</h3>
                         <div class="saved-price">Rp 30.000/kg</div>
                         <div class="saved-meta">
                             <span>Jakarta</span>
-                            <span>10 available</span>
+                            <span>10 tersedia</span>
                         </div>
                         <div class="saved-actions">
-                            <button class="btn btn-secondary">Remove</button>
-                            <button class="btn btn-primary">Buy Now</button>
+                            <button class="btn btn-secondary">Hapus</button>
+                            <button class="btn btn-primary">Beli Sekarang</button>
                         </div>
                     </div>
                 </div>
                 <div class="saved-item">
                     <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
                     <div class="saved-info">
-                        <h3 class="saved-title">Vintage Buttons Collection</h3>
+                        <h3 class="saved-title">Koleksi Kancing Vintage</h3>
                         <div class="saved-price">Rp 45.000/set</div>
                         <div class="saved-meta">
                             <span>Surabaya</span>
-                            <span>5 available</span>
+                            <span>5 tersedia</span>
                         </div>
                         <div class="saved-actions">
-                            <button class="btn btn-secondary">Remove</button>
-                            <button class="btn btn-primary">Buy Now</button>
+                            <button class="btn btn-secondary">Hapus</button>
+                            <button class="btn btn-primary">Beli Sekarang</button>
                         </div>
                     </div>
                 </div>
                 <div class="saved-item">
                     <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
                     <div class="saved-info">
-                        <h3 class="saved-title">Reclaimed Wood Planks</h3>
-                        <div class="saved-price">Rp 75.000/piece</div>
+                        <h3 class="saved-title">Papan Kayu Bekas</h3>
+                        <div class="saved-price">Rp 75.000/potong</div>
                         <div class="saved-meta">
                             <span>Yogyakarta</span>
-                            <span>8 available</span>
+                            <span>8 tersedia</span>
                         </div>
                         <div class="saved-actions">
-                            <button class="btn btn-secondary">Remove</button>
-                            <button class="btn btn-primary">Buy Now</button>
+                            <button class="btn btn-secondary">Hapus</button>
+                            <button class="btn btn-primary">Beli Sekarang</button>
                         </div>
                     </div>
                 </div>
@@ -1261,18 +1362,18 @@
                 <div class="avatar-upload">
                     <div class="avatar-preview" style="background-image: url('https://via.placeholder.com/120');"></div>
                     <div class="avatar-actions">
-                        <button class="btn btn-primary">Change Photo</button>
-                        <button class="btn btn-secondary">Remove</button>
+                        <button class="btn btn-primary">Ganti Foto</button>
+                        <button class="btn btn-secondary">Hapus</button>
                     </div>
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="first-name">First Name</label>
+                        <label for="first-name">Nama Depan</label>
                         <input type="text" id="first-name" class="form-control" value="Budi">
                     </div>
                     <div class="form-group">
-                        <label for="last-name">Last Name</label>
+                        <label for="last-name">Nama Belakang</label>
                         <input type="text" id="last-name" class="form-control" value="Santoso">
                     </div>
                 </div>
@@ -1283,23 +1384,23 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="phone">Phone</label>
+                    <label for="phone">Telepon</label>
                     <input type="tel" id="phone" class="form-control" value="+628123456789">
                 </div>
                 
                 <div class="form-group">
                     <label for="bio">Bio</label>
-                    <textarea id="bio" class="form-control" rows="4">Upcycling enthusiast and sustainable product creator from Jakarta. Specializing in transforming waste materials into beautiful home decor items.</textarea>
+                    <textarea id="bio" class="form-control" rows="4">Pecinta daur ulang kreatif dan pembuat produk berkelanjutan dari Jakarta. Spesialis dalam mengubah bahan limbah menjadi barang dekorasi rumah yang indah.</textarea>
                 </div>
                 
                 <div class="form-group">
-                    <label for="address">Address</label>
+                    <label for="address">Alamat</label>
                     <textarea id="address" class="form-control" rows="3">Jl. Merdeka No. 123, Jakarta Pusat, 10110</textarea>
                 </div>
                 
                 <div class="form-actions">
-                    <button class="btn btn-secondary">Cancel</button>
-                    <button class="btn btn-primary">Save Changes</button>
+                    <button class="btn btn-secondary">Batal</button>
+                    <button class="btn btn-primary">Simpan Perubahan</button>
                 </div>
             </div>
         </div>
@@ -1308,48 +1409,66 @@
     <footer>
         <div class="footer-content">
             <div class="footer-column">
-                <h3>Company</h3>
+                <h3>Perusahaan</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Mission</a></li>
-                    <li><a href="#">Team</a></li>
-                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Misi Kami</a></li>
+                    <li><a href="#">Tim</a></li>
+                    <li><a href="#">Karir</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Resources</h3>
+                <h3>Sumber Daya</h3>
                 <ul>
-                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Cara Kerja</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Sustainability Reports</a></li>
+                    <li><a href="#">Laporan Keberlanjutan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Support</h3>
+                <h3>Dukungan</h3>
                 <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Pusat Bantuan</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat Layanan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Connect</h3>
+                <h3>Terhubung</h3>
                 <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2023 Waste to Worth. All rights reserved.
+            &copy; 2023 Waste to Worth. Semua hak dilindungi.
         </div>
     </footer>
 
     <script>
+        // Hamburger Menu Functionality
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
         // Profile tab navigation
         const profileNavItems = document.querySelectorAll('.profile-nav-item');
         const profileSections = document.querySelectorAll('.profile-section');
@@ -1379,7 +1498,7 @@
         quickActions.forEach(action => {
             action.addEventListener('click', () => {
                 const actionText = action.querySelector('.quick-action-text').textContent;
-                alert(`You clicked on "${actionText}" action`);
+                alert(`Anda mengklik aksi "${actionText}"`);
             });
         });
 
@@ -1389,12 +1508,12 @@
         
         saveButton.addEventListener('click', (e) => {
             e.preventDefault();
-            alert('Profile changes saved successfully!');
+            alert('Perubahan profil berhasil disimpan!');
         });
 
         // Active nav link
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('nav a');
+        const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
         
         navLinks.forEach(link => {
             if (link.getAttribute('href') === currentPage) {
