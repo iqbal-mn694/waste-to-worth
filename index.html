@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waste to Worth - Home</title>
+    <title>Waste to Worth - Beranda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #2e7d32;
@@ -68,6 +69,12 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-on-primary);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
         }
 
         nav ul {
@@ -170,6 +177,78 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 25px;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-on-primary);
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--primary-dark);
+            padding: 5rem 2rem;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu a {
+            color: var(--text-on-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu .user-actions {
+            margin-top: 2rem;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         /* Main Content Styles */
@@ -917,20 +996,18 @@
         }
 
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 1.5rem;
+            /* Hide desktop nav */
+            nav.desktop-nav {
+                display: none;
             }
             
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
+            /* Show hamburger */
+            .hamburger {
+                display: flex;
             }
             
-            .user-actions {
-                margin-top: 1rem;
+            .user-actions .btn {
+                display: none;
             }
             
             .hero {
@@ -971,6 +1048,10 @@
         }
 
         @media (max-width: 576px) {
+            header {
+                padding: 1rem;
+            }
+            
             .hero {
                 padding: 2.5rem 1rem;
             }
@@ -1007,115 +1088,140 @@
             <img src="https://via.placeholder.com/40" alt="Waste to Worth Logo">
             <h1>Waste to Worth</h1>
         </a>
-        <nav>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="marketplace.html">Marketplace</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="education.html">Education</a></li>
-                <li><a href="profile.html">Profile</a></li>
+                <li><a href="index.html" class="active">Beranda</a></li>
+                <li><a href="marketplace.html">Pasar</a></li>
+                <li><a href="community.html">Komunitas</a></li>
+                <li><a href="education.html">Edukasi</a></li>
+                <li><a href="profile.html">Profil</a></li>
             </ul>
         </nav>
+        
         <div class="user-actions">
-            <button class="btn btn-secondary">Log In</button>
-            <button class="btn btn-primary">Sign Up</button>
+            <button class="btn btn-secondary">Masuk</button>
+            <button class="btn btn-primary">Daftar</button>
             <div class="user-profile">
-                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <img src="https://via.placeholder.com/40" alt="Profil Pengguna">
             </div>
         </div>
     </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html" class="active">Beranda</a></li>
+            <li><a href="marketplace.html">Pasar</a></li>
+            <li><a href="community.html">Komunitas</a></li>
+            <li><a href="education.html">Edukasi</a></li>
+            <li><a href="profile.html">Profil</a></li>
+        </ul>
+        <div class="user-actions">
+            <button class="btn btn-secondary">Masuk</button>
+            <button class="btn btn-primary">Daftar</button>
+        </div>
+    </div>
 
     <main>
         <section class="hero">
             <div class="hero-bg"></div>
-            <h2>Transform Waste into Worth</h2>
-            <p>Connect with sustainable artisans and businesses to give new life to materials that would otherwise go to waste</p>
+            <h2>Ubah Sampah Menjadi Berharga</h2>
+            <p>Terhubung dengan pengrajin dan bisnis berkelanjutan untuk memberikan kehidupan baru pada bahan yang biasanya terbuang</p>
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search for materials or products (e.g. 'denim fabric 30x30cm')">
-                <button class="search-btn">Search</button>
+                <input type="text" class="search-input" placeholder="Cari bahan atau produk (contoh: 'kain denim 30x30cm')">
+                <button class="search-btn">Cari</button>
             </div>
         </section>
 
         <section class="features">
             <div class="feature-card">
-                <div class="feature-icon">📷</div>
-                <h3>AI Visual Search</h3>
-                <p>Search with images when you don't know the name or details of what you're looking for.</p>
+                <div class="feature-icon"><i class="fas fa-camera"></i></div>
+                <h3>Pencarian Visual AI</h3>
+                <p>Cari dengan gambar ketika Anda tidak tahu nama atau detail dari apa yang Anda cari.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <h3>AI Chatbot Assistant</h3>
-                <p>Get instant help with any questions about using our platform or finding materials.</p>
+                <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                <h3>Asisten Chatbot AI</h3>
+                <p>Dapatkan bantuan instan untuk pertanyaan apa pun tentang penggunaan platform kami atau menemukan bahan.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🌱</div>
-                <h3>Eco-Impact Tracker</h3>
-                <p>See the positive environmental impact of your transactions in real-time.</p>
+                <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                <h3>Pelacak Dampak Ekologis</h3>
+                <p>Lihat dampak positif lingkungan dari transaksi Anda secara real-time.</p>
             </div>
         </section>
 
         <section class="use-cases">
             <div class="section-title">
-                <h2>Real Use Cases</h2>
-                <p>See how Waste to Worth helps real people transform waste into valuable products</p>
+                <h2>Kasus Penggunaan Nyata</h2>
+                <p>Lihat bagaimana Waste to Worth membantu orang-orang mengubah sampah menjadi produk berharga</p>
             </div>
 
             <div class="use-case">
-                <div class="use-case-icon">🔍</div>
+                <div class="use-case-icon"><i class="fas fa-search"></i></div>
                 <div class="use-case-content">
-                    <h3>AI Smart Product Matching</h3>
-                    <p><strong>Bu Rina</strong> searches for "denim fabric at least 30x30cm for bags" and instantly sees 5 matching suppliers, with two marked "100% match". The system also suggests canvas as an alternative material.</p>
+                    <h3>Kecocokan Produk Cerdas AI</h3>
+                    <p><strong>Bu Rina</strong> mencari "kain denim minimal 30x30cm untuk tas" dan langsung melihat 5 pemasok yang cocok, dengan dua ditandai "100% cocok". Sistem juga menyarankan kanvas sebagai bahan alternatif.</p>
                     <div class="use-case-result">
-                        <strong>Result:</strong> Bu Rina completes her transaction in under 5 minutes by connecting directly with the best supplier.
+                        <strong>Hasil:</strong> Bu Rina menyelesaikan transaksinya dalam waktu kurang dari 5 menit dengan terhubung langsung ke pemasok terbaik.
                     </div>
                 </div>
             </div>
 
             <div class="use-case">
-                <div class="use-case-icon">📷</div>
+                <div class="use-case-icon"><i class="fas fa-image"></i></div>
                 <div class="use-case-content">
-                    <h3>AI Visual Search</h3>
-                    <p><strong>Deni</strong> sees a wooden pallet shoe rack on Instagram but doesn't know what it's called. He uploads a screenshot and our AI identifies similar products in our catalog.</p>
+                    <h3>Pencarian Visual AI</h3>
+                    <p><strong>Deni</strong> melihat rak sepatu dari palet kayu di Instagram tetapi tidak tahu namanya. Dia mengunggah tangkapan layar dan AI kami mengidentifikasi produk serupa di katalog kami.</p>
                     <div class="use-case-result">
-                        <strong>Result:</strong> Deni finds and purchases the exact product without needing to know technical terms.
+                        <strong>Hasil:</strong> Deni menemukan dan membeli produk yang tepat tanpa perlu mengetahui istilah teknis.
                     </div>
                 </div>
             </div>
 
             <div class="visual-search-container">
-                <h3 class="visual-search-title">Try Our Visual Search</h3>
+                <h3 class="visual-search-title">Coba Pencarian Visual Kami</h3>
                 <div class="visual-search-box" id="visualSearchBox">
-                    <div class="visual-search-icon">📷</div>
-                    <div class="visual-search-text">Drag & drop an image here or click to browse</div>
-                    <button class="visual-search-btn">Upload Image</button>
+                    <div class="visual-search-icon"><i class="fas fa-images"></i></div>
+                    <div class="visual-search-text">Seret & lepas gambar di sini atau klik untuk menjelajah</div>
+                    <button class="visual-search-btn">Unggah Gambar</button>
                 </div>
                 <div class="search-results" id="searchResults">
                     <div class="search-result-item">
                         <div class="search-result-image" style="background-image: url('https://via.placeholder.com/90');"></div>
                         <div class="search-result-info">
-                            <h4>Wooden Pallet Shoe Rack</h4>
-                            <p>Material: Recycled pine pallet wood</p>
-                            <span class="match-badge">85% match</span>
+                            <h4>Rak Sepatu dari Palet Kayu</h4>
+                            <p>Bahan: Kayu palet daur ulang</p>
+                            <span class="match-badge">85% cocok</span>
                         </div>
                     </div>
                     <div class="search-result-item">
                         <div class="search-result-image" style="background-image: url('https://via.placeholder.com/90');"></div>
                         <div class="search-result-info">
-                            <h4>Minimalist Bookshelf</h4>
-                            <p>Material: Reclaimed pallet wood</p>
-                            <span class="match-badge">72% match</span>
+                            <h4>Rak Buku Minimalis</h4>
+                            <p>Bahan: Kayu palet bekas</p>
+                            <span class="match-badge">72% cocok</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="use-case">
-                <div class="use-case-icon">🤖</div>
+                <div class="use-case-icon"><i class="fas fa-robot"></i></div>
                 <div class="use-case-content">
-                    <h3>AI Chatbot Assistant</h3>
-                    <p><strong>Ani</strong> asks our chatbot "How do I sell plastic bottle waste from home?" and gets step-by-step guidance on uploading her materials to the platform.</p>
+                    <h3>Asisten Chatbot AI</h3>
+                    <p><strong>Ani</strong> bertanya pada chatbot kami "Bagaimana cara menjual sampah botol plastik dari rumah?" dan mendapatkan panduan langkah demi langkah untuk mengunggah bahan ke platform.</p>
                     <div class="use-case-result">
-                        <strong>Result:</strong> Ani gets immediate help without reading lengthy manuals, and the chatbot even offers to help fill out the form.
+                        <strong>Hasil:</strong> Ani mendapatkan bantuan langsung tanpa membaca manual panjang, dan chatbot bahkan menawarkan bantuan untuk mengisi formulir.
                     </div>
                 </div>
             </div>
@@ -1123,55 +1229,55 @@
 
         <section class="trending-products">
             <div class="section-title">
-                <h2>Trending Upcycled Products</h2>
-                <p>Popular items this week based on AI analysis of transaction trends</p>
+                <h2>Produk Daur Ulang Populer</h2>
+                <p>Item populer minggu ini berdasarkan analisis AI tren transaksi</p>
             </div>
             <div class="product-grid">
                 <div class="product-card">
                     <div class="product-image" style="background-image: url('https://via.placeholder.com/300');"></div>
                     <div class="product-info">
-                        <h3>Recycled Spunbond Tote Bag</h3>
-                        <p>Made from upcycled spunbond fabric</p>
+                        <h3>Tas Spunbond Daur Ulang</h3>
+                        <p>Dibuat dari kain spunbond daur ulang</p>
                         <div class="product-price">Rp 120.000</div>
                         <div class="product-stats">
                             <span>Jakarta</span>
-                            <span class="product-transactions">+85 transactions</span>
+                            <span class="product-transactions">+85 transaksi</span>
                         </div>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image" style="background-image: url('https://via.placeholder.com/300');"></div>
                     <div class="product-info">
-                        <h3>Upcycled Tin Can Pencil Holder</h3>
-                        <p>Decorative holder from recycled cans</p>
+                        <h3>Tempat Pensil dari Kaleng Bekas</h3>
+                        <p>Tempat pensil dekoratif dari kaleng daur ulang</p>
                         <div class="product-price">Rp 45.000</div>
                         <div class="product-stats">
                             <span>Bandung</span>
-                            <span class="product-transactions">+72 transactions</span>
+                            <span class="product-transactions">+72 transaksi</span>
                         </div>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image" style="background-image: url('https://via.placeholder.com/300');"></div>
                     <div class="product-info">
-                        <h3>Pallet Wood Chair</h3>
-                        <p>Rustic chair from reclaimed pallets</p>
+                        <h3>Kursi dari Palet Kayu</h3>
+                        <p>Kursi bergaya rustic dari palet bekas</p>
                         <div class="product-price">Rp 350.000</div>
                         <div class="product-stats">
                             <span>Surabaya</span>
-                            <span class="product-transactions">+66 transactions</span>
+                            <span class="product-transactions">+66 transaksi</span>
                         </div>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image" style="background-image: url('https://via.placeholder.com/300');"></div>
                     <div class="product-info">
-                        <h3>Denim Fabric Wallet</h3>
-                        <p>Handmade from recycled jeans</p>
+                        <h3>Dompet dari Kain Denim</h3>
+                        <p>Dompet buatan tangan dari jeans bekas</p>
                         <div class="product-price">Rp 85.000</div>
                         <div class="product-stats">
                             <span>Yogyakarta</span>
-                            <span class="product-transactions">+58 transactions</span>
+                            <span class="product-transactions">+58 transaksi</span>
                         </div>
                     </div>
                 </div>
@@ -1179,24 +1285,24 @@
         </section>
 
         <section class="eco-impact">
-            <h3>Your Environmental Impact</h3>
-            <p>See how your transactions are making a difference</p>
+            <h3>Dampak Lingkungan Anda</h3>
+            <p>Lihat bagaimana transaksi Anda membuat perbedaan</p>
             <div class="impact-stats">
                 <div class="stat-item">
                     <div class="stat-value">7 kg</div>
-                    <div class="stat-label">Waste Diverted</div>
+                    <div class="stat-label">Sampah Tersalurkan</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">2</div>
-                    <div class="stat-label">Equivalent Trees Planted</div>
+                    <div class="stat-label">Setara Pohon Ditanam</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">15 kWh</div>
-                    <div class="stat-label">Energy Saved</div>
+                    <div class="stat-label">Energi Tersimpan</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">3</div>
-                    <div class="stat-label">Transactions</div>
+                    <div class="stat-label">Transaksi</div>
                 </div>
             </div>
             <div class="impact-graph">
@@ -1206,21 +1312,21 @@
                 <div class="graph-bar"></div>
             </div>
             <div class="graph-labels">
-                <div>Plastic</div>
-                <div>Fabric</div>
-                <div>Wood</div>
-                <div>Metal</div>
+                <div>Plastik</div>
+                <div>Kain</div>
+                <div>Kayu</div>
+                <div>Logam</div>
             </div>
         </section>
 
         <div class="visual-search-container">
-            <h3 class="visual-search-title">Automatic Waste Classification</h3>
+            <h3 class="visual-search-title">Klasifikasi Sampah Otomatis</h3>
             <div class="use-case">
-                <div class="use-case-icon">🗂️</div>
+                <div class="use-case-icon"><i class="fas fa-sort"></i></div>
                 <div class="use-case-content">
-                    <p><strong>Pak Budi</strong> uploads a photo of used cable rolls. Our AI automatically classifies it as electronic waste, identifies copper and plastic components, warns about toxicity if burned, and highlights high recycling potential for metals.</p>
+                    <p><strong>Pak Budi</strong> mengunggah foto gulungan kabel bekas. AI kami secara otomatis mengklasifikasikannya sebagai sampah elektronik, mengidentifikasi komponen tembaga dan plastik, memperingatkan tentang toksisitas jika dibakar, dan menyoroti potensi daur ulang tinggi untuk logam.</p>
                     <div class="use-case-result">
-                        <strong>Result:</strong> The listing appears with complete details without manual input, attracting more buyers with clear information.
+                        <strong>Hasil:</strong> Daftar muncul dengan detail lengkap tanpa input manual, menarik lebih banyak pembeli dengan informasi yang jelas.
                     </div>
                 </div>
             </div>
@@ -1228,18 +1334,18 @@
     </main>
 
     <div class="chatbot-container">
-        <button class="chatbot-btn" id="chatbotBtn">💬</button>
+        <button class="chatbot-btn" id="chatbotBtn"><i class="fas fa-comment-dots"></i></button>
         <div class="chatbot-window" id="chatbotWindow">
             <div class="chatbot-header">
-                <h3>Waste to Worth Assistant</h3>
+                <h3>Asisten Waste to Worth</h3>
                 <button class="chatbot-close" id="chatbotClose">×</button>
             </div>
             <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">Hello! I'm your Waste to Worth assistant. How can I help you today?</div>
+                <div class="message bot-message">Halo! Saya asisten Waste to Worth. Bagaimana saya bisa membantu Anda hari ini?</div>
             </div>
             <div class="chatbot-input">
-                <input type="text" id="chatbotInput" placeholder="Type your message...">
-                <button class="chatbot-send" id="chatbotSend">Send</button>
+                <input type="text" id="chatbotInput" placeholder="Ketik pesan Anda...">
+                <button class="chatbot-send" id="chatbotSend">Kirim</button>
             </div>
         </div>
     </div>
@@ -1247,48 +1353,66 @@
     <footer>
         <div class="footer-content">
             <div class="footer-column">
-                <h3>Company</h3>
+                <h3>Perusahaan</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Mission</a></li>
-                    <li><a href="#">Team</a></li>
-                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Misi Kami</a></li>
+                    <li><a href="#">Tim</a></li>
+                    <li><a href="#">Karir</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Resources</h3>
+                <h3>Sumber Daya</h3>
                 <ul>
-                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Cara Kerja</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Sustainability Reports</a></li>
+                    <li><a href="#">Laporan Keberlanjutan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Support</h3>
+                <h3>Dukungan</h3>
                 <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Pusat Bantuan</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat Layanan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Connect</h3>
+                <h3>Terhubung</h3>
                 <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2023 Waste to Worth. All rights reserved.
+            &copy; 2023 Waste to Worth. Semua hak dilindungi.
         </div>
     </footer>
 
     <script>
+        // Hamburger Menu Functionality
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
         // Chatbot functionality
         const chatbotBtn = document.getElementById('chatbotBtn');
         const chatbotWindow = document.getElementById('chatbotWindow');
@@ -1329,12 +1453,12 @@
                 
                 // Simulate bot response
                 setTimeout(() => {
-                    if (message.toLowerCase().includes('sell') || message.toLowerCase().includes('jual')) {
-                        addBotMessage("To sell waste materials, click the 'Upload Waste' button on your dashboard. You can then select the type of waste, add photos, and set your price. Would you like me to guide you through the process?");
-                    } else if (message.toLowerCase().includes('buy') || message.toLowerCase().includes('beli')) {
-                        addBotMessage("You can browse materials by category or use our search feature. What type of material are you looking for? I can help you find the best matches.");
+                    if (message.toLowerCase().includes('jual')) {
+                        addBotMessage("Untuk menjual bahan limbah, klik tombol 'Unggah Limbah' di dashboard Anda. Anda kemudian dapat memilih jenis limbah, menambahkan foto, dan menetapkan harga. Apakah Anda ingin saya memandu Anda melalui prosesnya?");
+                    } else if (message.toLowerCase().includes('beli')) {
+                        addBotMessage("Anda dapat menjelajahi bahan berdasarkan kategori atau menggunakan fitur pencarian kami. Jenis bahan apa yang Anda cari? Saya dapat membantu Anda menemukan kecocokan terbaik.");
                     } else {
-                        addBotMessage("I can help you with buying, selling, or learning about our platform. What would you like to know more about?");
+                        addBotMessage("Saya dapat membantu Anda dengan membeli, menjual, atau mempelajari tentang platform kami. Apa yang ingin Anda ketahui lebih lanjut?");
                     }
                 }, 1000);
             }
@@ -1353,22 +1477,22 @@
         visualSearchBox.addEventListener('click', () => {
             // Simulate image upload and search
             visualSearchBox.innerHTML = `
-                <div class="visual-search-icon">🔍</div>
-                <div class="visual-search-text">Analyzing image...</div>
+                <div class="visual-search-icon"><i class="fas fa-search"></i></div>
+                <div class="visual-search-text">Menganalisis gambar...</div>
             `;
             
             setTimeout(() => {
                 visualSearchBox.innerHTML = `
-                    <div class="visual-search-icon">✅</div>
-                    <div class="visual-search-text">Image analysis complete!</div>
+                    <div class="visual-search-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="visual-search-text">Analisis gambar selesai!</div>
                 `;
                 searchResults.style.display = 'block';
                 
                 setTimeout(() => {
                     visualSearchBox.innerHTML = `
-                        <div class="visual-search-icon">📷</div>
-                        <div class="visual-search-text">Drag & drop an image here or click to browse</div>
-                        <button class="visual-search-btn">Upload Image</button>
+                        <div class="visual-search-icon"><i class="fas fa-images"></i></div>
+                        <div class="visual-search-text">Seret & lepas gambar di sini atau klik untuk menjelajah</div>
+                        <button class="visual-search-btn">Unggah Gambar</button>
                     `;
                 }, 2000);
             }, 1500);
@@ -1377,6 +1501,8 @@
         // Animate eco impact graph bars on scroll
         window.addEventListener('scroll', () => {
             const ecoImpact = document.querySelector('.eco-impact');
+            if (!ecoImpact) return;
+            
             const position = ecoImpact.getBoundingClientRect();
             
             // Checking whether fully visible
@@ -1397,15 +1523,15 @@
         searchBtn.addEventListener('click', () => {
             if (searchInput.value.toLowerCase().includes('denim') || 
                 searchInput.value.toLowerCase().includes('kain')) {
-                alert("Showing 5 matches for your search. Two are marked as '100% match' for your requirements!");
+                alert("Menampilkan 5 hasil yang cocok untuk pencarian Anda. Dua ditandai sebagai '100% cocok' dengan kebutuhan Anda!");
             } else {
-                alert("Searching for: " + searchInput.value);
+                alert("Mencari: " + searchInput.value);
             }
         });
 
         // Active nav link
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('nav a');
+        const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
         
         navLinks.forEach(link => {
             if (link.getAttribute('href') === currentPage) {
