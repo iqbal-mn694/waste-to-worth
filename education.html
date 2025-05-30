@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waste to Worth - Education</title>
+    <title>Waste to Worth - Edukasi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* All the CSS from the homepage */
         :root {
             --primary: #2e7d32;
             --primary-light: #60ad5e;
@@ -69,6 +69,12 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-on-primary);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
         }
 
         nav ul {
@@ -173,6 +179,78 @@
             object-fit: cover;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 25px;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-on-primary);
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--primary-dark);
+            padding: 5rem 2rem;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu a {
+            color: var(--text-on-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu .user-actions {
+            margin-top: 2rem;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         /* Main Content Styles */
         main {
             padding: 2rem;
@@ -257,6 +335,7 @@
         .education-search {
             display: flex;
             margin-bottom: 2rem;
+            width: 100%;
         }
 
         .education-search input {
@@ -300,6 +379,7 @@
             overflow: hidden;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .education-card:hover {
@@ -638,20 +718,18 @@
         }
 
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 1.5rem;
+            /* Hide desktop nav */
+            nav.desktop-nav {
+                display: none;
             }
             
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
+            /* Show hamburger */
+            .hamburger {
+                display: flex;
             }
             
-            .user-actions {
-                margin-top: 1rem;
+            .user-actions .btn {
+                display: none;
             }
             
             .education-tabs {
@@ -675,6 +753,14 @@
             .footer-content {
                 grid-template-columns: 1fr;
             }
+            
+            .featured-title {
+                font-size: 1.3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
         }
     </style>
 </head>
@@ -684,54 +770,79 @@
             <img src="https://via.placeholder.com/40" alt="Waste to Worth Logo">
             <h1>Waste to Worth</h1>
         </a>
-        <nav>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="marketplace.html">Marketplace</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="education.html" class="active">Education</a></li>
-                <li><a href="profile.html">Profile</a></li>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="marketplace.html">Pasar</a></li>
+                <li><a href="community.html">Komunitas</a></li>
+                <li><a href="education.html" class="active">Edukasi</a></li>
+                <li><a href="profile.html">Profil</a></li>
             </ul>
         </nav>
+        
         <div class="user-actions">
-            <button class="btn btn-secondary">Log In</button>
-            <button class="btn btn-primary">Sign Up</button>
+            <button class="btn btn-secondary">Masuk</button>
+            <button class="btn btn-primary">Daftar</button>
             <div class="user-profile">
-                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <img src="https://via.placeholder.com/40" alt="Profil Pengguna">
             </div>
         </div>
     </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="marketplace.html">Pasar</a></li>
+            <li><a href="community.html">Komunitas</a></li>
+            <li><a href="education.html" class="active">Edukasi</a></li>
+            <li><a href="profile.html">Profil</a></li>
+        </ul>
+        <div class="user-actions">
+            <button class="btn btn-secondary">Masuk</button>
+            <button class="btn btn-primary">Daftar</button>
+        </div>
+    </div>
 
     <main>
         <div class="section-title">
-            <h2>Education Center</h2>
-            <p>Learn about upcycling techniques, sustainability, and waste management</p>
+            <h2>Pusat Edukasi</h2>
+            <p>Pelajari teknik daur ulang kreatif, keberlanjutan, dan pengelolaan sampah</p>
         </div>
 
         <div class="education-header">
-            <h3>Educational Resources</h3>
+            <h3>Sumber Belajar</h3>
             <div class="education-search">
-                <input type="text" placeholder="Search for tutorials, guides...">
-                <button>Search</button>
+                <input type="text" placeholder="Cari tutorial, panduan...">
+                <button><i class="fas fa-search"></i></button>
             </div>
         </div>
 
         <div class="education-tabs">
-            <div class="education-tab active">All Resources</div>
-            <div class="education-tab">Tutorials</div>
-            <div class="education-tab">Guides</div>
-            <div class="education-tab">Videos</div>
-            <div class="education-tab">Case Studies</div>
-            <div class="education-tab">Infographics</div>
+            <div class="education-tab active">Semua</div>
+            <div class="education-tab">Tutorial</div>
+            <div class="education-tab">Panduan</div>
+            <div class="education-tab">Video</div>
+            <div class="education-tab">Studi Kasus</div>
+            <div class="education-tab">Infografis</div>
         </div>
 
         <div class="featured-education">
             <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
             <div class="featured-content">
-                <span class="featured-badge">Featured</span>
-                <h3 class="featured-title">The Complete Guide to Upcycling for Beginners</h3>
-                <p class="featured-excerpt">Learn the fundamentals of upcycling with our comprehensive guide that covers everything from material selection to basic techniques for transforming waste into beautiful, functional items.</p>
-                <button class="btn btn-primary">Read Guide</button>
+                <span class="featured-badge">Unggulan</span>
+                <h3 class="featured-title">Panduan Lengkap Daur Ulang Kreatif untuk Pemula</h3>
+                <p class="featured-excerpt">Pelajari dasar-dasar daur ulang kreatif dengan panduan komprehensif kami yang mencakup segala hal mulai dari pemilihan bahan hingga teknik dasar untuk mengubah sampah menjadi barang yang indah dan fungsional.</p>
+                <button class="btn btn-primary">Baca Panduan</button>
             </div>
         </div>
 
@@ -741,25 +852,25 @@
                     <span class="education-category">Tutorial</span>
                 </div>
                 <div class="education-content">
-                    <h3 class="education-title">Turning Denim Scraps into Fashionable Accessories</h3>
-                    <p class="education-excerpt">Step-by-step guide to creating wallets, bags, and more from old jeans. Perfect for beginners with clear instructions and photos.</p>
+                    <h3 class="education-title">Mengubah Sisa Denim Menjadi Aksesori Fashion</h3>
+                    <p class="education-excerpt">Panduan langkah demi langkah untuk membuat dompet, tas, dan lainnya dari celana jeans bekas. Cocok untuk pemula dengan instruksi dan foto yang jelas.</p>
                     <div class="education-meta">
-                        <span>15 min read</span>
-                        <span class="education-duration">📚 1.2k views</span>
+                        <span>15 menit</span>
+                        <span class="education-duration"><i class="fas fa-eye"></i> 1.2k dilihat</span>
                     </div>
                 </div>
             </div>
 
             <div class="education-card">
                 <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1586023492128-395c9b005323?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                    <span class="education-category">Guide</span>
+                    <span class="education-category">Panduan</span>
                 </div>
                 <div class="education-content">
-                    <h3 class="education-title">The Complete Guide to Working with Pallet Wood</h3>
-                    <p class="education-excerpt">Everything you need to know about sourcing, preparing, and building with recycled pallets. Safety tips included.</p>
+                    <h3 class="education-title">Panduan Lengkap Bekerja dengan Kayu Palet</h3>
+                    <p class="education-excerpt">Semua yang perlu Anda ketahui tentang mencari, menyiapkan, dan membangun dengan palet bekas. Termasuk tips keselamatan.</p>
                     <div class="education-meta">
-                        <span>25 min read</span>
-                        <span class="education-duration">📚 856 views</span>
+                        <span>25 menit</span>
+                        <span class="education-duration"><i class="fas fa-eye"></i> 856 dilihat</span>
                     </div>
                 </div>
             </div>
@@ -769,53 +880,53 @@
                     <span class="education-category">Video</span>
                 </div>
                 <div class="education-content">
-                    <h3 class="education-title">Plastic Bottle Upcycling: 10 Creative Ideas</h3>
-                    <p class="education-excerpt">Watch our tutorial video for innovative ways to reuse plastic bottles in your home and garden projects.</p>
+                    <h3 class="education-title">Daur Ulang Botol Plastik: 10 Ide Kreatif</h3>
+                    <p class="education-excerpt">Tonton video tutorial kami untuk cara-cara inovatif menggunakan kembali botol plastik dalam proyek rumah dan taman Anda.</p>
                     <div class="education-meta">
-                        <span>12 min video</span>
-                        <span class="education-duration">🎥 2.4k views</span>
+                        <span>12 menit</span>
+                        <span class="education-duration"><i class="fas fa-eye"></i> 2.4k dilihat</span>
                     </div>
                 </div>
             </div>
 
             <div class="education-card">
                 <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                    <span class="education-category">Article</span>
+                    <span class="education-category">Artikel</span>
                 </div>
                 <div class="education-content">
-                    <h3 class="education-title">Understanding Waste Classification for Better Recycling</h3>
-                    <p class="education-excerpt">Learn how to properly identify and sort different types of waste materials to maximize their recycling potential.</p>
+                    <h3 class="education-title">Memahami Klasifikasi Sampah untuk Daur Ulang Lebih Baik</h3>
+                    <p class="education-excerpt">Pelajari cara mengidentifikasi dan memilah berbagai jenis bahan sampah dengan benar untuk memaksimalkan potensi daur ulangnya.</p>
                     <div class="education-meta">
-                        <span>10 min read</span>
-                        <span class="education-duration">📚 1.8k views</span>
+                        <span>10 menit</span>
+                        <span class="education-duration"><i class="fas fa-eye"></i> 1.8k dilihat</span>
                     </div>
                 </div>
             </div>
 
             <div class="education-card">
                 <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                    <span class="education-category">Case Study</span>
+                    <span class="education-category">Studi Kasus</span>
                 </div>
                 <div class="education-content">
-                    <h3 class="education-title">How a Small Business Built Success with Upcycled Materials</h3>
-                    <p class="education-excerpt">Inspiration from entrepreneurs who turned waste into profitable products while reducing environmental impact.</p>
+                    <h3 class="education-title">Bagaimana Bisnis Kecil Sukses dengan Bahan Daur Ulang</h3>
+                    <p class="education-excerpt">Inspirasi dari pengusaha yang mengubah sampah menjadi produk menguntungkan sekaligus mengurangi dampak lingkungan.</p>
                     <div class="education-meta">
-                        <span>18 min read</span>
-                        <span class="education-duration">📚 932 views</span>
+                        <span>18 menit</span>
+                        <span class="education-duration"><i class="fas fa-eye"></i> 932 dilihat</span>
                     </div>
                 </div>
             </div>
 
             <div class="education-card">
                 <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                    <span class="education-category">Infographic</span>
+                    <span class="education-category">Infografis</span>
                 </div>
                 <div class="education-content">
-                    <h3 class="education-title">The Environmental Impact of Upcycling</h3>
-                    <p class="education-excerpt">Visual guide showing how creative reuse benefits our planet by reducing waste, conserving resources, and lowering emissions.</p>
+                    <h3 class="education-title">Dampak Lingkungan dari Daur Ulang Kreatif</h3>
+                    <p class="education-excerpt">Panduan visual yang menunjukkan bagaimana penggunaan kembali kreatif bermanfaat bagi planet kita dengan mengurangi sampah, menghemat sumber daya, dan menurunkan emisi.</p>
                     <div class="education-meta">
-                        <span>5 min read</span>
-                        <span class="education-duration">📊 3.1k views</span>
+                        <span>5 menit</span>
+                        <span class="education-duration"><i class="fas fa-eye"></i> 3.1k dilihat</span>
                     </div>
                 </div>
             </div>
@@ -823,18 +934,18 @@
     </main>
 
     <div class="chatbot-container">
-        <button class="chatbot-btn" id="chatbotBtn">💬</button>
+        <button class="chatbot-btn" id="chatbotBtn"><i class="fas fa-comment-dots"></i></button>
         <div class="chatbot-window" id="chatbotWindow">
             <div class="chatbot-header">
-                <h3>Waste to Worth Assistant</h3>
+                <h3>Asisten Waste to Worth</h3>
                 <button class="chatbot-close" id="chatbotClose">×</button>
             </div>
             <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">Hello! I'm your Waste to Worth assistant. How can I help you with educational resources today?</div>
+                <div class="message bot-message">Halo! Saya asisten Waste to Worth. Bagaimana saya bisa membantu Anda dengan sumber belajar hari ini?</div>
             </div>
             <div class="chatbot-input">
-                <input type="text" id="chatbotInput" placeholder="Type your message...">
-                <button class="chatbot-send" id="chatbotSend">Send</button>
+                <input type="text" id="chatbotInput" placeholder="Ketik pesan Anda...">
+                <button class="chatbot-send" id="chatbotSend">Kirim</button>
             </div>
         </div>
     </div>
@@ -842,48 +953,66 @@
     <footer>
         <div class="footer-content">
             <div class="footer-column">
-                <h3>Company</h3>
+                <h3>Perusahaan</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Mission</a></li>
-                    <li><a href="#">Team</a></li>
-                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Misi Kami</a></li>
+                    <li><a href="#">Tim</a></li>
+                    <li><a href="#">Karir</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Resources</h3>
+                <h3>Sumber Daya</h3>
                 <ul>
-                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Cara Kerja</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Sustainability Reports</a></li>
+                    <li><a href="#">Laporan Keberlanjutan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Support</h3>
+                <h3>Dukungan</h3>
                 <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Pusat Bantuan</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat Layanan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Connect</h3>
+                <h3>Terhubung</h3>
                 <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2023 Waste to Worth. All rights reserved.
+            &copy; 2023 Waste to Worth. Semua hak dilindungi.
         </div>
     </footer>
 
     <script>
+        // Hamburger Menu Functionality
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
         // Chatbot functionality
         const chatbotBtn = document.getElementById('chatbotBtn');
         const chatbotWindow = document.getElementById('chatbotWindow');
@@ -925,13 +1054,13 @@
                 // Simulate bot response
                 setTimeout(() => {
                     if (message.toLowerCase().includes('tutorial') || message.toLowerCase().includes('panduan')) {
-                        addBotMessage("We have step-by-step tutorials for various upcycling projects. You can filter by 'Tutorials' in the education center. What material are you interested in working with?");
-                    } else if (message.toLowerCase().includes('video') || message.toLowerCase().includes('video')) {
-                        addBotMessage("Our video resources can be found under the 'Videos' tab. They cover everything from basic techniques to advanced projects.");
-                    } else if (message.toLowerCase().includes('beginner') || message.toLowerCase().includes('pemula')) {
-                        addBotMessage("For beginners, I recommend starting with our 'Complete Guide to Upcycling for Beginners' (featured at the top) or the 'Denim Scraps to Accessories' tutorial.");
+                        addBotMessage("Kami memiliki tutorial langkah demi langkah untuk berbagai proyek daur ulang kreatif. Anda bisa memfilter dengan 'Tutorial' di pusat edukasi. Bahan apa yang ingin Anda gunakan?");
+                    } else if (message.toLowerCase().includes('video')) {
+                        addBotMessage("Sumber belajar video kami bisa ditemukan di tab 'Video'. Mereka mencakup segala hal mulai dari teknik dasar hingga proyek lanjutan.");
+                    } else if (message.toLowerCase().includes('pemula')) {
+                        addBotMessage("Untuk pemula, saya merekomendasikan 'Panduan Lengkap Daur Ulang Kreatif untuk Pemula' (unggulan di bagian atas) atau tutorial 'Mengubah Sisa Denim'.");
                     } else {
-                        addBotMessage("I can help you find tutorials, guides, or videos based on your interests. What would you like to learn about?");
+                        addBotMessage("Saya bisa membantu Anda menemukan tutorial, panduan, atau video berdasarkan minat Anda. Apa yang ingin Anda pelajari?");
                     }
                 }, 1000);
             }
@@ -950,7 +1079,7 @@
                 document.querySelector('.education-tab.active').classList.remove('active');
                 tab.classList.add('active');
                 // In a real app, this would filter the resources
-                console.log(`Showing ${tab.textContent} resources`);
+                console.log(`Menampilkan sumber ${tab.textContent}`);
             });
         });
 
@@ -959,7 +1088,7 @@
         educationCards.forEach(card => {
             card.addEventListener('click', () => {
                 // In a real app, this would go to the resource detail page
-                console.log(`Viewing resource: ${card.querySelector('.education-title').textContent}`);
+                console.log(`Melihat sumber: ${card.querySelector('.education-title').textContent}`);
             });
         });
 
@@ -970,7 +1099,7 @@
         searchBtn.addEventListener('click', () => {
             if (searchInput.value.trim()) {
                 // In a real app, this would search the resources
-                console.log(`Searching for: ${searchInput.value}`);
+                console.log(`Mencari: ${searchInput.value}`);
             }
         });
 
