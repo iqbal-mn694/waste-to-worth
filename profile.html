@@ -304,7 +304,6 @@
             height: 120px;
             border-radius: 50%;
             background-color: #eee;
-            background-image: url('https://via.placeholder.com/120');
             background-size: cover;
             background-position: center;
             border: 4px solid var(--secondary);
@@ -872,6 +871,205 @@
             border-top: 1px solid #eee;
         }
 
+        /* Admin Specific Styles */
+        .admin-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .admin-card {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .admin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .admin-stat {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        .admin-table th, .admin-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .admin-table th {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            font-weight: 500;
+        }
+
+        .admin-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .admin-table tr:hover td {
+            background-color: rgba(46, 125, 50, 0.03);
+        }
+
+        /* Login/Register Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--error);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        .form-switch {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .form-switch a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-switch a:hover {
+            text-decoration: underline;
+        }
+
+        .role-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .role-option {
+            flex: 1;
+            text-align: center;
+        }
+
+        .role-radio {
+            display: none;
+        }
+
+        .role-label {
+            display: block;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .role-radio:checked + .role-label {
+            border-color: var(--primary);
+            background-color: rgba(46, 125, 50, 0.05);
+        }
+
+        .role-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .role-name {
+            font-weight: 500;
+        }
+
         /* Footer */
         footer {
             background-color: var(--primary-dark);
@@ -997,6 +1195,10 @@
             .quick-actions {
                 grid-template-columns: 1fr 1fr;
             }
+            
+            .role-selector {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -1026,9 +1228,9 @@
         </nav>
         
         <div class="user-actions">
-            <button class="btn btn-secondary">Masuk</button>
-            <button class="btn btn-primary">Daftar</button>
-            <div class="user-profile">
+            <button class="btn btn-secondary" id="loginBtn">Masuk</button>
+            <button class="btn btn-primary" id="registerBtn">Daftar</button>
+            <div class="user-profile" id="userProfile">
                 <img src="https://via.placeholder.com/40" alt="Profil Pengguna">
             </div>
         </div>
@@ -1044,364 +1246,108 @@
             <li><a href="profile.html" class="active">Profil</a></li>
         </ul>
         <div class="user-actions">
-            <button class="btn btn-secondary">Masuk</button>
-            <button class="btn btn-primary">Daftar</button>
+            <button class="btn btn-secondary" id="mobileLoginBtn">Masuk</button>
+            <button class="btn btn-primary" id="mobileRegisterBtn">Daftar</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Masuk ke Akun Anda</h3>
+                <button class="modal-close" id="closeLoginModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Masuk</button>
+                    </div>
+                    <div class="form-switch">
+                        Belum punya akun? <a href="#" id="switchToRegister">Daftar disini</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Buat Akun Baru</h3>
+                <button class="modal-close" id="closeRegisterModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Nama Lengkap</label>
+                        <input type="text" id="registerName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Konfirmasi Password</label>
+                        <input type="password" id="registerConfirmPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Daftar sebagai:</label>
+                        <div class="role-selector">
+                            <div class="role-option">
+                                <input type="radio" name="userRole" id="roleBuyer" value="buyer" class="role-radio" checked>
+                                <label for="roleBuyer" class="role-label">
+                                    <div class="role-icon"><i class="fas fa-shopping-cart"></i></div>
+                                    <div class="role-name">Pembeli</div>
+                                </label>
+                            </div>
+                            <div class="role-option">
+                                <input type="radio" name="userRole" id="roleSeller" value="seller" class="role-radio">
+                                <label for="roleSeller" class="role-label">
+                                    <div class="role-icon"><i class="fas fa-store"></i></div>
+                                    <div class="role-name">Penjual</div>
+                                </label>
+                            </div>
+                            <div class="role-option">
+                                <input type="radio" name="userRole" id="roleAdmin" value="admin" class="role-radio">
+                                <label for="roleAdmin" class="role-label">
+                                    <div class="role-icon"><i class="fas fa-user-shield"></i></div>
+                                    <div class="role-name">Admin</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Daftar</button>
+                    </div>
+                    <div class="form-switch">
+                        Sudah punya akun? <a href="#" id="switchToLogin">Masuk disini</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <main>
-        <div class="profile-header">
-            <div class="profile-avatar"></div>
-            <div class="profile-info">
-                <h1 class="profile-name">Budi Santoso</h1>
-                <p class="profile-bio">Pecinta daur ulang kreatif dan pembuat produk berkelanjutan dari Jakarta</p>
-                <div class="profile-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">24</div>
-                        <div class="stat-label">Daftar</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">156</div>
-                        <div class="stat-label">Pengikut</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">89</div>
-                        <div class="stat-label">Mengikuti</div>
-                    </div>
-                </div>
-                <div class="profile-actions">
-                    <button class="btn btn-primary">Edit Profil</button>
-                    <button class="btn btn-secondary">Bagikan Profil</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="profile-nav">
-            <div class="profile-nav-item active" data-tab="overview">Ringkasan</div>
-            <div class="profile-nav-item" data-tab="listings">Daftar Saya</div>
-            <div class="profile-nav-item" data-tab="orders">Pesanan</div>
-            <div class="profile-nav-item" data-tab="saved">Disimpan</div>
-            <div class="profile-nav-item" data-tab="settings">Pengaturan</div>
-        </div>
-
-        <!-- Overview Section -->
-        <div class="profile-section active" id="overview-section">
-            <div class="overview-content">
-                <div class="overview-card">
-                    <h3><i class="fas fa-chart-line"></i> Aktivitas Terkini</h3>
-                    <div class="recent-activity">
-                        <div class="activity-item">
-                            <div class="activity-icon"><i class="fas fa-box"></i></div>
-                            <div class="activity-content">
-                                <div class="activity-text">Pesanan #WTW2023-009 telah dikirim</div>
-                                <div class="activity-time">2 jam lalu</div>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon"><i class="fas fa-comment"></i></div>
-                            <div class="activity-content">
-                                <div class="activity-text">Komentar baru pada posting tas denim Anda</div>
-                                <div class="activity-time">1 hari lalu</div>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon"><i class="fas fa-heart"></i></div>
-                            <div class="activity-content">
-                                <div class="activity-text">Daftar kayu palet Anda difavoritkan</div>
-                                <div class="activity-time">3 hari lalu</div>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon"><i class="fas fa-star"></i></div>
-                            <div class="activity-content">
-                                <div class="activity-text">Anda menerima ulasan 5 bintang untuk produk kaca daur ulang Anda</div>
-                                <div class="activity-time">5 hari lalu</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="overview-card">
-                    <h3><i class="fas fa-bolt"></i> Aksi Cepat</h3>
-                    <div class="quick-actions">
-                        <div class="quick-action">
-                            <div class="quick-action-icon"><i class="fas fa-plus"></i></div>
-                            <div class="quick-action-text">Tambah Daftar</div>
-                        </div>
-                        <div class="quick-action">
-                            <div class="quick-action-icon"><i class="fas fa-chart-bar"></i></div>
-                            <div class="quick-action-text">Lihat Statistik</div>
-                        </div>
-                        <div class="quick-action">
-                            <div class="quick-action-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="quick-action-text">Pesan</div>
-                        </div>
-                        <div class="quick-action">
-                            <div class="quick-action-icon"><i class="fas fa-book"></i></div>
-                            <div class="quick-action-text">Sumber Daya</div>
-                        </div>
-                        <div class="quick-action">
-                            <div class="quick-action-icon"><i class="fas fa-bell"></i></div>
-                            <div class="quick-action-text">Notifikasi</div>
-                        </div>
-                        <div class="quick-action">
-                            <div class="quick-action-icon"><i class="fas fa-leaf"></i></div>
-                            <div class="quick-action-text">Dampak Ekologis</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Listings Section -->
-        <div class="profile-section" id="listings-section">
-            <div class="listings-actions">
-                <button class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Daftar Baru</button>
-            </div>
-            <div class="listings-grid">
-                <div class="listing-card">
-                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="listing-info">
-                        <h3 class="listing-title">Sisa Kain Denim</h3>
-                        <p class="listing-description">Berbagai ukuran kain denim cocok untuk proyek daur ulang</p>
-                        <div class="listing-price">Rp 25.000/kg</div>
-                        <div class="listing-meta">
-                            <div class="listing-views">124 dilihat</div>
-                            <span class="listing-status status-active">Aktif</span>
-                        </div>
-                        <div class="listing-actions">
-                            <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">Lihat</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-card">
-                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="listing-info">
-                        <h3 class="listing-title">Palet Kayu</h3>
-                        <p class="listing-description">Palet kayu bekas dalam kondisi baik untuk proyek furnitur</p>
-                        <div class="listing-price">Rp 50.000/palet</div>
-                        <div class="listing-meta">
-                            <div class="listing-views">87 dilihat</div>
-                            <span class="listing-status status-pending">Menunggu</span>
-                        </div>
-                        <div class="listing-actions">
-                            <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">Lihat</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-card">
-                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="listing-info">
-                        <h3 class="listing-title">Botol Kaca</h3>
-                        <p class="listing-description">Berbagai botol kaca untuk proyek dekorasi rumah DIY</p>
-                        <div class="listing-price">Rp 8.000/botol</div>
-                        <div class="listing-meta">
-                            <div class="listing-views">156 dilihat</div>
-                            <span class="listing-status status-sold">Habis</span>
-                        </div>
-                        <div class="listing-actions">
-                            <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">Lihat</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-card">
-                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="listing-info">
-                        <h3 class="listing-title">Tutup Botol Plastik</h3>
-                        <p class="listing-description">Tutup botol plastik warna-warni untuk proyek seni dan kerajinan</p>
-                        <div class="listing-price">Rp 2.000/tutup</div>
-                        <div class="listing-meta">
-                            <div class="listing-views">92 dilihat</div>
-                            <span class="listing-status status-active">Aktif</span>
-                        </div>
-                        <div class="listing-actions">
-                            <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">Lihat</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Orders Section -->
-        <div class="profile-section" id="orders-section">
-            <div class="orders-container">
-                <table class="orders-table">
-                    <thead>
-                        <tr>
-                            <th>Pesanan #</th>
-                            <th>Tanggal</th>
-                            <th>Item</th>
-                            <th>Total</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="order-id">WTW2023-009</div>
-                                <div class="order-date">15 Mei 2023</div>
-                            </td>
-                            <td>2 Palet Kayu</td>
-                            <td>Rp 115.000</td>
-                            <td><span class="order-status status-shipped">Dikirim</span></td>
-                            <td>
-                                <div class="order-actions">
-                                    <button class="btn btn-secondary">Lacak</button>
-                                    <button class="btn btn-primary">Detail</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="order-id">WTW2023-008</div>
-                                <div class="order-date">10 Mei 2023</div>
-                            </td>
-                            <td>5kg Kain Denim</td>
-                            <td>Rp 140.000</td>
-                            <td><span class="order-status status-delivered">Terkirim</span></td>
-                            <td>
-                                <div class="order-actions">
-                                    <button class="btn btn-secondary">Ulasan</button>
-                                    <button class="btn btn-primary">Detail</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="order-id">WTW2023-007</div>
-                                <div class="order-date">5 Mei 2023</div>
-                            </td>
-                            <td>10 Botol Kaca</td>
-                            <td>Rp 95.000</td>
-                            <td><span class="order-status status-processing">Diproses</span></td>
-                            <td>
-                                <div class="order-actions">
-                                    <button class="btn btn-secondary">Batal</button>
-                                    <button class="btn btn-primary">Detail</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Saved Items Section -->
-        <div class="profile-section" id="saved-section">
-            <div class="saved-grid">
-                <div class="saved-item">
-                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="saved-info">
-                        <h3 class="saved-title">Manik-manik Plastik Daur Ulang</h3>
-                        <div class="saved-price">Rp 15.000/pak</div>
-                        <div class="saved-meta">
-                            <span>Bandung</span>
-                            <span>25 tersedia</span>
-                        </div>
-                        <div class="saved-actions">
-                            <button class="btn btn-secondary">Hapus</button>
-                            <button class="btn btn-primary">Beli Sekarang</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="saved-item">
-                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="saved-info">
-                        <h3 class="saved-title">Ubin Keramik Daur Ulang</h3>
-                        <div class="saved-price">Rp 30.000/kg</div>
-                        <div class="saved-meta">
-                            <span>Jakarta</span>
-                            <span>10 tersedia</span>
-                        </div>
-                        <div class="saved-actions">
-                            <button class="btn btn-secondary">Hapus</button>
-                            <button class="btn btn-primary">Beli Sekarang</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="saved-item">
-                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="saved-info">
-                        <h3 class="saved-title">Koleksi Kancing Vintage</h3>
-                        <div class="saved-price">Rp 45.000/set</div>
-                        <div class="saved-meta">
-                            <span>Surabaya</span>
-                            <span>5 tersedia</span>
-                        </div>
-                        <div class="saved-actions">
-                            <button class="btn btn-secondary">Hapus</button>
-                            <button class="btn btn-primary">Beli Sekarang</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="saved-item">
-                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="saved-info">
-                        <h3 class="saved-title">Papan Kayu Bekas</h3>
-                        <div class="saved-price">Rp 75.000/potong</div>
-                        <div class="saved-meta">
-                            <span>Yogyakarta</span>
-                            <span>8 tersedia</span>
-                        </div>
-                        <div class="saved-actions">
-                            <button class="btn btn-secondary">Hapus</button>
-                            <button class="btn btn-primary">Beli Sekarang</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Settings Section -->
-        <div class="profile-section" id="settings-section">
-            <div class="settings-form">
-                <div class="avatar-upload">
-                    <div class="avatar-preview" style="background-image: url('https://via.placeholder.com/120');"></div>
-                    <div class="avatar-actions">
-                        <button class="btn btn-primary">Ganti Foto</button>
-                        <button class="btn btn-secondary">Hapus</button>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="first-name">Nama Depan</label>
-                        <input type="text" id="first-name" class="form-control" value="Budi">
-                    </div>
-                    <div class="form-group">
-                        <label for="last-name">Nama Belakang</label>
-                        <input type="text" id="last-name" class="form-control" value="Santoso">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" class="form-control" value="budi.santoso@example.com">
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Telepon</label>
-                    <input type="tel" id="phone" class="form-control" value="+628123456789">
-                </div>
-                
-                <div class="form-group">
-                    <label for="bio">Bio</label>
-                    <textarea id="bio" class="form-control" rows="4">Pecinta daur ulang kreatif dan pembuat produk berkelanjutan dari Jakarta. Spesialis dalam mengubah bahan limbah menjadi barang dekorasi rumah yang indah.</textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="address">Alamat</label>
-                    <textarea id="address" class="form-control" rows="3">Jl. Merdeka No. 123, Jakarta Pusat, 10110</textarea>
-                </div>
-                
-                <div class="form-actions">
-                    <button class="btn btn-secondary">Batal</button>
-                    <button class="btn btn-primary">Simpan Perubahan</button>
-                </div>
+        <!-- Profile content will be dynamically loaded based on user role -->
+        <div id="profileContent">
+            <!-- Default content for non-logged in users -->
+            <div class="section-title">
+                <h2>Silakan Masuk atau Daftar</h2>
+                <p>Untuk mengakses fitur profil, Anda perlu masuk atau mendaftar terlebih dahulu.</p>
             </div>
         </div>
     </main>
@@ -1451,10 +1397,98 @@
     </footer>
 
     <script>
-        // Hamburger Menu Functionality
+        // User state management
+        let currentUser = null;
+
+        // DOM Elements
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+        const mobileRegisterBtn = document.getElementById('mobileRegisterBtn');
+        const userProfile = document.getElementById('userProfile');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const closeRegisterModal = document.getElementById('closeRegisterModal');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const profileContent = document.getElementById('profileContent');
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
 
+        // Sample user data (in a real app, this would come from a database)
+        const users = [
+            {
+                id: 1,
+                name: "Budi Santoso",
+                email: "budi@example.com",
+                password: "password123",
+                role: "buyer",
+                bio: "Pecinta daur ulang kreatif dari Jakarta",
+                avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+                stats: {
+                    listings: 24,
+                    followers: 156,
+                    following: 89
+                }
+            },
+            {
+                id: 2,
+                name: "Ani Wijaya",
+                email: "ani@example.com",
+                password: "password123",
+                role: "seller",
+                bio: "Penjual bahan daur ulang kreatif dari Bandung",
+                avatar: "https://randomuser.me/api/portraits/women/1.jpg",
+                stats: {
+                    listings: 42,
+                    followers: 289,
+                    following: 76
+                }
+            },
+            {
+                id: 3,
+                name: "Admin Waste2Worth",
+                email: "admin@example.com",
+                password: "admin123",
+                role: "admin",
+                bio: "Administrator sistem Waste to Worth",
+                avatar: "https://randomuser.me/api/portraits/men/2.jpg"
+            }
+        ];
+
+        // Event Listeners
+        loginBtn.addEventListener('click', () => loginModal.classList.add('active'));
+        registerBtn.addEventListener('click', () => registerModal.classList.add('active'));
+        mobileLoginBtn.addEventListener('click', () => {
+            loginModal.classList.add('active');
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+        mobileRegisterBtn.addEventListener('click', () => {
+            registerModal.classList.add('active');
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+        userProfile.addEventListener('click', toggleUserDropdown);
+        closeLoginModal.addEventListener('click', () => loginModal.classList.remove('active'));
+        closeRegisterModal.addEventListener('click', () => registerModal.classList.remove('active'));
+        switchToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.remove('active');
+            registerModal.classList.add('active');
+        });
+        switchToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.classList.remove('active');
+            loginModal.classList.add('active');
+        });
+        loginForm.addEventListener('submit', handleLogin);
+        registerForm.addEventListener('submit', handleRegister);
+
+        // Hamburger Menu Functionality
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
@@ -1469,57 +1503,723 @@
             });
         });
 
-        // Profile tab navigation
-        const profileNavItems = document.querySelectorAll('.profile-nav-item');
-        const profileSections = document.querySelectorAll('.profile-section');
-
-        profileNavItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const tabId = item.getAttribute('data-tab');
-                
-                // Hide all sections
-                profileSections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                // Show selected section
-                document.getElementById(`${tabId}-section`).classList.add('active');
-                
-                // Update active nav item
-                profileNavItems.forEach(navItem => {
-                    navItem.classList.remove('active');
-                });
-                item.classList.add('active');
+        // Close modals when clicking outside
+        [loginModal, registerModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
             });
         });
 
-        // Quick actions functionality
-        const quickActions = document.querySelectorAll('.quick-action');
-        quickActions.forEach(action => {
-            action.addEventListener('click', () => {
-                const actionText = action.querySelector('.quick-action-text').textContent;
-                alert(`Anda mengklik aksi "${actionText}"`);
-            });
-        });
-
-        // Form submission
-        const settingsForm = document.querySelector('.settings-form');
-        const saveButton = settingsForm.querySelector('.btn-primary');
-        
-        saveButton.addEventListener('click', (e) => {
+        // Functions
+        function handleLogin(e) {
             e.preventDefault();
-            alert('Perubahan profil berhasil disimpan!');
-        });
-
-        // Active nav link
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
-        
-        navLinks.forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
-                link.classList.add('active');
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Find user
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                updateUI();
+                loginModal.classList.remove('active');
+                loginForm.reset();
+                showToast(`Selamat datang, ${user.name}!`);
+            } else {
+                showToast('Email atau password salah!', 'error');
             }
-        });
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            const role = document.querySelector('input[name="userRole"]:checked').value;
+            
+            // Simple validation
+            if (password !== confirmPassword) {
+                showToast('Password tidak cocok!', 'error');
+                return;
+            }
+            
+            if (users.some(u => u.email === email)) {
+                showToast('Email sudah terdaftar!', 'error');
+                return;
+            }
+            
+            // Create new user
+            const newUser = {
+                id: users.length + 1,
+                name,
+                email,
+                password,
+                role,
+                bio: "Pengguna baru Waste to Worth",
+                avatar: `https://randomuser.me/api/portraits/${role === 'seller' ? 'women' : 'men'}/${users.length + 1}.jpg`,
+                stats: {
+                    listings: 0,
+                    followers: 0,
+                    following: 0
+                }
+            };
+            
+            users.push(newUser);
+            currentUser = newUser;
+            updateUI();
+            registerModal.classList.remove('active');
+            registerForm.reset();
+            showToast(`Pendaftaran berhasil! Selamat datang, ${name}!`);
+        }
+
+        function toggleUserDropdown() {
+            if (!currentUser) {
+                loginModal.classList.add('active');
+                return;
+            }
+            
+            // In a real app, this would show a dropdown menu
+            showToast(`Anda masuk sebagai ${currentUser.name} (${currentUser.role})`);
+        }
+
+        function updateUI() {
+            if (currentUser) {
+                // Update header
+                userProfile.querySelector('img').src = currentUser.avatar;
+                loginBtn.style.display = 'none';
+                registerBtn.style.display = 'none';
+                userProfile.style.display = 'block';
+                
+                // Load appropriate profile content based on role
+                loadProfileContent();
+            } else {
+                // Reset to default
+                userProfile.querySelector('img').src = 'https://via.placeholder.com/40';
+                loginBtn.style.display = 'block';
+                registerBtn.style.display = 'block';
+                profileContent.innerHTML = `
+                    <div class="section-title">
+                        <h2>Silakan Masuk atau Daftar</h2>
+                        <p>Untuk mengakses fitur profil, Anda perlu masuk atau mendaftar terlebih dahulu.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function loadProfileContent() {
+            if (!currentUser) return;
+            
+            let content = '';
+            
+            if (currentUser.role === 'admin') {
+                content = `
+                    <div class="profile-header">
+                        <div class="profile-avatar" style="background-image: url('${currentUser.avatar}')"></div>
+                        <div class="profile-info">
+                            <h1 class="profile-name">${currentUser.name} <span class="role-badge">(Admin)</span></h1>
+                            <p class="profile-bio">${currentUser.bio}</p>
+                            <div class="profile-actions">
+                                <button class="btn btn-primary">Kelola Sistem</button>
+                                <button class="btn btn-secondary" id="logoutBtn">Keluar</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-dashboard">
+                        <div class="admin-card">
+                            <h3><i class="fas fa-users"></i> Total Pengguna</h3>
+                            <div class="admin-stat">${users.length}</div>
+                            <div class="admin-label">Pengguna terdaftar</div>
+                        </div>
+                        <div class="admin-card">
+                            <h3><i class="fas fa-store"></i> Total Penjual</h3>
+                            <div class="admin-stat">${users.filter(u => u.role === 'seller').length}</div>
+                            <div class="admin-label">Penjual aktif</div>
+                        </div>
+                        <div class="admin-card">
+                            <h3><i class="fas fa-shopping-cart"></i> Total Pembeli</h3>
+                            <div class="admin-stat">${users.filter(u => u.role === 'buyer').length}</div>
+                            <div class="admin-label">Pembeli aktif</div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-nav">
+                        <div class="profile-nav-item active" data-tab="users">Pengguna</div>
+                        <div class="profile-nav-item" data-tab="reports">Laporan</div>
+                        <div class="profile-nav-item" data-tab="settings">Pengaturan</div>
+                    </div>
+                    
+                    <div class="profile-section active" id="users-section">
+                        <div class="orders-container">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${users.map(user => `
+                                        <tr>
+                                            <td>${user.id}</td>
+                                            <td>${user.name}</td>
+                                            <td>${user.email}</td>
+                                            <td>${user.role}</td>
+                                            <td>
+                                                <button class="btn btn-secondary">Edit</button>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section" id="reports-section">
+                        <div class="overview-card">
+                            <h3><i class="fas fa-chart-pie"></i> Statistik Sistem</h3>
+                            <p>Laporan dan analisis sistem akan ditampilkan di sini.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section" id="settings-section">
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="siteName">Nama Situs</label>
+                                <input type="text" id="siteName" class="form-control" value="Waste to Worth">
+                            </div>
+                            <div class="form-group">
+                                <label for="siteDescription">Deskripsi Situs</label>
+                                <textarea id="siteDescription" class="form-control" rows="3">Platform daur ulang kreatif untuk mengubah sampah menjadi bernilai</textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-secondary">Batal</button>
+                                <button class="btn btn-primary">Simpan Perubahan</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (currentUser.role === 'seller') {
+                content = `
+                    <div class="profile-header">
+                        <div class="profile-avatar" style="background-image: url('${currentUser.avatar}')"></div>
+                        <div class="profile-info">
+                            <h1 class="profile-name">${currentUser.name} <span class="role-badge">(Penjual)</span></h1>
+                            <p class="profile-bio">${currentUser.bio}</p>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">${currentUser.stats.listings}</div>
+                                    <div class="stat-label">Daftar</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">${currentUser.stats.followers}</div>
+                                    <div class="stat-label">Pengikut</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">${currentUser.stats.following}</div>
+                                    <div class="stat-label">Mengikuti</div>
+                                </div>
+                            </div>
+                            <div class="profile-actions">
+                                <button class="btn btn-primary">Edit Profil</button>
+                                <button class="btn btn-secondary" id="logoutBtn">Keluar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-nav">
+                        <div class="profile-nav-item active" data-tab="overview">Ringkasan</div>
+                        <div class="profile-nav-item" data-tab="listings">Daftar Saya</div>
+                        <div class="profile-nav-item" data-tab="orders">Pesanan</div>
+                        <div class="profile-nav-item" data-tab="settings">Pengaturan</div>
+                    </div>
+
+                    <!-- Overview Section -->
+                    <div class="profile-section active" id="overview-section">
+                        <div class="overview-content">
+                            <div class="overview-card">
+                                <h3><i class="fas fa-chart-line"></i> Aktivitas Terkini</h3>
+                                <div class="recent-activity">
+                                    <div class="activity-item">
+                                        <div class="activity-icon"><i class="fas fa-box"></i></div>
+                                        <div class="activity-content">
+                                            <div class="activity-text">Pesanan #WTW2023-009 telah dikirim</div>
+                                            <div class="activity-time">2 jam lalu</div>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon"><i class="fas fa-comment"></i></div>
+                                        <div class="activity-content">
+                                            <div class="activity-text">Komentar baru pada posting tas denim Anda</div>
+                                            <div class="activity-time">1 hari lalu</div>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon"><i class="fas fa-heart"></i></div>
+                                        <div class="activity-content">
+                                            <div class="activity-text">Daftar kayu palet Anda difavoritkan</div>
+                                            <div class="activity-time">3 hari lalu</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overview-card">
+                                <h3><i class="fas fa-bolt"></i> Aksi Cepat</h3>
+                                <div class="quick-actions">
+                                    <div class="quick-action">
+                                        <div class="quick-action-icon"><i class="fas fa-plus"></i></div>
+                                        <div class="quick-action-text">Tambah Daftar</div>
+                                    </div>
+                                    <div class="quick-action">
+                                        <div class="quick-action-icon"><i class="fas fa-chart-bar"></i></div>
+                                        <div class="quick-action-text">Lihat Statistik</div>
+                                    </div>
+                                    <div class="quick-action">
+                                        <div class="quick-action-icon"><i class="fas fa-envelope"></i></div>
+                                        <div class="quick-action-text">Pesan</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Listings Section -->
+                    <div class="profile-section" id="listings-section">
+                        <div class="listings-actions">
+                            <button class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Daftar Baru</button>
+                        </div>
+                        <div class="listings-grid">
+                            <div class="listing-card">
+                                <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                                <div class="listing-info">
+                                    <h3 class="listing-title">Sisa Kain Denim</h3>
+                                    <p class="listing-description">Berbagai ukuran kain denim cocok untuk proyek daur ulang</p>
+                                    <div class="listing-price">Rp 25.000/kg</div>
+                                    <div class="listing-meta">
+                                        <div class="listing-views">124 dilihat</div>
+                                        <span class="listing-status status-active">Aktif</span>
+                                    </div>
+                                    <div class="listing-actions">
+                                        <button class="btn btn-secondary">Edit</button>
+                                        <button class="btn btn-primary">Lihat</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="listing-card">
+                                <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                                <div class="listing-info">
+                                    <h3 class="listing-title">Palet Kayu</h3>
+                                    <p class="listing-description">Palet kayu bekas dalam kondisi baik untuk proyek furnitur</p>
+                                    <div class="listing-price">Rp 50.000/palet</div>
+                                    <div class="listing-meta">
+                                        <div class="listing-views">87 dilihat</div>
+                                        <span class="listing-status status-pending">Menunggu</span>
+                                    </div>
+                                    <div class="listing-actions">
+                                        <button class="btn btn-secondary">Edit</button>
+                                        <button class="btn btn-primary">Lihat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders Section -->
+                    <div class="profile-section" id="orders-section">
+                        <div class="orders-container">
+                            <table class="orders-table">
+                                <thead>
+                                    <tr>
+                                        <th>Pesanan #</th>
+                                        <th>Tanggal</th>
+                                        <th>Item</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="order-id">WTW2023-009</div>
+                                            <div class="order-date">15 Mei 2023</div>
+                                        </td>
+                                        <td>2 Palet Kayu</td>
+                                        <td>Rp 115.000</td>
+                                        <td><span class="order-status status-shipped">Dikirim</span></td>
+                                        <td>
+                                            <div class="order-actions">
+                                                <button class="btn btn-secondary">Lacak</button>
+                                                <button class="btn btn-primary">Detail</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="order-id">WTW2023-008</div>
+                                            <div class="order-date">10 Mei 2023</div>
+                                        </td>
+                                        <td>5kg Kain Denim</td>
+                                        <td>Rp 140.000</td>
+                                        <td><span class="order-status status-delivered">Terkirim</span></td>
+                                        <td>
+                                            <div class="order-actions">
+                                                <button class="btn btn-secondary">Ulasan</button>
+                                                <button class="btn btn-primary">Detail</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div class="profile-section" id="settings-section">
+                        <div class="settings-form">
+                            <div class="avatar-upload">
+                                <div class="avatar-preview" style="background-image: url('${currentUser.avatar}');"></div>
+                                <div class="avatar-actions">
+                                    <button class="btn btn-primary">Ganti Foto</button>
+                                    <button class="btn btn-secondary">Hapus</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first-name">Nama Depan</label>
+                                    <input type="text" id="first-name" class="form-control" value="${currentUser.name.split(' ')[0]}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="last-name">Nama Belakang</label>
+                                    <input type="text" id="last-name" class="form-control" value="${currentUser.name.split(' ')[1] || ''}">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" value="${currentUser.email}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" class="form-control" rows="4">${currentUser.bio}</textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button class="btn btn-secondary">Batal</button>
+                                <button class="btn btn-primary">Simpan Perubahan</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else { // Buyer role
+                content = `
+                    <div class="profile-header">
+                        <div class="profile-avatar" style="background-image: url('${currentUser.avatar}')"></div>
+                        <div class="profile-info">
+                            <h1 class="profile-name">${currentUser.name} <span class="role-badge">(Pembeli)</span></h1>
+                            <p class="profile-bio">${currentUser.bio}</p>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">${currentUser.stats.listings}</div>
+                                    <div class="stat-label">Pembelian</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">${currentUser.stats.followers}</div>
+                                    <div class="stat-label">Pengikut</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">${currentUser.stats.following}</div>
+                                    <div class="stat-label">Mengikuti</div>
+                                </div>
+                            </div>
+                            <div class="profile-actions">
+                                <button class="btn btn-primary">Edit Profil</button>
+                                <button class="btn btn-secondary" id="logoutBtn">Keluar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-nav">
+                        <div class="profile-nav-item active" data-tab="overview">Ringkasan</div>
+                        <div class="profile-nav-item" data-tab="orders">Pesanan</div>
+                        <div class="profile-nav-item" data-tab="saved">Disimpan</div>
+                        <div class="profile-nav-item" data-tab="settings">Pengaturan</div>
+                    </div>
+
+                    <!-- Overview Section -->
+                    <div class="profile-section active" id="overview-section">
+                        <div class="overview-content">
+                            <div class="overview-card">
+                                <h3><i class="fas fa-chart-line"></i> Aktivitas Terkini</h3>
+                                <div class="recent-activity">
+                                    <div class="activity-item">
+                                        <div class="activity-icon"><i class="fas fa-box"></i></div>
+                                        <div class="activity-content">
+                                            <div class="activity-text">Pesanan #WTW2023-009 telah dikirim</div>
+                                            <div class="activity-time">2 jam lalu</div>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon"><i class="fas fa-comment"></i></div>
+                                        <div class="activity-content">
+                                            <div class="activity-text">Anda memberikan ulasan untuk produk botol kaca</div>
+                                            <div class="activity-time">1 hari lalu</div>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon"><i class="fas fa-heart"></i></div>
+                                        <div class="activity-content">
+                                            <div class="activity-text">Anda menyimpan produk kayu palet</div>
+                                            <div class="activity-time">3 hari lalu</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overview-card">
+                                <h3><i class="fas fa-bolt"></i> Aksi Cepat</h3>
+                                <div class="quick-actions">
+                                    <div class="quick-action">
+                                        <div class="quick-action-icon"><i class="fas fa-search"></i></div>
+                                        <div class="quick-action-text">Cari Produk</div>
+                                    </div>
+                                    <div class="quick-action">
+                                        <div class="quick-action-icon"><i class="fas fa-heart"></i></div>
+                                        <div class="quick-action-text">Favorit</div>
+                                    </div>
+                                    <div class="quick-action">
+                                        <div class="quick-action-icon"><i class="fas fa-history"></i></div>
+                                        <div class="quick-action-text">Riwayat</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders Section -->
+                    <div class="profile-section" id="orders-section">
+                        <div class="orders-container">
+                            <table class="orders-table">
+                                <thead>
+                                    <tr>
+                                        <th>Pesanan #</th>
+                                        <th>Tanggal</th>
+                                        <th>Item</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="order-id">WTW2023-009</div>
+                                            <div class="order-date">15 Mei 2023</div>
+                                        </td>
+                                        <td>2 Palet Kayu</td>
+                                        <td>Rp 115.000</td>
+                                        <td><span class="order-status status-shipped">Dikirim</span></td>
+                                        <td>
+                                            <div class="order-actions">
+                                                <button class="btn btn-secondary">Lacak</button>
+                                                <button class="btn btn-primary">Detail</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="order-id">WTW2023-008</div>
+                                            <div class="order-date">10 Mei 2023</div>
+                                        </td>
+                                        <td>5kg Kain Denim</td>
+                                        <td>Rp 140.000</td>
+                                        <td><span class="order-status status-delivered">Terkirim</span></td>
+                                        <td>
+                                            <div class="order-actions">
+                                                <button class="btn btn-secondary">Ulasan</button>
+                                                <button class="btn btn-primary">Detail</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Saved Section -->
+                    <div class="profile-section" id="saved-section">
+                        <div class="saved-grid">
+                            <div class="saved-item">
+                                <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                                <div class="saved-info">
+                                    <h3 class="saved-title">Manik-manik Plastik Daur Ulang</h3>
+                                    <div class="saved-price">Rp 15.000/pak</div>
+                                    <div class="saved-meta">
+                                        <span>Bandung</span>
+                                        <span>25 tersedia</span>
+                                    </div>
+                                    <div class="saved-actions">
+                                        <button class="btn btn-secondary">Hapus</button>
+                                        <button class="btn btn-primary">Beli Sekarang</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="saved-item">
+                                <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                                <div class="saved-info">
+                                    <h3 class="saved-title">Ubin Keramik Daur Ulang</h3>
+                                    <div class="saved-price">Rp 30.000/kg</div>
+                                    <div class="saved-meta">
+                                        <span>Jakarta</span>
+                                        <span>10 tersedia</span>
+                                    </div>
+                                    <div class="saved-actions">
+                                        <button class="btn btn-secondary">Hapus</button>
+                                        <button class="btn btn-primary">Beli Sekarang</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div class="profile-section" id="settings-section">
+                        <div class="settings-form">
+                            <div class="avatar-upload">
+                                <div class="avatar-preview" style="background-image: url('${currentUser.avatar}');"></div>
+                                <div class="avatar-actions">
+                                    <button class="btn btn-primary">Ganti Foto</button>
+                                    <button class="btn btn-secondary">Hapus</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first-name">Nama Depan</label>
+                                    <input type="text" id="first-name" class="form-control" value="${currentUser.name.split(' ')[0]}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="last-name">Nama Belakang</label>
+                                    <input type="text" id="last-name" class="form-control" value="${currentUser.name.split(' ')[1] || ''}">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" value="${currentUser.email}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" class="form-control" rows="4">${currentUser.bio}</textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button class="btn btn-secondary">Batal</button>
+                                <button class="btn btn-primary">Simpan Perubahan</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            profileContent.innerHTML = content;
+            
+            // Add event listeners to new elements
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    currentUser = null;
+                    updateUI();
+                    showToast('Anda telah keluar');
+                });
+            }
+            
+            // Profile tab navigation
+            const profileNavItems = document.querySelectorAll('.profile-nav-item');
+            const profileSections = document.querySelectorAll('.profile-section');
+
+            profileNavItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const tabId = item.getAttribute('data-tab');
+                    
+                    // Hide all sections
+                    profileSections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Show selected section
+                    document.getElementById(`${tabId}-section`).classList.add('active');
+                    
+                    // Update active nav item
+                    profileNavItems.forEach(navItem => {
+                        navItem.classList.remove('active');
+                    });
+                    item.classList.add('active');
+                });
+            });
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize UI
+        updateUI();
+
+        // Add toast styles dynamically
+        const toastStyles = document.createElement('style');
+        toastStyles.textContent = `
+            .toast {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #333;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                opacity: 0;
+                transition: all 0.3s ease;
+                z-index: 10000;
+            }
+            
+            .toast.show {
+                opacity: 1;
+                bottom: 30px;
+            }
+            
+            .toast.success {
+                background-color: var(--primary);
+            }
+            
+            .toast.error {
+                background-color: var(--error);
+            }
+        `;
+        document.head.appendChild(toastStyles);
     </script>
 </body>
 </html>
