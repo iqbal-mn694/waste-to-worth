@@ -426,6 +426,553 @@
             background-color: #f0f0f0;
         }
 
+        /* Product Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: var(--surface);
+            margin: 2rem auto;
+            max-width: 800px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--error);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .main-image {
+            height: 350px;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--border-radius);
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .thumbnail {
+            width: 70px;
+            height: 70px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--primary);
+        }
+
+        .product-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .product-seller {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .product-seller a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .product-seller a:hover {
+            text-decoration: underline;
+        }
+
+        .product-price-lg {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .product-description {
+            margin: 1.5rem 0;
+            line-height: 1.7;
+        }
+
+        .product-meta {
+            margin: 1rem 0;
+        }
+
+        .meta-item {
+            display: flex;
+            margin-bottom: 0.8rem;
+        }
+
+        .meta-label {
+            font-weight: 600;
+            width: 120px;
+            color: var(--text-secondary);
+        }
+
+        .meta-value {
+            flex: 1;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+
+        .quantity-control label {
+            margin-right: 1rem;
+            font-weight: 600;
+        }
+
+        .quantity-input {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background-color: #f5f5f5;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background-color: #eee;
+        }
+
+        .quantity-value {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Checkout Page Styles */
+        .checkout-container {
+            display: none;
+            max-width: 1000px;
+            margin: 2rem auto;
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+
+        .checkout-header {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .checkout-header h2 {
+            font-size: 1.8rem;
+        }
+
+        .checkout-steps {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .step.active .step-number {
+            background-color: var(--secondary);
+            color: var(--text-on-secondary);
+        }
+
+        .step.completed .step-number {
+            background-color: var(--secondary-light);
+            color: var(--text-on-secondary);
+        }
+
+        .step-title {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .step.active .step-title {
+            color: var(--text-on-primary);
+            font-weight: 600;
+        }
+
+        .step.completed .step-title {
+            color: var(--text-on-primary);
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.3);
+            z-index: 1;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .checkout-body {
+            padding: 2rem;
+        }
+
+        .checkout-section {
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        .checkout-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .checkout-product {
+            display: flex;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .checkout-product-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            margin-right: 1.5rem;
+        }
+
+        .checkout-product-info {
+            flex: 1;
+        }
+
+        .checkout-product-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkout-product-seller {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkout-product-price {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .checkout-product-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .checkout-product-quantity label {
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .checkout-product-quantity .quantity-value {
+            width: 50px;
+            height: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary-light);
+        }
+
+        .payment-method.active {
+            border-color: var(--primary);
+            background-color: rgba(46, 125, 50, 0.05);
+        }
+
+        .payment-method input {
+            margin-right: 1rem;
+        }
+
+        .payment-method-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .payment-method-info {
+            flex: 1;
+        }
+
+        .payment-method-name {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .payment-method-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .checkout-summary {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+
+        .summary-total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .checkout-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-back {
+            background-color: #f5f5f5;
+            color: var(--text-primary);
+        }
+
+        .btn-back:hover {
+            background-color: #eee;
+        }
+
+        .btn-next {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+        }
+
+        .btn-next:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .order-success {
+            text-align: center;
+            padding: 3rem 2rem;
+            display: none;
+        }
+
+        .order-success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-light);
+            color: var(--text-on-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .order-success h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .order-success p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         /* Chatbot */
         .chatbot-container {
             position: fixed;
@@ -655,6 +1202,14 @@
                 flex: 1;
                 min-width: auto;
             }
+
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+
+            .product-gallery {
+                margin-bottom: 2rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -681,6 +1236,30 @@
                 height: 450px;
                 right: 1rem;
             }
+
+            .checkout-steps {
+                flex-wrap: wrap;
+            }
+
+            .step {
+                padding: 0 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .checkout-product {
+                flex-direction: column;
+            }
+
+            .checkout-product-image {
+                width: 100%;
+                height: 200px;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -703,6 +1282,32 @@
             
             .footer-content {
                 grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 1rem;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .checkout-body {
+                padding: 1rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .checkout-footer {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-back, .btn-next {
+                width: 100%;
             }
         }
     </style>
@@ -793,7 +1398,7 @@
         </div>
 
         <div class="product-grid">
-            <div class="product-card">
+            <div class="product-card" data-id="1">
                 <div class="product-badge">Paling Cocok</div>
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
@@ -802,12 +1407,12 @@
                     <div class="product-price">Rp 25.000/kg</div>
                     <div class="product-actions">
                         <button class="btn btn-secondary">Simpan</button>
-                        <button class="btn btn-primary">Beli Sekarang</button>
+                        <button class="btn btn-primary btn-buy">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-id="2">
                 <div class="product-badge">Populer</div>
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1586023492128-395c9b005323?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
@@ -816,12 +1421,12 @@
                     <div class="product-price">Rp 50.000/palet</div>
                     <div class="product-actions">
                         <button class="btn btn-secondary">Simpan</button>
-                        <button class="btn btn-primary">Beli Sekarang</button>
+                        <button class="btn btn-primary btn-buy">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-id="3">
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
                     <h3>Botol Plastik (Bersih)</h3>
@@ -829,12 +1434,12 @@
                     <div class="product-price">Rp 5.000/botol</div>
                     <div class="product-actions">
                         <button class="btn btn-secondary">Simpan</button>
-                        <button class="btn btn-primary">Beli Sekarang</button>
+                        <button class="btn btn-primary btn-buy">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-id="4">
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
                     <h3>Koleksi Toples Kaca</h3>
@@ -842,12 +1447,12 @@
                     <div class="product-price">Rp 10.000/toples</div>
                     <div class="product-actions">
                         <button class="btn btn-secondary">Simpan</button>
-                        <button class="btn btn-primary">Beli Sekarang</button>
+                        <button class="btn btn-primary btn-buy">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-id="5">
                 <div class="product-badge">Baru</div>
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1557200134-90327ee9fafa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
@@ -856,12 +1461,12 @@
                     <div class="product-price">Rp 35.000/meter</div>
                     <div class="product-actions">
                         <button class="btn btn-secondary">Simpan</button>
-                        <button class="btn btn-primary">Beli Sekarang</button>
+                        <button class="btn btn-primary btn-buy">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-id="6">
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1596496181871-9681eac976e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
                     <h3>Komponen Sepeda Bekas</h3>
@@ -869,12 +1474,12 @@
                     <div class="product-price">Rp 15.000 - 75.000</div>
                     <div class="product-actions">
                         <button class="btn btn-secondary">Simpan</button>
-                        <button class="btn btn-primary">Beli Sekarang</button>
+                        <button class="btn btn-primary btn-buy">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-id="7">
                 <div class="product-badge">Terbatas</div>
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
@@ -883,12 +1488,12 @@
                     <div class="product-price">Rp 30.000/kg</div>
                     <div class="product-actions">
                         <button class="btn btn-secondary">Simpan</button>
-                        <button class="btn btn-primary">Beli Sekarang</button>
+                        <button class="btn btn-primary btn-buy">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-id="8">
                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
                 <div class="product-info">
                     <h3>Koleksi Kancing Vintage</h3>
@@ -896,7 +1501,7 @@
                     <div class="product-price">Rp 8.000/paket</div>
                     <div class="product-actions">
                         <button class="btn btn-secondary">Simpan</button>
-                        <button class="btn btn-primary">Beli Sekarang</button>
+                        <button class="btn btn-primary btn-buy">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
@@ -910,6 +1515,181 @@
             <div class="pagination-btn">→</div>
         </div>
     </main>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Detail Produk</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelBtn">Batal</button>
+                <button class="btn btn-primary" id="checkoutBtn">Lanjut ke Pembayaran</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Page -->
+    <div class="checkout-container" id="checkoutContainer">
+        <div class="checkout-header">
+            <h2>Checkout</h2>
+            <div class="checkout-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Detail Pesanan</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Pengiriman</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Pembayaran</div>
+                </div>
+                <div class="step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Selesai</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="checkout-body">
+            <!-- Step 1: Order Details -->
+            <div class="checkout-section active" id="orderDetails">
+                <h3 class="section-title">Detail Pesanan</h3>
+                <div id="checkoutProductList">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Step 2: Shipping -->
+            <div class="checkout-section" id="shippingDetails">
+                <h3 class="section-title">Informasi Pengiriman</h3>
+                <div class="form-group">
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Alamat Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nomor Telepon</label>
+                    <input type="tel" class="form-control" id="phone" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Provinsi</label>
+                        <select class="form-control" id="province" required>
+                            <option value="">Pilih Provinsi</option>
+                            <option value="jakarta">DKI Jakarta</option>
+                            <option value="jawa-barat">Jawa Barat</option>
+                            <option value="jawa-tengah">Jawa Tengah</option>
+                            <option value="jawa-timur">Jawa Timur</option>
+                            <option value="bali">Bali</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Kota/Kabupaten</label>
+                        <select class="form-control" id="city" required>
+                            <option value="">Pilih Kota/Kabupaten</option>
+                            <option value="jakarta-selatan">Jakarta Selatan</option>
+                            <option value="jakarta-barat">Jakarta Barat</option>
+                            <option value="bandung">Bandung</option>
+                            <option value="surabaya">Surabaya</option>
+                            <option value="denpasar">Denpasar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Alamat Lengkap</label>
+                    <textarea class="form-control" id="address" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Catatan (Opsional)</label>
+                    <textarea class="form-control" id="notes" rows="2"></textarea>
+                </div>
+            </div>
+            
+            <!-- Step 3: Payment -->
+            <div class="checkout-section" id="paymentDetails">
+                <h3 class="section-title">Metode Pembayaran</h3>
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="bank-transfer">
+                        <input type="radio" name="paymentMethod" id="bankTransfer" checked>
+                        <div class="payment-method-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="payment-method-info">
+                            <div class="payment-method-name">Transfer Bank</div>
+                            <div class="payment-method-desc">Transfer langsung ke rekening bank kami</div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-method="e-wallet">
+                        <input type="radio" name="paymentMethod" id="eWallet">
+                        <div class="payment-method-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="payment-method-info">
+                            <div class="payment-method-name">E-Wallet</div>
+                            <div class="payment-method-desc">Bayar menggunakan OVO, GoPay, atau DANA</div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-method="credit-card">
+                        <input type="radio" name="paymentMethod" id="creditCard">
+                        <div class="payment-method-icon">
+                            <i class="far fa-credit-card"></i>
+                        </div>
+                        <div class="payment-method-info">
+                            <div class="payment-method-name">Kartu Kredit/Debit</div>
+                            <div class="payment-method-desc">Visa, Mastercard, atau JCB</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="section-title" style="margin-top: 2rem;">Ringkasan Pesanan</h3>
+                <div class="checkout-summary">
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <span id="subtotal">Rp 0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Pengiriman</span>
+                        <span id="shipping">Rp 15.000</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Pajak</span>
+                        <span id="tax">Rp 0</span>
+                    </div>
+                    <div class="summary-item summary-total">
+                        <span>Total</span>
+                        <span id="total">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 4: Order Success -->
+            <div class="checkout-section" id="orderSuccess">
+                <div class="order-success">
+                    <div class="order-success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h2>Pesanan Anda Berhasil!</h2>
+                    <p>Terima kasih telah berbelanja di Waste to Worth. Pesanan Anda telah diterima dan sedang diproses. Kami akan mengirimkan detail pembayaran dan pengiriman ke email Anda.</p>
+                    <button class="btn btn-primary" id="backToShop">Kembali ke Toko</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="checkout-footer">
+            <button class="btn btn-back" id="backBtn">Kembali</button>
+            <button class="btn btn-next" id="nextBtn">Lanjut</button>
+        </div>
+    </div>
 
     <div class="chatbot-container">
         <button class="chatbot-btn" id="chatbotBtn"><i class="fas fa-comment-dots"></i></button>
@@ -973,6 +1753,171 @@
     </footer>
 
     <script>
+        // Product data
+        const products = {
+            1: {
+                id: 1,
+                title: "Potongan Kain Denim",
+                description: "Berbagai ukuran dan warna potongan kain denim yang cocok untuk proyek daur ulang. Kain dalam kondisi baik, bersih, dan siap digunakan untuk membuat tas, bantal, atau kerajinan lainnya.",
+                price: 25000,
+                unit: "kg",
+                seller: "Toko Kain Bekas Jakarta",
+                category: "fabric",
+                location: "jakarta",
+                images: [
+                    "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1534215754734-18e55d13e346?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                ],
+                stock: 15,
+                condition: "Bekas (Baik)",
+                rating: 4.5,
+                reviews: 28
+            },
+            2: {
+                id: 2,
+                title: "Palet Kayu",
+                description: "Palet kayu ukuran standar (120x80 cm) dalam kondisi baik, cocok untuk proyek furnitur daur ulang seperti rak, meja, atau tempat tidur. Kayu masih kuat dan bisa langsung digunakan.",
+                price: 50000,
+                unit: "palet",
+                seller: "Gudang Kayu Bandung",
+                category: "wood",
+                location: "bandung",
+                images: [
+                    "https://images.unsplash.com/photo-1586023492128-395c9b005323?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1586023492128-395c9b005323?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1586023492128-395c9b005323?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                ],
+                stock: 8,
+                condition: "Bekas (Baik)",
+                rating: 4.7,
+                reviews: 42
+            },
+            3: {
+                id: 3,
+                title: "Botol Plastik (Bersih)",
+                description: "Botol plastik bekas minuman berbagai merek dengan ukuran 500ml. Sudah dicuci bersih dan siap untuk didaur ulang atau digunakan untuk proyek kreatif seperti pot tanaman atau tempat penyimpanan.",
+                price: 5000,
+                unit: "botol",
+                seller: "Daur Ulang Plastik Surabaya",
+                category: "plastic",
+                location: "surabaya",
+                images: [
+                    "https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                ],
+                stock: 120,
+                condition: "Bekas (Baik)",
+                rating: 4.2,
+                reviews: 15
+            },
+            4: {
+                id: 4,
+                title: "Koleksi Toples Kaca",
+                description: "Berbagai ukuran toples kaca dengan tutup yang masih rapat. Cocok untuk penyimpanan bahan makanan, kerajinan, atau dekorasi. Kondisi baik tanpa retak atau pecah.",
+                price: 10000,
+                unit: "toples",
+                seller: "Barang Bekas Yogyakarta",
+                category: "glass",
+                location: "yogyakarta",
+                images: [
+                    "https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                ],
+                stock: 25,
+                condition: "Bekas (Baik)",
+                rating: 4.8,
+                reviews: 36
+            },
+            5: {
+                id: 5,
+                title: "Kain Spunbond Daur Ulang",
+                description: "Kain spunbond hasil daur ulang dengan kualitas baik. Material kuat dan tahan lama, cocok untuk membuat tas belanja, tempat pensil, atau produk fashion lainnya.",
+                price: 35000,
+                unit: "meter",
+                seller: "Eco Fabric Bali",
+                category: "fabric",
+                location: "bali",
+                images: [
+                    "https://images.unsplash.com/photo-1557200134-90327ee9fafa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1557200134-90327ee9fafa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1557200134-90327ee9fafa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                ],
+                stock: 30,
+                condition: "Baru",
+                rating: 4.6,
+                reviews: 19
+            },
+            6: {
+                id: 6,
+                title: "Komponen Sepeda Bekas",
+                description: "Berbagai komponen sepeda bekas seperti roda, rantai, gir, dan handlebar. Cocok untuk proyek kreatif atau perbaikan sepeda. Kondisi bervariasi, silakan tanyakan detail sebelum membeli.",
+                price: 15000,
+                unit: "item",
+                seller: "Bengkel Sepeda Jakarta",
+                category: "metal",
+                location: "jakarta",
+                images: [
+                    "https://images.unsplash.com/photo-1596496181871-9681eac976e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1596496181871-9681eac976e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1596496181871-9681eac976e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                ],
+                stock: 45,
+                condition: "Bekas (Baik)",
+                rating: 4.3,
+                reviews: 23
+            },
+            7: {
+                id: 7,
+                title: "Potongan Keramik",
+                description: "Potongan keramik warna-warni dari sisa proyek renovasi. Cocok untuk proyek mozaik, dekorasi, atau kerajinan tangan lainnya. Ukuran bervariasi dari 2x2 cm hingga 10x10 cm.",
+                price: 30000,
+                unit: "kg",
+                seller: "Bangunan Material Bandung",
+                category: "ceramic",
+                location: "bandung",
+                images: [
+                    "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                ],
+                stock: 12,
+                condition: "Bekas (Baik)",
+                rating: 4.4,
+                reviews: 17
+            },
+            8: {
+                id: 8,
+                title: "Koleksi Kancing Vintage",
+                description: "Berbagai jenis kancing vintage dari bahan plastik, logam, dan kayu. Gaya retro yang unik untuk proyek fashion atau kerajinan tangan. Dijual dalam paket campuran.",
+                price: 8000,
+                unit: "paket",
+                seller: "Craft Supplies Surabaya",
+                category: "other",
+                location: "surabaya",
+                images: [
+                    "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                    "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                ],
+                stock: 18,
+                condition: "Bekas (Baik)",
+                rating: 4.9,
+                reviews: 31
+            }
+        };
+
+        // Current order data
+        let currentOrder = {
+            items: [],
+            shipping: 15000,
+            tax: 0,
+            subtotal: 0,
+            total: 0
+        };
+
         // Hamburger Menu Functionality
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -988,6 +1933,371 @@
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Product Modal Functionality
+        const productModal = document.getElementById('productModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalBody = document.getElementById('modalBody');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const buyButtons = document.querySelectorAll('.btn-buy');
+
+        // Open product modal when buy button is clicked
+        buyButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const productCard = button.closest('.product-card');
+                const productId = productCard.getAttribute('data-id');
+                loadProductModal(productId);
+            });
+        });
+
+        // Load product data into modal
+        function loadProductModal(productId) {
+            const product = products[productId];
+            
+            // Create modal content
+            modalBody.innerHTML = `
+                <div class="product-gallery">
+                    <div class="main-image" style="background-image: url('${product.images[0]}');"></div>
+                    <div class="thumbnail-container">
+                        ${product.images.map((img, index) => `
+                            <div class="thumbnail ${index === 0 ? 'active' : ''}" 
+                                 style="background-image: url('${img}');" 
+                                 data-img="${img}"></div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="product-details">
+                    <h1 class="product-title">${product.title}</h1>
+                    <div class="product-seller">
+                        Dijual oleh <a href="#">${product.seller}</a>
+                    </div>
+                    <div class="product-price-lg">Rp ${product.price.toLocaleString('id-ID')}/${product.unit}</div>
+                    
+                    <div class="product-description">
+                        <h4>Deskripsi Produk</h4>
+                        <p>${product.description}</p>
+                    </div>
+                    
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Kondisi</div>
+                            <div class="meta-value">${product.condition}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Kategori</div>
+                            <div class="meta-value">${getCategoryName(product.category)}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Lokasi</div>
+                            <div class="meta-value">${getLocationName(product.location)}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Stok</div>
+                            <div class="meta-value">${product.stock} ${product.unit}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Rating</div>
+                            <div class="meta-value">
+                                ${renderRatingStars(product.rating)} (${product.reviews} ulasan)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-control">
+                        <label>Jumlah:</label>
+                        <div class="quantity-input">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" class="quantity-value" value="1" min="1" max="${product.stock}">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Show modal
+            productModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Add event listeners for thumbnails
+            const thumbnails = modalBody.querySelectorAll('.thumbnail');
+            const mainImage = modalBody.querySelector('.main-image');
+            
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', () => {
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                    mainImage.style.backgroundImage = `url('${thumb.getAttribute('data-img')}')`;
+                });
+            });
+            
+            // Add event listeners for quantity controls
+            const minusBtn = modalBody.querySelector('.minus');
+            const plusBtn = modalBody.querySelector('.plus');
+            const quantityInput = modalBody.querySelector('.quantity-value');
+            
+            minusBtn.addEventListener('click', () => {
+                let value = parseInt(quantityInput.value);
+                if (value > 1) {
+                    quantityInput.value = value - 1;
+                }
+            });
+            
+            plusBtn.addEventListener('click', () => {
+                let value = parseInt(quantityInput.value);
+                if (value < product.stock) {
+                    quantityInput.value = value + 1;
+                }
+            });
+            
+            // Store current product for checkout
+            currentOrder.items = [{
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                unit: product.unit,
+                quantity: 1,
+                image: product.images[0],
+                seller: product.seller
+            }];
+            
+            updateOrderSummary();
+        }
+
+        // Helper function to get category name
+        function getCategoryName(category) {
+            const categories = {
+                'fabric': 'Kain & Tekstil',
+                'wood': 'Kayu & Furnitur',
+                'plastic': 'Plastik',
+                'metal': 'Logam',
+                'glass': 'Kaca',
+                'electronics': 'Elektronik',
+                'ceramic': 'Keramik',
+                'other': 'Lainnya'
+            };
+            return categories[category] || category;
+        }
+
+        // Helper function to get location name
+        function getLocationName(location) {
+            const locations = {
+                'jakarta': 'Jakarta',
+                'bandung': 'Bandung',
+                'surabaya': 'Surabaya',
+                'yogyakarta': 'Yogyakarta',
+                'bali': 'Bali'
+            };
+            return locations[location] || location;
+        }
+
+        // Helper function to render rating stars
+        function renderRatingStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 1; i <= 5; i++) {
+                if (i <= fullStars) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i === fullStars + 1 && hasHalfStar) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            
+            return stars;
+        }
+
+        // Close modal
+        function closeModal() {
+            productModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        cancelBtn.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === productModal) {
+                closeModal();
+            }
+        });
+
+        // Checkout functionality
+        const checkoutContainer = document.getElementById('checkoutContainer');
+        const backToShopBtn = document.getElementById('backToShop');
+        const backBtn = document.getElementById('backBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const steps = document.querySelectorAll('.step');
+        const checkoutSections = document.querySelectorAll('.checkout-section');
+        const checkoutProductList = document.getElementById('checkoutProductList');
+        const paymentMethods = document.querySelectorAll('.payment-method');
+
+        // Go to checkout when checkout button is clicked
+        checkoutBtn.addEventListener('click', () => {
+            closeModal();
+            showCheckout();
+            goToStep(1);
+        });
+
+        // Show checkout container
+        function showCheckout() {
+            checkoutContainer.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            renderCheckoutProducts();
+        }
+
+        // Hide checkout container
+        function hideCheckout() {
+            checkoutContainer.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Render products in checkout
+        function renderCheckoutProducts() {
+            checkoutProductList.innerHTML = currentOrder.items.map(item => `
+                <div class="checkout-product">
+                    <div class="checkout-product-image" style="background-image: url('${item.image}');"></div>
+                    <div class="checkout-product-info">
+                        <h4 class="checkout-product-title">${item.title}</h4>
+                        <div class="checkout-product-seller">Dijual oleh ${item.seller}</div>
+                        <div class="checkout-product-price">Rp ${item.price.toLocaleString('id-ID')}/${item.unit}</div>
+                        <div class="checkout-product-quantity">
+                            <label>Jumlah:</label>
+                            <input type="number" class="quantity-value" value="${item.quantity}" min="1" max="100">
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update order summary
+        function updateOrderSummary() {
+            // Calculate subtotal
+            currentOrder.subtotal = currentOrder.items.reduce((sum, item) => {
+                return sum + (item.price * item.quantity);
+            }, 0);
+            
+            // Calculate tax (10%)
+            currentOrder.tax = Math.round(currentOrder.subtotal * 0.1);
+            
+            // Calculate total
+            currentOrder.total = currentOrder.subtotal + currentOrder.shipping + currentOrder.tax;
+            
+            // Update UI
+            document.getElementById('subtotal').textContent = `Rp ${currentOrder.subtotal.toLocaleString('id-ID')}`;
+            document.getElementById('tax').textContent = `Rp ${currentOrder.tax.toLocaleString('id-ID')}`;
+            document.getElementById('total').textContent = `Rp ${currentOrder.total.toLocaleString('id-ID')}`;
+        }
+
+        // Step navigation
+        let currentStep = 1;
+
+        function goToStep(step) {
+            // Validate step
+            if (step < 1 || step > 4) return;
+            
+            // Update current step
+            currentStep = step;
+            
+            // Update step indicators
+            steps.forEach((stepElement, index) => {
+                if (index + 1 < step) {
+                    stepElement.classList.add('completed');
+                    stepElement.classList.remove('active');
+                } else if (index + 1 === step) {
+                    stepElement.classList.add('active');
+                    stepElement.classList.remove('completed');
+                } else {
+                    stepElement.classList.remove('active', 'completed');
+                }
+            });
+            
+            // Show/hide sections
+            checkoutSections.forEach((section, index) => {
+                if (index + 1 === step) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+            
+            // Update buttons
+            if (step === 1) {
+                backBtn.style.display = 'none';
+                nextBtn.textContent = 'Lanjut';
+            } else if (step === 4) {
+                backBtn.style.display = 'inline-block';
+                nextBtn.style.display = 'none';
+            } else {
+                backBtn.style.display = 'inline-block';
+                nextBtn.style.display = 'inline-block';
+                nextBtn.textContent = 'Lanjut';
+            }
+            
+            // Special case for last step
+            if (step === 3) {
+                nextBtn.textContent = 'Bayar Sekarang';
+            }
+        }
+
+        // Next button click
+        nextBtn.addEventListener('click', () => {
+            // Validate current step before proceeding
+            if (currentStep === 1) {
+                // Validate order details
+                goToStep(2);
+            } else if (currentStep === 2) {
+                // Validate shipping info
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const province = document.getElementById('province').value;
+                const city = document.getElementById('city').value;
+                const address = document.getElementById('address').value;
+                
+                if (!fullName || !email || !phone || !province || !city || !address) {
+                    alert('Harap lengkapi semua informasi pengiriman');
+                    return;
+                }
+                
+                goToStep(3);
+            } else if (currentStep === 3) {
+                // Process payment
+                const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+                
+                // In a real app, you would process payment here
+                console.log('Processing payment with method:', paymentMethod);
+                
+                // Simulate payment processing
+                setTimeout(() => {
+                    goToStep(4);
+                }, 1000);
+            }
+        });
+
+        // Back button click
+        backBtn.addEventListener('click', () => {
+            goToStep(currentStep - 1);
+        });
+
+        // Back to shop button
+        backToShopBtn.addEventListener('click', () => {
+            hideCheckout();
+        });
+
+        // Payment method selection
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                paymentMethods.forEach(m => m.classList.remove('active'));
+                method.classList.add('active');
+                method.querySelector('input').checked = true;
             });
         });
 
@@ -1077,8 +2387,8 @@
             card.addEventListener('click', (e) => {
                 // Don't navigate if clicking on buttons
                 if (!e.target.classList.contains('btn')) {
-                    // In a real app, this would go to product detail page
-                    console.log(`Melihat produk: ${card.querySelector('h3').textContent}`);
+                    const productId = card.getAttribute('data-id');
+                    loadProductModal(productId);
                 }
             });
         });
