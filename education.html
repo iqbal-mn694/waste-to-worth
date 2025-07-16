@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waste to Worth - Edukasi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2e7d32;
@@ -29,13 +30,19 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         body {
             background-color: var(--background);
             color: var(--text-primary);
             line-height: 1.6;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
         }
 
         /* Header Styles */
@@ -90,6 +97,10 @@
             transition: var(--transition);
             padding: 0.5rem 0;
             position: relative;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         nav a:hover {
@@ -128,6 +139,7 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .btn-primary {
@@ -240,7 +252,9 @@
             color: var(--text-on-primary);
             text-decoration: none;
             font-size: 1.1rem;
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 0.5rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -249,6 +263,7 @@
             margin-top: 2rem;
             flex-direction: column;
             align-items: flex-start;
+            gap: 1rem;
         }
 
         /* Main Content Styles */
@@ -265,7 +280,7 @@
         }
 
         .section-title h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 1rem;
             color: var(--primary-dark);
             position: relative;
@@ -289,113 +304,186 @@
             max-width: 700px;
             margin: 0 auto;
             font-size: 1.1rem;
+            font-weight: 400;
         }
 
-        /* Education Specific Styles */
+        /* Education Header */
         .education-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
             flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .education-actions {
+            display: flex;
             gap: 1rem;
         }
 
-        .education-tabs {
+        /* Content Tabs */
+        .content-tabs {
             display: flex;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
             overflow-x: auto;
         }
 
-        .education-tab {
+        .content-tab {
             padding: 1rem 1.5rem;
             cursor: pointer;
             position: relative;
             font-weight: 500;
             color: var(--text-secondary);
             white-space: nowrap;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .education-tab.active {
+        .content-tab:hover {
+            color: var(--primary);
+        }
+
+        .content-tab.active {
             color: var(--primary);
             font-weight: 600;
         }
 
-        .education-tab.active::after {
+        .content-tab.active::after {
             content: '';
             position: absolute;
-            bottom: -1px;
+            bottom: -2px;
             left: 0;
             right: 0;
             height: 3px;
             background-color: var(--primary);
         }
 
-        .education-search {
+        /* Search and Filter */
+        .search-filter-container {
             display: flex;
+            gap: 1rem;
             margin-bottom: 2rem;
-            width: 100%;
+            flex-wrap: wrap;
         }
 
-        .education-search input {
+        .search-container {
             flex: 1;
-            padding: 0.8rem 1rem;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
             border: 1px solid #ddd;
-            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            border-radius: var(--border-radius);
             font-size: 1rem;
             transition: var(--transition);
         }
 
-        .education-search input:focus {
+        .search-container input:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
         }
 
-        .education-search button {
-            padding: 0 1.5rem;
-            background-color: var(--primary);
-            color: var(--text-on-primary);
-            border: none;
-            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .filter-dropdown {
+            position: relative;
+            min-width: 200px;
+        }
+
+        .filter-button {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background-color: var(--surface);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             cursor: pointer;
             transition: var(--transition);
         }
 
-        .education-search button:hover {
-            background-color: var(--primary-dark);
+        .filter-button:hover {
+            border-color: var(--primary);
         }
 
-        .education-grid {
+        .filter-dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--surface);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            z-index: 100;
+            display: none;
+            margin-top: 0.5rem;
+        }
+
+        .filter-dropdown-content.show {
+            display: block;
+        }
+
+        .filter-option {
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-option:hover {
+            background-color: rgba(46, 125, 50, 0.1);
+        }
+
+        /* Content Grid */
+        .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
 
-        .education-card {
+        .content-card {
             background-color: var(--surface);
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
-            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .education-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
 
-        .education-image {
-            height: 180px;
+        .content-image {
+            height: 200px;
             background-color: #eee;
             background-size: cover;
             background-position: center;
             position: relative;
         }
 
-        .education-category {
+        .content-badge {
             position: absolute;
             top: 1rem;
             right: 1rem;
@@ -405,19 +493,26 @@
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
 
-        .education-content {
+        .content-body {
             padding: 1.5rem;
         }
 
-        .education-title {
+        .content-title {
             font-size: 1.2rem;
             margin-bottom: 0.8rem;
             color: var(--primary-dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .education-excerpt {
+        .content-excerpt {
             color: var(--text-secondary);
             margin-bottom: 1rem;
             font-size: 0.95rem;
@@ -427,7 +522,7 @@
             overflow: hidden;
         }
 
-        .education-meta {
+        .content-meta {
             display: flex;
             justify-content: space-between;
             color: var(--text-secondary);
@@ -435,14 +530,62 @@
             margin-top: 1rem;
         }
 
-        .education-duration {
+        .content-date {
             display: flex;
             align-items: center;
             gap: 0.3rem;
         }
 
-        /* Featured Section */
-        .featured-education {
+        .content-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .view-btn {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            flex: 1;
+            justify-content: center;
+        }
+
+        .view-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .edit-btn {
+            background-color: var(--secondary-light);
+            color: var(--text-on-secondary);
+        }
+
+        .edit-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .delete-btn {
+            background-color: var(--error);
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background-color: #b71c1c;
+        }
+
+        /* Featured Content */
+        .featured-content {
             background-color: rgba(46, 125, 50, 0.05);
             border-radius: var(--border-radius);
             padding: 2rem;
@@ -450,6 +593,7 @@
             display: flex;
             gap: 2rem;
             align-items: center;
+            border: 1px solid rgba(46, 125, 50, 0.1);
         }
 
         .featured-image {
@@ -461,12 +605,14 @@
             flex-shrink: 0;
         }
 
-        .featured-content {
+        .featured-details {
             flex: 1;
         }
 
         .featured-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background-color: var(--secondary);
             color: var(--text-on-secondary);
             padding: 0.3rem 0.8rem;
@@ -480,11 +626,170 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--primary-dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .featured-excerpt {
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 3rem;
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .empty-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .empty-text {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Create New Button */
+        .create-new {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .create-new:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--error);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
         }
 
         /* Chatbot */
@@ -530,6 +835,7 @@
             overflow: hidden;
             transform-origin: bottom right;
             animation: scaleUp 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         @keyframes scaleUp {
@@ -549,6 +855,9 @@
         .chatbot-header h3 {
             font-size: 1.1rem;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .chatbot-close {
@@ -617,6 +926,7 @@
             outline: none;
             font-size: 0.95rem;
             transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .chatbot-input input:focus {
@@ -631,6 +941,9 @@
             border-radius: 0 20px 20px 0;
             cursor: pointer;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .chatbot-send:hover {
@@ -642,7 +955,6 @@
             background-color: var(--primary-dark);
             color: var(--text-on-primary);
             padding: 3rem 2rem 2rem;
-            text-align: center;
         }
 
         .footer-content {
@@ -660,6 +972,9 @@
             font-weight: 600;
             position: relative;
             padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .footer-column h3::after {
@@ -678,6 +993,9 @@
 
         .footer-column li {
             margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .footer-column a {
@@ -685,12 +1003,31 @@
             text-decoration: none;
             transition: var(--transition);
             font-size: 0.95rem;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .footer-column a:hover {
             color: var(--text-on-primary);
             transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-on-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
         }
 
         .copyright {
@@ -699,16 +1036,16 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         /* Responsive Design */
         @media (max-width: 992px) {
-            .education-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .featured-education {
+            .featured-content {
                 flex-direction: column;
             }
             
@@ -732,9 +1069,8 @@
                 display: none;
             }
             
-            .education-tabs {
+            .content-tabs {
                 overflow-x: auto;
-                white-space: nowrap;
                 padding-bottom: 0.5rem;
             }
             
@@ -743,15 +1079,29 @@
                 height: 450px;
                 right: 1rem;
             }
+            
+            .modal-content {
+                max-width: 90%;
+            }
         }
 
         @media (max-width: 576px) {
-            .education-grid {
+            .content-grid {
                 grid-template-columns: 1fr;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .social-links {
+                justify-content: center;
             }
             
             .featured-title {
@@ -760,6 +1110,19 @@
             
             .section-title h2 {
                 font-size: 1.7rem;
+            }
+            
+            .education-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer .btn {
+                width: 100%;
             }
         }
     </style>
@@ -781,17 +1144,17 @@
         <!-- Desktop Navigation -->
         <nav class="desktop-nav">
             <ul>
-                <li><a href="index.html">Beranda</a></li>
-                <li><a href="marketplace.html">Pasar</a></li>
-                <li><a href="community.html">Komunitas</a></li>
-                <li><a href="education.html" class="active">Edukasi</a></li>
-                <li><a href="profile.html">Profil</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="marketplace.html"><i class="fas fa-store"></i> Pasar</a></li>
+                <li><a href="community.html"><i class="fas fa-users"></i> Komunitas</a></li>
+                <li><a href="education.html" class="active"><i class="fas fa-graduation-cap"></i> Edukasi</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
             </ul>
         </nav>
         
         <div class="user-actions">
-            <button class="btn btn-secondary">Masuk</button>
-            <button class="btn btn-primary">Daftar</button>
+            <button class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i> Masuk</button>
+            <button class="btn btn-primary"><i class="fas fa-user-plus"></i> Daftar</button>
             <div class="user-profile">
                 <img src="https://via.placeholder.com/40" alt="Profil Pengguna">
             </div>
@@ -801,151 +1164,314 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="marketplace.html">Pasar</a></li>
-            <li><a href="community.html">Komunitas</a></li>
-            <li><a href="education.html" class="active">Edukasi</a></li>
-            <li><a href="profile.html">Profil</a></li>
+            <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="marketplace.html"><i class="fas fa-store"></i> Pasar</a></li>
+            <li><a href="community.html"><i class="fas fa-users"></i> Komunitas</a></li>
+            <li><a href="education.html" class="active"><i class="fas fa-graduation-cap"></i> Edukasi</a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
         </ul>
         <div class="user-actions">
-            <button class="btn btn-secondary">Masuk</button>
-            <button class="btn btn-primary">Daftar</button>
+            <button class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i> Masuk</button>
+            <button class="btn btn-primary"><i class="fas fa-user-plus"></i> Daftar</button>
         </div>
     </div>
 
     <main>
         <div class="section-title">
-            <h2>Pusat Edukasi</h2>
+            <h2><i class="fas fa-graduation-cap"></i> Pusat Edukasi</h2>
             <p>Pelajari teknik daur ulang kreatif, keberlanjutan, dan pengelolaan sampah</p>
         </div>
 
         <div class="education-header">
-            <h3>Sumber Belajar</h3>
-            <div class="education-search">
-                <input type="text" placeholder="Cari tutorial, panduan...">
-                <button><i class="fas fa-search"></i></button>
+            <h3><i class="fas fa-book-open"></i> Materi Edukasi</h3>
+            <div class="education-actions">
+                <button class="create-new" id="createContentBtn">
+                    <i class="fas fa-plus"></i> Buat Konten Baru
+                </button>
             </div>
         </div>
 
-        <div class="education-tabs">
-            <div class="education-tab active">Semua</div>
-            <div class="education-tab">Tutorial</div>
-            <div class="education-tab">Panduan</div>
-            <div class="education-tab">Video</div>
-            <div class="education-tab">Studi Kasus</div>
-            <div class="education-tab">Infografis</div>
+        <div class="content-tabs">
+            <div class="content-tab active" data-tab="all"><i class="fas fa-layer-group"></i> Semua Konten</div>
+            <div class="content-tab" data-tab="articles"><i class="fas fa-newspaper"></i> Artikel</div>
+            <div class="content-tab" data-tab="infographics"><i class="fas fa-chart-pie"></i> Infografis</div>
+            <div class="content-tab" data-tab="videos"><i class="fas fa-video"></i> Video</div>
+            <div class="content-tab" data-tab="guides"><i class="fas fa-book"></i> Panduan</div>
         </div>
 
-        <div class="featured-education">
+        <div class="search-filter-container">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Cari materi edukasi..." id="searchInput">
+            </div>
+            <div class="filter-dropdown">
+                <button class="filter-button" id="filterButton">
+                    <span><i class="fas fa-filter"></i> Filter Kategori</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="filter-dropdown-content" id="filterDropdown">
+                    <div class="filter-option" data-filter="all"><i class="fas fa-list"></i> Semua Kategori</div>
+                    <div class="filter-option" data-filter="recycling"><i class="fas fa-recycle"></i> Daur Ulang</div>
+                    <div class="filter-option" data-filter="upcycling"><i class="fas fa-tshirt"></i> Upcycling</div>
+                    <div class="filter-option" data-filter="waste-management"><i class="fas fa-trash-alt"></i> Pengelolaan Sampah</div>
+                    <div class="filter-option" data-filter="sustainability"><i class="fas fa-leaf"></i> Keberlanjutan</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="featured-content">
             <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="featured-content">
-                <span class="featured-badge">Unggulan</span>
-                <h3 class="featured-title">Panduan Lengkap Daur Ulang Kreatif untuk Pemula</h3>
-                <p class="featured-excerpt">Pelajari dasar-dasar daur ulang kreatif dengan panduan komprehensif kami yang mencakup segala hal mulai dari pemilihan bahan hingga teknik dasar untuk mengubah sampah menjadi barang yang indah dan fungsional.</p>
-                <button class="btn btn-primary">Baca Panduan</button>
+            <div class="featured-details">
+                <span class="featured-badge"><i class="fas fa-star"></i> Unggulan</span>
+                <h3 class="featured-title"><i class="fas fa-book"></i> Panduan Lengkap Daur Ulang Kreatif untuk Pemula</h3>
+                <p class="featured-excerpt">Pelajari dasar-dasar daur ulang kreatif dengan panduan komprehensif kami yang mencakup segala hal mulai dari pemilihan bahan hingga teknik dasar untuk mengubah sampah menjadi barang yang indah dan fungsional. Panduan ini dirancang khusus untuk pemula dengan langkah-langkah yang mudah diikuti.</p>
+                <button class="btn btn-primary"><i class="fas fa-book-open"></i> Baca Sekarang</button>
             </div>
         </div>
 
-        <div class="education-grid">
-            <div class="education-card">
-                <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                    <span class="education-category">Tutorial</span>
+        <div class="content-grid" id="contentGrid">
+            <!-- Artikel -->
+            <div class="content-card" data-type="article" data-category="recycling">
+                <div class="content-image" style="background-image: url('https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <span class="content-badge"><i class="fas fa-newspaper"></i> Artikel</span>
                 </div>
-                <div class="education-content">
-                    <h3 class="education-title">Mengubah Sisa Denim Menjadi Aksesori Fashion</h3>
-                    <p class="education-excerpt">Panduan langkah demi langkah untuk membuat dompet, tas, dan lainnya dari celana jeans bekas. Cocok untuk pemula dengan instruksi dan foto yang jelas.</p>
-                    <div class="education-meta">
-                        <span>15 menit</span>
-                        <span class="education-duration"><i class="fas fa-eye"></i> 1.2k dilihat</span>
+                <div class="content-body">
+                    <h3 class="content-title"><i class="fas fa-pen-fancy"></i> Mengubah Sisa Denim Menjadi Aksesori Fashion</h3>
+                    <p class="content-excerpt">Panduan langkah demi langkah untuk membuat dompet, tas, dan lainnya dari celana jeans bekas. Cocok untuk pemula dengan instruksi dan foto yang jelas.</p>
+                    <div class="content-meta">
+                        <span class="content-date"><i class="far fa-calendar-alt"></i> 15 Mei 2023</span>
+                        <span><i class="fas fa-eye"></i> 1.2k</span>
+                    </div>
+                    <div class="content-actions">
+                        <button class="action-btn view-btn"><i class="fas fa-eye"></i> Lihat</button>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div class="education-card">
-                <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1586023492128-395c9b005323?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                    <span class="education-category">Panduan</span>
+            <!-- Infografis -->
+            <div class="content-card" data-type="infographic" data-category="sustainability">
+                <div class="content-image" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <span class="content-badge"><i class="fas fa-chart-pie"></i> Infografis</span>
                 </div>
-                <div class="education-content">
-                    <h3 class="education-title">Panduan Lengkap Bekerja dengan Kayu Palet</h3>
-                    <p class="education-excerpt">Semua yang perlu Anda ketahui tentang mencari, menyiapkan, dan membangun dengan palet bekas. Termasuk tips keselamatan.</p>
-                    <div class="education-meta">
-                        <span>25 menit</span>
-                        <span class="education-duration"><i class="fas fa-eye"></i> 856 dilihat</span>
+                <div class="content-body">
+                    <h3 class="content-title"><i class="fas fa-chart-line"></i> Dampak Lingkungan dari Daur Ulang Kreatif</h3>
+                    <p class="content-excerpt">Panduan visual yang menunjukkan bagaimana penggunaan kembali kreatif bermanfaat bagi planet kita dengan mengurangi sampah, menghemat sumber daya, dan menurunkan emisi.</p>
+                    <div class="content-meta">
+                        <span class="content-date"><i class="far fa-calendar-alt"></i> 22 April 2023</span>
+                        <span><i class="fas fa-eye"></i> 3.1k</span>
+                    </div>
+                    <div class="content-actions">
+                        <button class="action-btn view-btn"><i class="fas fa-eye"></i> Lihat</button>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div class="education-card">
-                <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                    <span class="education-category">Video</span>
+            <!-- Panduan -->
+            <div class="content-card" data-type="guide" data-category="upcycling">
+                <div class="content-image" style="background-image: url('https://images.unsplash.com/photo-1586023492128-395c9b005323?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <span class="content-badge"><i class="fas fa-book"></i> Panduan</span>
                 </div>
-                <div class="education-content">
-                    <h3 class="education-title">Daur Ulang Botol Plastik: 10 Ide Kreatif</h3>
-                    <p class="education-excerpt">Tonton video tutorial kami untuk cara-cara inovatif menggunakan kembali botol plastik dalam proyek rumah dan taman Anda.</p>
-                    <div class="education-meta">
-                        <span>12 menit</span>
-                        <span class="education-duration"><i class="fas fa-eye"></i> 2.4k dilihat</span>
+                <div class="content-body">
+                    <h3 class="content-title"><i class="fas fa-tools"></i> Panduan Lengkap Bekerja dengan Kayu Palet</h3>
+                    <p class="content-excerpt">Semua yang perlu Anda ketahui tentang mencari, menyiapkan, dan membangun dengan palet bekas. Termasuk tips keselamatan dan alat yang diperlukan.</p>
+                    <div class="content-meta">
+                        <span class="content-date"><i class="far fa-calendar-alt"></i> 10 April 2023</span>
+                        <span><i class="fas fa-eye"></i> 856</span>
+                    </div>
+                    <div class="content-actions">
+                        <button class="action-btn view-btn"><i class="fas fa-eye"></i> Lihat</button>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div class="education-card">
-                <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                    <span class="education-category">Artikel</span>
+            <!-- Video -->
+            <div class="content-card" data-type="video" data-category="recycling">
+                <div class="content-image" style="background-image: url('https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <span class="content-badge"><i class="fas fa-video"></i> Video</span>
                 </div>
-                <div class="education-content">
-                    <h3 class="education-title">Memahami Klasifikasi Sampah untuk Daur Ulang Lebih Baik</h3>
-                    <p class="education-excerpt">Pelajari cara mengidentifikasi dan memilah berbagai jenis bahan sampah dengan benar untuk memaksimalkan potensi daur ulangnya.</p>
-                    <div class="education-meta">
-                        <span>10 menit</span>
-                        <span class="education-duration"><i class="fas fa-eye"></i> 1.8k dilihat</span>
+                <div class="content-body">
+                    <h3 class="content-title"><i class="fas fa-film"></i> Daur Ulang Botol Plastik: 10 Ide Kreatif</h3>
+                    <p class="content-excerpt">Tonton video tutorial kami untuk cara-cara inovatif menggunakan kembali botol plastik dalam proyek rumah dan taman Anda.</p>
+                    <div class="content-meta">
+                        <span class="content-date"><i class="far fa-calendar-alt"></i> 5 April 2023</span>
+                        <span><i class="fas fa-eye"></i> 2.4k</span>
+                    </div>
+                    <div class="content-actions">
+                        <button class="action-btn view-btn"><i class="fas fa-eye"></i> Lihat</button>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div class="education-card">
-                <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                    <span class="education-category">Studi Kasus</span>
+            <!-- Artikel -->
+            <div class="content-card" data-type="article" data-category="waste-management">
+                <div class="content-image" style="background-image: url('https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <span class="content-badge"><i class="fas fa-newspaper"></i> Artikel</span>
                 </div>
-                <div class="education-content">
-                    <h3 class="education-title">Bagaimana Bisnis Kecil Sukses dengan Bahan Daur Ulang</h3>
-                    <p class="education-excerpt">Inspirasi dari pengusaha yang mengubah sampah menjadi produk menguntungkan sekaligus mengurangi dampak lingkungan.</p>
-                    <div class="education-meta">
-                        <span>18 menit</span>
-                        <span class="education-duration"><i class="fas fa-eye"></i> 932 dilihat</span>
+                <div class="content-body">
+                    <h3 class="content-title"><i class="fas fa-trash"></i> Memahami Klasifikasi Sampah untuk Daur Ulang Lebih Baik</h3>
+                    <p class="content-excerpt">Pelajari cara mengidentifikasi dan memilah berbagai jenis bahan sampah dengan benar untuk memaksimalkan potensi daur ulangnya.</p>
+                    <div class="content-meta">
+                        <span class="content-date"><i class="far fa-calendar-alt"></i> 28 Maret 2023</span>
+                        <span><i class="fas fa-eye"></i> 1.8k</span>
+                    </div>
+                    <div class="content-actions">
+                        <button class="action-btn view-btn"><i class="fas fa-eye"></i> Lihat</button>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div class="education-card">
-                <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                    <span class="education-category">Infografis</span>
+            <!-- Studi Kasus -->
+            <div class="content-card" data-type="case-study" data-category="sustainability">
+                <div class="content-image" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    <span class="content-badge"><i class="fas fa-briefcase"></i> Studi Kasus</span>
                 </div>
-                <div class="education-content">
-                    <h3 class="education-title">Dampak Lingkungan dari Daur Ulang Kreatif</h3>
-                    <p class="education-excerpt">Panduan visual yang menunjukkan bagaimana penggunaan kembali kreatif bermanfaat bagi planet kita dengan mengurangi sampah, menghemat sumber daya, dan menurunkan emisi.</p>
-                    <div class="education-meta">
-                        <span>5 menit</span>
-                        <span class="education-duration"><i class="fas fa-eye"></i> 3.1k dilihat</span>
+                <div class="content-body">
+                    <h3 class="content-title"><i class="fas fa-business-time"></i> Bagaimana Bisnis Kecil Sukses dengan Bahan Daur Ulang</h3>
+                    <p class="content-excerpt">Inspirasi dari pengusaha yang mengubah sampah menjadi produk menguntungkan sekaligus mengurangi dampak lingkungan.</p>
+                    <div class="content-meta">
+                        <span class="content-date"><i class="far fa-calendar-alt"></i> 20 Maret 2023</span>
+                        <span><i class="fas fa-eye"></i> 932</span>
+                    </div>
+                    <div class="content-actions">
+                        <button class="action-btn view-btn"><i class="fas fa-eye"></i> Lihat</button>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Empty State Example (hidden by default) -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <h3 class="empty-title">Belum Ada Konten</h3>
+            <p class="empty-text">Tidak ada konten yang tersedia untuk kategori ini. Anda bisa menjadi yang pertama membuat konten edukasi.</p>
+            <button class="create-new" id="createFromEmptyBtn">
+                <i class="fas fa-plus"></i> Buat Konten Baru
+            </button>
         </div>
     </main>
 
+    <!-- Create Content Modal -->
+    <div class="modal" id="createContentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Buat Konten Edukasi Baru</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="contentForm">
+                    <div class="form-group">
+                        <label for="contentType"><i class="fas fa-tag"></i> Jenis Konten</label>
+                        <select class="form-control" id="contentType" required>
+                            <option value="">Pilih Jenis Konten</option>
+                            <option value="article"><i class="fas fa-newspaper"></i> Artikel</option>
+                            <option value="infographic"><i class="fas fa-chart-pie"></i> Infografis</option>
+                            <option value="video"><i class="fas fa-video"></i> Video</option>
+                            <option value="guide"><i class="fas fa-book"></i> Panduan</option>
+                            <option value="case-study"><i class="fas fa-briefcase"></i> Studi Kasus</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contentTitle"><i class="fas fa-heading"></i> Judul Konten</label>
+                        <input type="text" class="form-control" id="contentTitle" placeholder="Masukkan judul konten" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contentCategory"><i class="fas fa-filter"></i> Kategori</label>
+                        <select class="form-control" id="contentCategory" required>
+                            <option value="">Pilih Kategori</option>
+                            <option value="recycling"><i class="fas fa-recycle"></i> Daur Ulang</option>
+                            <option value="upcycling"><i class="fas fa-tshirt"></i> Upcycling</option>
+                            <option value="waste-management"><i class="fas fa-trash-alt"></i> Pengelolaan Sampah</option>
+                            <option value="sustainability"><i class="fas fa-leaf"></i> Keberlanjutan</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contentImage"><i class="fas fa-image"></i> Gambar Utama (URL)</label>
+                        <input type="url" class="form-control" id="contentImage" placeholder="Masukkan URL gambar">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contentDescription"><i class="fas fa-align-left"></i> Deskripsi Singkat</label>
+                        <textarea class="form-control" id="contentDescription" placeholder="Tulis deskripsi singkat tentang konten ini" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contentBody"><i class="fas fa-file-alt"></i> Isi Konten</label>
+                        <textarea class="form-control" id="contentBody" placeholder="Tulis isi lengkap konten edukasi" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelContent"><i class="fas fa-times"></i> Batal</button>
+                <button class="btn btn-primary" id="submitContent"><i class="fas fa-save"></i> Simpan Konten</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Content Modal -->
+    <div class="modal" id="viewContentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="viewContentTitle"><i class="fas fa-file-alt"></i> Judul Konten</h3>
+                <button class="modal-close" id="viewModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="content-meta" style="margin-bottom: 1.5rem;">
+                    <span class="content-badge" id="viewContentBadge"><i class="fas fa-tag"></i> Jenis Konten</span>
+                    <span class="content-date" style="margin-left: 1rem;"><i class="far fa-calendar-alt"></i> Tanggal</span>
+                    <span style="margin-left: 1rem;"><i class="fas fa-eye"></i> 0</span>
+                </div>
+                
+                <div id="viewContentImage" style="width: 100%; height: 300px; background-color: #eee; background-size: cover; background-position: center; margin-bottom: 1.5rem; border-radius: var(--border-radius);"></div>
+                
+                <div id="viewContentBody">
+                    <p>Isi konten akan ditampilkan di sini...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="closeViewModal"><i class="fas fa-check"></i> Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot -->
     <div class="chatbot-container">
         <button class="chatbot-btn" id="chatbotBtn"><i class="fas fa-comment-dots"></i></button>
         <div class="chatbot-window" id="chatbotWindow">
             <div class="chatbot-header">
-                <h3>Asisten Waste to Worth</h3>
+                <h3><i class="fas fa-robot"></i> Asisten Waste to Worth</h3>
                 <button class="chatbot-close" id="chatbotClose">×</button>
             </div>
             <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">Halo! Saya asisten Waste to Worth. Bagaimana saya bisa membantu Anda dengan sumber belajar hari ini?</div>
+                <div class="message bot-message">Halo! Saya asisten Waste to Worth. Bagaimana saya bisa membantu Anda dengan materi edukasi hari ini?</div>
+                <div class="message bot-message">Anda bisa menanyakan tentang:
+                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                        <li><i class="fas fa-newspaper"></i> Artikel edukasi</li>
+                        <li><i class="fas fa-chart-pie"></i> Infografis</li>
+                        <li><i class="fas fa-video"></i> Video tutorial</li>
+                        <li><i class="fas fa-book"></i> Panduan praktis</li>
+                    </ul>
+                </div>
             </div>
             <div class="chatbot-input">
                 <input type="text" id="chatbotInput" placeholder="Ketik pesan Anda...">
-                <button class="chatbot-send" id="chatbotSend">Kirim</button>
+                <button class="chatbot-send" id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
     </div>
@@ -953,44 +1479,49 @@
     <footer>
         <div class="footer-content">
             <div class="footer-column">
-                <h3>Perusahaan</h3>
+                <h3><i class="fas fa-info-circle"></i> Tentang Kami</h3>
                 <ul>
-                    <li><a href="#">Tentang Kami</a></li>
-                    <li><a href="#">Misi Kami</a></li>
-                    <li><a href="#">Tim</a></li>
-                    <li><a href="#">Karir</a></li>
+                    <li><a href="#"><i class="fas fa-eye"></i> Visi & Misi</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Tim Kami</a></li>
+                    <li><a href="#"><i class="fas fa-briefcase"></i> Karir</a></li>
+                    <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Sumber Daya</h3>
+                <h3><i class="fas fa-concierge-bell"></i> Layanan</h3>
                 <ul>
-                    <li><a href="#">Cara Kerja</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Laporan Keberlanjutan</a></li>
+                    <li><a href="#"><i class="fas fa-recycle"></i> Pasar Daur Ulang</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Komunitas</a></li>
+                    <li><a href="#"><i class="fas fa-graduation-cap"></i> Edukasi</a></li>
+                    <li><a href="#"><i class="fas fa-building"></i> Solusi Perusahaan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Dukungan</h3>
+                <h3><i class="fas fa-question-circle"></i> Dukungan</h3>
                 <ul>
-                    <li><a href="#">Pusat Bantuan</a></li>
-                    <li><a href="#">Hubungi Kami</a></li>
-                    <li><a href="#">Kebijakan Privasi</a></li>
-                    <li><a href="#">Syarat Layanan</a></li>
+                    <li><a href="#"><i class="fas fa-question"></i> Pusat Bantuan</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Hubungi Kami</a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</a></li>
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Syarat Layanan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Terhubung</h3>
+                <h3><i class="fas fa-address-book"></i> Hubungi Kami</h3>
                 <ul>
-                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    <li><i class="fas fa-envelope"></i> info@wastetoworth.id</li>
+                    <li><i class="fas fa-phone"></i> +62 21 1234 5678</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
                 </ul>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2023 Waste to Worth. Semua hak dilindungi.
+            <i class="far fa-copyright"></i> 2023 Waste to Worth. Semua hak dilindungi.
         </div>
     </footer>
 
@@ -1032,7 +1563,7 @@
         function addBotMessage(text) {
             const messageDiv = document.createElement('div');
             messageDiv.className = 'message bot-message';
-            messageDiv.textContent = text;
+            messageDiv.innerHTML = text;
             chatbotMessages.appendChild(messageDiv);
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }
@@ -1053,14 +1584,16 @@
                 
                 // Simulate bot response
                 setTimeout(() => {
-                    if (message.toLowerCase().includes('tutorial') || message.toLowerCase().includes('panduan')) {
-                        addBotMessage("Kami memiliki tutorial langkah demi langkah untuk berbagai proyek daur ulang kreatif. Anda bisa memfilter dengan 'Tutorial' di pusat edukasi. Bahan apa yang ingin Anda gunakan?");
-                    } else if (message.toLowerCase().includes('video')) {
-                        addBotMessage("Sumber belajar video kami bisa ditemukan di tab 'Video'. Mereka mencakup segala hal mulai dari teknik dasar hingga proyek lanjutan.");
-                    } else if (message.toLowerCase().includes('pemula')) {
-                        addBotMessage("Untuk pemula, saya merekomendasikan 'Panduan Lengkap Daur Ulang Kreatif untuk Pemula' (unggulan di bagian atas) atau tutorial 'Mengubah Sisa Denim'.");
+                    if (message.toLowerCase().includes('artikel') || message.toLowerCase().includes('tulisan')) {
+                        addBotMessage("Kami memiliki banyak artikel tentang daur ulang dan pengelolaan sampah. Anda bisa menemukannya di tab <i class='fas fa-newspaper'></i> 'Artikel' atau menggunakan fitur pencarian. Topik spesifik apa yang Anda minati?");
+                    } else if (message.toLowerCase().includes('infografis') || message.toLowerCase().includes('visual')) {
+                        addBotMessage("Materi infografis tersedia di tab <i class='fas fa-chart-pie'></i> 'Infografis'. Mereka menyajikan informasi kompleks tentang daur ulang dalam format visual yang mudah dipahami.");
+                    } else if (message.toLowerCase().includes('video') || message.toLowerCase().includes('tonton')) {
+                        addBotMessage("Video tutorial kami tersedia di tab <i class='fas fa-video'></i> 'Video'. Mereka mencakup berbagai proyek daur ulang kreatif dari tingkat dasar hingga lanjutan.");
+                    } else if (message.toLowerCase().includes('panduan') || message.toLowerCase().includes('tutorial')) {
+                        addBotMessage("Panduan langkah demi langkah tersedia di tab <i class='fas fa-book'></i> 'Panduan'. Mereka dirancang untuk membantu Anda memulai proyek daur ulang dengan mudah.");
                     } else {
-                        addBotMessage("Saya bisa membantu Anda menemukan tutorial, panduan, atau video berdasarkan minat Anda. Apa yang ingin Anda pelajari?");
+                        addBotMessage("Saya bisa membantu Anda menemukan artikel, infografis, video, atau panduan berdasarkan minat Anda. Topik apa yang ingin Anda pelajari?");
                     }
                 }, 1000);
             }
@@ -1072,40 +1605,346 @@
             }
         });
 
-        // Education tabs
-        const educationTabs = document.querySelectorAll('.education-tab');
-        educationTabs.forEach(tab => {
+        // Content tabs functionality
+        const contentTabs = document.querySelectorAll('.content-tab');
+        const contentGrid = document.getElementById('contentGrid');
+        const emptyState = document.getElementById('emptyState');
+
+        contentTabs.forEach(tab => {
             tab.addEventListener('click', () => {
-                document.querySelector('.education-tab.active').classList.remove('active');
+                // Remove active class from all tabs
+                document.querySelector('.content-tab.active').classList.remove('active');
+                // Add active class to clicked tab
                 tab.classList.add('active');
-                // In a real app, this would filter the resources
-                console.log(`Menampilkan sumber ${tab.textContent}`);
+                
+                const tabType = tab.getAttribute('data-tab');
+                filterContent();
+                
+                // Show empty state if no content matches
+                const visibleCards = contentGrid.querySelectorAll('.content-card:not([style*="display: none"])');
+                if (visibleCards.length === 0) {
+                    emptyState.style.display = 'block';
+                    contentGrid.style.display = 'none';
+                } else {
+                    emptyState.style.display = 'none';
+                    contentGrid.style.display = 'grid';
+                }
             });
         });
 
-        // Education card interaction
-        const educationCards = document.querySelectorAll('.education-card');
-        educationCards.forEach(card => {
-            card.addEventListener('click', () => {
-                // In a real app, this would go to the resource detail page
-                console.log(`Melihat sumber: ${card.querySelector('.education-title').textContent}`);
+        // Filter dropdown functionality
+        const filterButton = document.getElementById('filterButton');
+        const filterDropdown = document.getElementById('filterDropdown');
+        const filterOptions = document.querySelectorAll('.filter-option');
+        const searchInput = document.getElementById('searchInput');
+
+        filterButton.addEventListener('click', () => {
+            filterDropdown.classList.toggle('show');
+        });
+
+        filterOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                filterButton.querySelector('span').innerHTML = `<i class="fas fa-filter"></i> ${option.textContent}`;
+                filterDropdown.classList.remove('show');
+                filterContent();
             });
         });
 
         // Search functionality
-        const searchInput = document.querySelector('.education-search input');
-        const searchBtn = document.querySelector('.education-search button');
+        searchInput.addEventListener('input', filterContent);
 
-        searchBtn.addEventListener('click', () => {
-            if (searchInput.value.trim()) {
-                // In a real app, this would search the resources
-                console.log(`Mencari: ${searchInput.value}`);
+        // Filter content based on active tab, selected filter and search query
+        function filterContent() {
+            const activeTab = document.querySelector('.content-tab.active').getAttribute('data-tab');
+            const activeFilter = document.querySelector('.filter-option[data-filter]').getAttribute('data-filter');
+            const searchQuery = searchInput.value.toLowerCase();
+            
+            const contentCards = contentGrid.querySelectorAll('.content-card');
+            
+            contentCards.forEach(card => {
+                const cardType = card.getAttribute('data-type');
+                const cardCategory = card.getAttribute('data-category');
+                const cardTitle = card.querySelector('.content-title').textContent.toLowerCase();
+                const cardExcerpt = card.querySelector('.content-excerpt').textContent.toLowerCase();
+                
+                // Check if card matches active tab (or 'all')
+                const typeMatch = activeTab === 'all' || 
+                                 (activeTab === 'articles' && cardType === 'article') ||
+                                 (activeTab === 'infographics' && cardType === 'infographic') ||
+                                 (activeTab === 'videos' && cardType === 'video') ||
+                                 (activeTab === 'guides' && cardType === 'guide');
+                
+                // Check if card matches active filter (or 'all')
+                const filterMatch = activeFilter === 'all' || cardCategory === activeFilter;
+                
+                // Check if card matches search query
+                const searchMatch = searchQuery === '' || 
+                                    cardTitle.includes(searchQuery) || 
+                                    cardExcerpt.includes(searchQuery);
+                
+                if (typeMatch && filterMatch && searchMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Show empty state if no content matches
+            const visibleCards = contentGrid.querySelectorAll('.content-card:not([style*="display: none"])');
+            if (visibleCards.length === 0) {
+                emptyState.style.display = 'block';
+                contentGrid.style.display = 'none';
+            } else {
+                emptyState.style.display = 'none';
+                contentGrid.style.display = 'grid';
+            }
+        }
+
+        // Create content modal
+        const createContentBtn = document.getElementById('createContentBtn');
+        const createContentModal = document.getElementById('createContentModal');
+        const modalClose = document.getElementById('modalClose');
+        const cancelContent = document.getElementById('cancelContent');
+        const submitContent = document.getElementById('submitContent');
+        const contentForm = document.getElementById('contentForm');
+        const createFromEmptyBtn = document.getElementById('createFromEmptyBtn');
+
+        createContentBtn.addEventListener('click', () => {
+            createContentModal.style.display = 'flex';
+        });
+
+        createFromEmptyBtn.addEventListener('click', () => {
+            createContentModal.style.display = 'flex';
+        });
+
+        modalClose.addEventListener('click', () => {
+            createContentModal.style.display = 'none';
+        });
+
+        cancelContent.addEventListener('click', () => {
+            createContentModal.style.display = 'none';
+        });
+
+        submitContent.addEventListener('click', () => {
+            if (contentForm.checkValidity()) {
+                // In a real app, this would submit the form to the server
+                alert('Konten edukasi berhasil dibuat!');
+                createContentModal.style.display = 'none';
+                contentForm.reset();
+                
+                // For demo purposes, we'll add the new content to the grid
+                addNewContentCard();
+            } else {
+                alert('Harap isi semua field yang wajib diisi!');
             }
         });
 
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                searchBtn.click();
+        // Function to add new content card (for demo purposes)
+        function addNewContentCard() {
+            const contentType = document.getElementById('contentType').value;
+            const contentTitle = document.getElementById('contentTitle').value;
+            const contentCategory = document.getElementById('contentCategory').value;
+            const contentImage = document.getElementById('contentImage').value;
+            const contentDescription = document.getElementById('contentDescription').value;
+            
+            // Create type display and icon
+            let typeDisplay, typeIcon;
+            switch(contentType) {
+                case 'article':
+                    typeDisplay = 'Artikel';
+                    typeIcon = 'newspaper';
+                    break;
+                case 'infographic':
+                    typeDisplay = 'Infografis';
+                    typeIcon = 'chart-pie';
+                    break;
+                case 'video':
+                    typeDisplay = 'Video';
+                    typeIcon = 'video';
+                    break;
+                case 'guide':
+                    typeDisplay = 'Panduan';
+                    typeIcon = 'book';
+                    break;
+                case 'case-study':
+                    typeDisplay = 'Studi Kasus';
+                    typeIcon = 'briefcase';
+                    break;
+                default:
+                    typeDisplay = 'Konten';
+                    typeIcon = 'file-alt';
+            }
+            
+            // Create title icon based on category
+            let titleIcon;
+            switch(contentCategory) {
+                case 'recycling':
+                    titleIcon = 'recycle';
+                    break;
+                case 'upcycling':
+                    titleIcon = 'tshirt';
+                    break;
+                case 'waste-management':
+                    titleIcon = 'trash-alt';
+                    break;
+                case 'sustainability':
+                    titleIcon = 'leaf';
+                    break;
+                default:
+                    titleIcon = 'file-alt';
+            }
+            
+            // Create new card
+            const newCard = document.createElement('div');
+            newCard.className = 'content-card';
+            newCard.setAttribute('data-type', contentType);
+            newCard.setAttribute('data-category', contentCategory);
+            
+            // Use placeholder image if none provided
+            const imageUrl = contentImage || 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
+            
+            newCard.innerHTML = `
+                <div class="content-image" style="background-image: url('${imageUrl}')">
+                    <span class="content-badge"><i class="fas fa-${typeIcon}"></i> ${typeDisplay}</span>
+                </div>
+                <div class="content-body">
+                    <h3 class="content-title"><i class="fas fa-${titleIcon}"></i> ${contentTitle}</h3>
+                    <p class="content-excerpt">${contentDescription}</p>
+                    <div class="content-meta">
+                        <span class="content-date"><i class="far fa-calendar-alt"></i> ${new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                        <span><i class="fas fa-eye"></i> 0</span>
+                    </div>
+                    <div class="content-actions">
+                        <button class="action-btn view-btn"><i class="fas fa-eye"></i> Lihat</button>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `;
+            
+            // Add to grid
+            contentGrid.prepend(newCard);
+            
+            // Add event listeners to new buttons
+            addCardEventListeners(newCard);
+            
+            // Hide empty state
+            emptyState.style.display = 'none';
+            contentGrid.style.display = 'grid';
+        }
+
+        // View content modal
+        const viewContentModal = document.getElementById('viewContentModal');
+        const viewModalClose = document.getElementById('viewModalClose');
+        const closeViewModal = document.getElementById('closeViewModal');
+
+        // Function to open view modal with content
+        function viewContent(card) {
+            const title = card.querySelector('.content-title').textContent;
+            const badge = card.querySelector('.content-badge').innerHTML;
+            const date = card.querySelector('.content-date').textContent;
+            const views = card.querySelector('[class*="fa-eye"]').nextSibling.textContent.trim();
+            const image = card.querySelector('.content-image').style.backgroundImage;
+            const excerpt = card.querySelector('.content-excerpt').textContent;
+            
+            document.getElementById('viewContentTitle').textContent = title;
+            document.getElementById('viewContentBadge').innerHTML = badge;
+            document.getElementById('viewContentImage').style.backgroundImage = image;
+            document.getElementById('viewContentBody').innerHTML = `
+                <p>${excerpt}</p>
+                <p style="margin-top: 1rem;">Ini adalah contoh tampilan konten lengkap. Dalam implementasi nyata, ini akan menampilkan seluruh isi konten edukasi yang telah dibuat.</p>
+            `;
+            
+            // Update views (simulated)
+            const viewsElement = card.querySelector('[class*="fa-eye"]').nextSibling;
+            viewsElement.textContent = ' ' + (parseInt(views) + 1);
+            
+            viewContentModal.style.display = 'flex';
+        }
+
+        viewModalClose.addEventListener('click', () => {
+            viewContentModal.style.display = 'none';
+        });
+
+        closeViewModal.addEventListener('click', () => {
+            viewContentModal.style.display = 'none';
+        });
+
+        // Edit content functionality
+        function editContent(card) {
+            // In a real app, this would open an edit form with the card's data
+            alert('Fitur edit konten akan membuka form edit dengan data yang ada.');
+        }
+
+        // Delete content functionality
+        function deleteContent(card) {
+            if (confirm('Apakah Anda yakin ingin menghapus konten ini?')) {
+                card.remove();
+                
+                // Check if we need to show empty state
+                const visibleCards = contentGrid.querySelectorAll('.content-card:not([style*="display: none"])');
+                if (visibleCards.length === 0) {
+                    emptyState.style.display = 'block';
+                    contentGrid.style.display = 'none';
+                }
+            }
+        }
+
+        // Add event listeners to all cards
+        function addCardEventListeners(card) {
+            const viewBtn = card.querySelector('.view-btn');
+            const editBtn = card.querySelector('.edit-btn');
+            const deleteBtn = card.querySelector('.delete-btn');
+            
+            viewBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                viewContent(card);
+            });
+            
+            editBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                editContent(card);
+            });
+            
+            deleteBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                deleteContent(card);
+            });
+            
+            // Click on card to view
+            card.addEventListener('click', () => {
+                viewContent(card);
+            });
+        }
+
+        // Initialize event listeners for all existing cards
+        document.querySelectorAll('.content-card').forEach(card => {
+            addCardEventListeners(card);
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === createContentModal) {
+                createContentModal.style.display = 'none';
+            }
+            if (e.target === viewContentModal) {
+                viewContentModal.style.display = 'none';
+            }
+            if (e.target === chatbotWindow) {
+                chatbotWindow.style.display = 'none';
+            }
+            if (!e.target.closest('.filter-dropdown') && !e.target.matches('.filter-button')) {
+                filterDropdown.classList.remove('show');
+            }
+        });
+
+        // Active nav link
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
             }
         });
     </script>
