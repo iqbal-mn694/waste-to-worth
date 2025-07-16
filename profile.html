@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waste to Worth - Profil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2e7d32;
@@ -29,13 +30,19 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         body {
             background-color: var(--background);
             color: var(--text-primary);
             line-height: 1.6;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.3;
         }
 
         /* Header Styles */
@@ -90,6 +97,7 @@
             transition: var(--transition);
             padding: 0.5rem 0;
             position: relative;
+            font-size: 0.95rem;
         }
 
         nav a:hover {
@@ -128,6 +136,7 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .btn-primary {
@@ -249,6 +258,7 @@
             margin-top: 2rem;
             flex-direction: column;
             align-items: flex-start;
+            gap: 1rem;
         }
 
         /* Main Content Styles */
@@ -259,61 +269,35 @@
             min-height: calc(100vh - 200px);
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary-dark);
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--secondary);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-
-        /* Profile Specific Styles */
+        /* Profile Header */
         .profile-header {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
             margin-bottom: 3rem;
             align-items: center;
+            background-color: var(--surface);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .profile-avatar {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             background-color: #eee;
-            background-image: url('https://via.placeholder.com/120');
+            background-image: url('https://via.placeholder.com/150');
             background-size: cover;
             background-position: center;
-            border: 4px solid var(--secondary);
+            border: 5px solid var(--secondary);
             flex-shrink: 0;
             transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .profile-avatar:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .profile-info {
@@ -321,34 +305,43 @@
         }
 
         .profile-name {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
             color: var(--primary-dark);
         }
 
         .profile-bio {
             color: var(--text-secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
         }
 
         .profile-stats {
             display: flex;
             gap: 2rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .stat-item {
             text-align: center;
-            padding: 0.5rem 1rem;
+            padding: 1rem 1.5rem;
             background-color: rgba(46, 125, 50, 0.05);
             border-radius: var(--border-radius);
-            min-width: 100px;
+            min-width: 120px;
+            border: 1px solid rgba(46, 125, 50, 0.1);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .stat-value {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--primary);
+            margin-bottom: 0.3rem;
         }
 
         .stat-label {
@@ -361,26 +354,67 @@
             gap: 1rem;
         }
 
+        /* Role Switch */
+        .role-switch {
+            display: flex;
+            background-color: rgba(46, 125, 50, 0.1);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(46, 125, 50, 0.2);
+        }
+
+        .role-option {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .role-option.active {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+        }
+
+        .role-option:not(.active):hover {
+            background-color: rgba(46, 125, 50, 0.2);
+        }
+
+        /* Profile Navigation */
         .profile-nav {
             display: flex;
             border-bottom: 1px solid #ddd;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             overflow-x: auto;
-            scrollbar-width: none; /* For Firefox */
+            scrollbar-width: none;
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 0 1rem;
+            box-shadow: var(--box-shadow);
         }
 
         .profile-nav::-webkit-scrollbar {
-            display: none; /* For Chrome, Safari and Opera */
+            display: none;
         }
 
         .profile-nav-item {
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 1.8rem;
             cursor: pointer;
             position: relative;
             font-weight: 500;
             color: var(--text-secondary);
             white-space: nowrap;
             transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
         }
 
         .profile-nav-item:hover {
@@ -390,18 +424,10 @@
         .profile-nav-item.active {
             color: var(--primary);
             font-weight: 600;
+            border-bottom-color: var(--primary);
         }
 
-        .profile-nav-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background-color: var(--primary);
-        }
-
+        /* Profile Sections */
         .profile-section {
             display: none;
             animation: fadeIn 0.5s ease;
@@ -432,9 +458,10 @@
         .overview-card {
             background-color: var(--surface);
             border-radius: var(--border-radius);
-            padding: 1.5rem;
+            padding: 2rem;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .overview-card:hover {
@@ -443,12 +470,16 @@
         }
 
         .overview-card h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: var(--primary-dark);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
+        }
+
+        .overview-card h3 i {
+            color: var(--primary);
         }
 
         .recent-activity {
@@ -474,8 +505,8 @@
             font-size: 1.5rem;
             color: var(--primary);
             background-color: rgba(46, 125, 50, 0.1);
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -488,7 +519,8 @@
         }
 
         .activity-text {
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
         }
 
         .activity-time {
@@ -498,8 +530,8 @@
 
         .quick-actions {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1.2rem;
         }
 
         .quick-action {
@@ -513,6 +545,7 @@
             cursor: pointer;
             transition: var(--transition);
             text-align: center;
+            border: 1px solid rgba(46, 125, 50, 0.1);
         }
 
         .quick-action:hover {
@@ -521,26 +554,42 @@
         }
 
         .quick-action-icon {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
             color: var(--primary);
         }
 
         .quick-action-text {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 500;
         }
 
         /* Listings Section */
+        .listings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background-color: var(--surface);
+            padding: 1.5rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .listings-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+        }
+
         .listings-actions {
             display: flex;
-            justify-content: flex-end;
-            margin-bottom: 1.5rem;
+            gap: 1rem;
         }
 
         .listings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
         }
 
@@ -550,6 +599,7 @@
             overflow: hidden;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .listing-card:hover {
@@ -558,7 +608,7 @@
         }
 
         .listing-image {
-            height: 180px;
+            height: 200px;
             background-color: #eee;
             background-size: cover;
             background-position: center;
@@ -566,42 +616,43 @@
         }
 
         .listing-card:hover .listing-image {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .listing-info {
-            padding: 1.5rem;
+            padding: 1.8rem;
         }
 
         .listing-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
             font-weight: 600;
         }
 
         .listing-description {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            line-height: 1.5;
         }
 
         .listing-price {
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
         }
 
         .listing-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
         }
 
         .listing-views {
@@ -610,9 +661,9 @@
 
         .listing-status {
             display: inline-block;
-            padding: 0.3rem 0.8rem;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
         }
 
@@ -633,14 +684,14 @@
 
         .listing-actions {
             display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .listing-actions .btn {
             flex: 1;
-            padding: 0.6rem;
-            font-size: 0.9rem;
+            padding: 0.8rem;
+            font-size: 0.95rem;
         }
 
         /* Orders Section */
@@ -649,6 +700,30 @@
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--box-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .orders-header {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .orders-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .orders-count {
+            background-color: var(--secondary);
+            color: var(--text-on-secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
         .orders-table {
@@ -663,9 +738,10 @@
         }
 
         .orders-table th {
-            background-color: var(--primary);
+            background-color: var(--primary-light);
             color: var(--text-on-primary);
             font-weight: 500;
+            font-size: 0.95rem;
         }
 
         .orders-table tr:last-child td {
@@ -697,9 +773,9 @@
 
         .order-status {
             display: inline-block;
-            padding: 0.3rem 0.8rem;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
         }
 
@@ -718,20 +794,51 @@
             color: #00838f;
         }
 
+        .status-cancelled {
+            background-color: #efebe9;
+            color: #6d4c41;
+        }
+
         .order-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .order-actions .btn {
-            padding: 0.5rem 0.8rem;
-            font-size: 0.8rem;
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
         }
 
         /* Saved Section */
+        .saved-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background-color: var(--surface);
+            padding: 1.5rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .saved-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .saved-count {
+            background-color: var(--secondary);
+            color: var(--text-on-secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
         .saved-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -741,6 +848,7 @@
             overflow: hidden;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .saved-item:hover {
@@ -749,73 +857,159 @@
         }
 
         .saved-image {
-            height: 160px;
+            height: 180px;
             background-color: #eee;
             background-size: cover;
             background-position: center;
+            transition: var(--transition);
+        }
+
+        .saved-item:hover .saved-image {
+            transform: scale(1.03);
         }
 
         .saved-info {
-            padding: 1.2rem;
+            padding: 1.5rem;
         }
 
-        .saved-title {
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
+        .saved-item-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
         }
 
         .saved-price {
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .saved-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
+            margin-bottom: 1.5rem;
         }
 
         .saved-actions {
             display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 1rem;
         }
 
         .saved-actions .btn {
             flex: 1;
-            padding: 0.6rem;
-            font-size: 0.9rem;
+            padding: 0.8rem;
+            font-size: 0.95rem;
         }
 
         /* Settings Section */
-        .settings-form {
+        .settings-container {
             background-color: var(--surface);
             border-radius: var(--border-radius);
-            padding: 2rem;
             box-shadow: var(--box-shadow);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .settings-header {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            padding: 1.5rem 2rem;
+        }
+
+        .settings-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .settings-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            background-color: var(--surface);
+            padding: 0 2rem;
+        }
+
+        .settings-tab {
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            position: relative;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .settings-tab:hover {
+            color: var(--primary);
+        }
+
+        .settings-tab.active {
+            color: var(--primary);
+            font-weight: 600;
+            border-bottom-color: var(--primary);
+        }
+
+        .settings-content {
+            padding: 2rem;
+        }
+
+        .settings-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .settings-section.active {
+            display: block;
+        }
+
+        .avatar-upload {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .avatar-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+            border: 5px solid var(--secondary);
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar-actions {
+            display: flex;
+            gap: 1rem;
         }
 
         .form-group {
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
             font-weight: 500;
             color: var(--primary-dark);
         }
 
         .form-control {
             width: 100%;
-            padding: 0.8rem 1rem;
+            padding: 1rem;
             border: 1px solid #ddd;
             border-radius: var(--border-radius);
             font-size: 1rem;
             transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .form-control:focus {
@@ -826,50 +1020,178 @@
 
         .form-row {
             display: flex;
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
+            gap: 2rem;
         }
 
         .form-row .form-group {
             flex: 1;
         }
 
-        .avatar-upload {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .avatar-preview {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-color: #eee;
-            background-size: cover;
-            background-position: center;
-            border: 4px solid var(--secondary);
-            flex-shrink: 0;
-        }
-
-        .avatar-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
         .form-actions {
             display: flex;
             justify-content: flex-end;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
             border-top: 1px solid #eee;
+        }
+
+        /* Store Info Section */
+        .store-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .store-image {
+            height: 300px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+        }
+
+        /* Shipping Section */
+        .shipping-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .shipping-method {
+            background-color: rgba(46, 125, 50, 0.05);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            border: 1px solid rgba(46, 125, 50, 0.1);
+        }
+
+        .shipping-method-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .shipping-method-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .shipping-method-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .shipping-method-details {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .shipping-method-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Seller Orders Section */
+        .seller-orders-container {
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .seller-orders-header {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .seller-orders-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .seller-orders-count {
+            background-color: var(--secondary);
+            color: var(--text-on-secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .seller-orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .seller-orders-table th, .seller-orders-table td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .seller-orders-table th {
+            background-color: var(--primary-light);
+            color: var(--text-on-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .seller-orders-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .seller-orders-table tr:hover td {
+            background-color: rgba(46, 125, 50, 0.03);
+        }
+
+        .seller-order-id {
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .seller-order-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .seller-order-items {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .seller-order-total {
+            font-weight: 600;
+        }
+
+        .seller-order-status {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .seller-order-actions {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .seller-order-actions .btn {
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
         }
 
         /* Footer */
@@ -877,7 +1199,6 @@
             background-color: var(--primary-dark);
             color: var(--text-on-primary);
             padding: 3rem 2rem 2rem;
-            text-align: center;
         }
 
         .footer-content {
@@ -928,12 +1249,30 @@
             transform: translateX(5px);
         }
 
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-on-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
         .copyright {
             margin-top: 3rem;
             padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
+            text-align: center;
         }
 
         /* Responsive Design */
@@ -941,6 +1280,7 @@
             .profile-header {
                 flex-direction: column;
                 text-align: center;
+                gap: 2rem;
             }
             
             .profile-stats {
@@ -949,6 +1289,10 @@
             
             .profile-actions {
                 justify-content: center;
+            }
+
+            .store-info-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -973,9 +1317,28 @@
                 padding-bottom: 0.5rem;
             }
             
-            .orders-table {
+            .orders-table, .seller-orders-table {
                 display: block;
                 overflow-x: auto;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .listings-header, .saved-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .listings-actions {
+                width: 100%;
+            }
+
+            .listings-actions .btn {
+                width: 100%;
             }
         }
 
@@ -997,6 +1360,35 @@
             .quick-actions {
                 grid-template-columns: 1fr 1fr;
             }
+
+            .listing-actions, .saved-actions, .order-actions, .seller-order-actions {
+                flex-direction: column;
+            }
+
+            .shipping-method-actions {
+                flex-direction: column;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .form-actions .btn {
+                width: 100%;
+            }
+
+            .avatar-upload {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .avatar-actions {
+                width: 100%;
+            }
+
+            .avatar-actions .btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -1017,17 +1409,17 @@
         <!-- Desktop Navigation -->
         <nav class="desktop-nav">
             <ul>
-                <li><a href="index.html">Beranda</a></li>
-                <li><a href="marketplace.html">Pasar</a></li>
-                <li><a href="community.html">Komunitas</a></li>
-                <li><a href="education.html">Edukasi</a></li>
-                <li><a href="profile.html" class="active">Profil</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="marketplace.html"><i class="fas fa-store"></i> Pasar</a></li>
+                <li><a href="community.html"><i class="fas fa-users"></i> Komunitas</a></li>
+                <li><a href="education.html"><i class="fas fa-book"></i> Edukasi</a></li>
+                <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Profil</a></li>
             </ul>
         </nav>
         
         <div class="user-actions">
-            <button class="btn btn-secondary">Masuk</button>
-            <button class="btn btn-primary">Daftar</button>
+            <button class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i> Masuk</button>
+            <button class="btn btn-primary"><i class="fas fa-user-plus"></i> Daftar</button>
             <div class="user-profile">
                 <img src="https://via.placeholder.com/40" alt="Profil Pengguna">
             </div>
@@ -1037,24 +1429,26 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="marketplace.html">Pasar</a></li>
-            <li><a href="community.html">Komunitas</a></li>
-            <li><a href="education.html">Edukasi</a></li>
-            <li><a href="profile.html" class="active">Profil</a></li>
+            <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="marketplace.html"><i class="fas fa-store"></i> Pasar</a></li>
+            <li><a href="community.html"><i class="fas fa-users"></i> Komunitas</a></li>
+            <li><a href="education.html"><i class="fas fa-book"></i> Edukasi</a></li>
+            <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Profil</a></li>
         </ul>
         <div class="user-actions">
-            <button class="btn btn-secondary">Masuk</button>
-            <button class="btn btn-primary">Daftar</button>
+            <button class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i> Masuk</button>
+            <button class="btn btn-primary"><i class="fas fa-user-plus"></i> Daftar</button>
         </div>
     </div>
 
     <main>
+        <!-- Profile Header -->
         <div class="profile-header">
             <div class="profile-avatar"></div>
             <div class="profile-info">
                 <h1 class="profile-name">Budi Santoso</h1>
                 <p class="profile-bio">Pecinta daur ulang kreatif dan pembuat produk berkelanjutan dari Jakarta</p>
+                
                 <div class="profile-stats">
                     <div class="stat-item">
                         <div class="stat-value">24</div>
@@ -1069,22 +1463,60 @@
                         <div class="stat-label">Mengikuti</div>
                     </div>
                 </div>
+                
                 <div class="profile-actions">
-                    <button class="btn btn-primary">Edit Profil</button>
-                    <button class="btn btn-secondary">Bagikan Profil</button>
+                    <button class="btn btn-primary"><i class="fas fa-edit"></i> Edit Profil</button>
+                    <button class="btn btn-secondary"><i class="fas fa-share-alt"></i> Bagikan Profil</button>
                 </div>
             </div>
         </div>
 
-        <div class="profile-nav">
-            <div class="profile-nav-item active" data-tab="overview">Ringkasan</div>
-            <div class="profile-nav-item" data-tab="listings">Daftar Saya</div>
-            <div class="profile-nav-item" data-tab="orders">Pesanan</div>
-            <div class="profile-nav-item" data-tab="saved">Disimpan</div>
-            <div class="profile-nav-item" data-tab="settings">Pengaturan</div>
+        <!-- Role Switch -->
+        <div class="role-switch">
+            <div class="role-option active" id="buyer-role">
+                <i class="fas fa-shopping-bag"></i> Mode Pembeli
+            </div>
+            <div class="role-option" id="seller-role">
+                <i class="fas fa-store"></i> Mode Penjual
+            </div>
         </div>
 
-        <!-- Overview Section -->
+        <!-- Buyer Profile Navigation -->
+        <div class="profile-nav buyer-nav">
+            <div class="profile-nav-item active" data-tab="overview">
+                <i class="fas fa-chart-pie"></i> Ringkasan
+            </div>
+            <div class="profile-nav-item" data-tab="orders">
+                <i class="fas fa-shopping-cart"></i> Pesanan Saya
+            </div>
+            <div class="profile-nav-item" data-tab="saved">
+                <i class="fas fa-heart"></i> Disimpan
+            </div>
+            <div class="profile-nav-item" data-tab="settings">
+                <i class="fas fa-cog"></i> Pengaturan
+            </div>
+        </div>
+
+        <!-- Seller Profile Navigation -->
+        <div class="profile-nav seller-nav" style="display: none;">
+            <div class="profile-nav-item" data-tab="seller-overview">
+                <i class="fas fa-chart-line"></i> Dashboard
+            </div>
+            <div class="profile-nav-item" data-tab="listings">
+                <i class="fas fa-box-open"></i> Produk Saya
+            </div>
+            <div class="profile-nav-item" data-tab="seller-orders">
+                <i class="fas fa-clipboard-list"></i> Pesanan Toko
+            </div>
+            <div class="profile-nav-item" data-tab="store-settings">
+                <i class="fas fa-store"></i> Informasi Toko
+            </div>
+            <div class="profile-nav-item" data-tab="shipping">
+                <i class="fas fa-truck"></i> Pengiriman
+            </div>
+        </div>
+
+        <!-- Buyer Overview Section -->
         <div class="profile-section active" id="overview-section">
             <div class="overview-content">
                 <div class="overview-card">
@@ -1123,27 +1555,27 @@
                 <div class="overview-card">
                     <h3><i class="fas fa-bolt"></i> Aksi Cepat</h3>
                     <div class="quick-actions">
-                        <div class="quick-action">
+                        <div class="quick-action" data-action="add-listing">
                             <div class="quick-action-icon"><i class="fas fa-plus"></i></div>
                             <div class="quick-action-text">Tambah Daftar</div>
                         </div>
-                        <div class="quick-action">
+                        <div class="quick-action" data-action="stats">
                             <div class="quick-action-icon"><i class="fas fa-chart-bar"></i></div>
                             <div class="quick-action-text">Lihat Statistik</div>
                         </div>
-                        <div class="quick-action">
+                        <div class="quick-action" data-action="messages">
                             <div class="quick-action-icon"><i class="fas fa-envelope"></i></div>
                             <div class="quick-action-text">Pesan</div>
                         </div>
-                        <div class="quick-action">
+                        <div class="quick-action" data-action="resources">
                             <div class="quick-action-icon"><i class="fas fa-book"></i></div>
                             <div class="quick-action-text">Sumber Daya</div>
                         </div>
-                        <div class="quick-action">
+                        <div class="quick-action" data-action="notifications">
                             <div class="quick-action-icon"><i class="fas fa-bell"></i></div>
                             <div class="quick-action-text">Notifikasi</div>
                         </div>
-                        <div class="quick-action">
+                        <div class="quick-action" data-action="eco-impact">
                             <div class="quick-action-icon"><i class="fas fa-leaf"></i></div>
                             <div class="quick-action-text">Dampak Ekologis</div>
                         </div>
@@ -1152,87 +1584,18 @@
             </div>
         </div>
 
-        <!-- Listings Section -->
-        <div class="profile-section" id="listings-section">
-            <div class="listings-actions">
-                <button class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Daftar Baru</button>
-            </div>
-            <div class="listings-grid">
-                <div class="listing-card">
-                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="listing-info">
-                        <h3 class="listing-title">Sisa Kain Denim</h3>
-                        <p class="listing-description">Berbagai ukuran kain denim cocok untuk proyek daur ulang</p>
-                        <div class="listing-price">Rp 25.000/kg</div>
-                        <div class="listing-meta">
-                            <div class="listing-views">124 dilihat</div>
-                            <span class="listing-status status-active">Aktif</span>
-                        </div>
-                        <div class="listing-actions">
-                            <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">Lihat</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-card">
-                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="listing-info">
-                        <h3 class="listing-title">Palet Kayu</h3>
-                        <p class="listing-description">Palet kayu bekas dalam kondisi baik untuk proyek furnitur</p>
-                        <div class="listing-price">Rp 50.000/palet</div>
-                        <div class="listing-meta">
-                            <div class="listing-views">87 dilihat</div>
-                            <span class="listing-status status-pending">Menunggu</span>
-                        </div>
-                        <div class="listing-actions">
-                            <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">Lihat</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-card">
-                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="listing-info">
-                        <h3 class="listing-title">Botol Kaca</h3>
-                        <p class="listing-description">Berbagai botol kaca untuk proyek dekorasi rumah DIY</p>
-                        <div class="listing-price">Rp 8.000/botol</div>
-                        <div class="listing-meta">
-                            <div class="listing-views">156 dilihat</div>
-                            <span class="listing-status status-sold">Habis</span>
-                        </div>
-                        <div class="listing-actions">
-                            <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">Lihat</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-card">
-                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="listing-info">
-                        <h3 class="listing-title">Tutup Botol Plastik</h3>
-                        <p class="listing-description">Tutup botol plastik warna-warni untuk proyek seni dan kerajinan</p>
-                        <div class="listing-price">Rp 2.000/tutup</div>
-                        <div class="listing-meta">
-                            <div class="listing-views">92 dilihat</div>
-                            <span class="listing-status status-active">Aktif</span>
-                        </div>
-                        <div class="listing-actions">
-                            <button class="btn btn-secondary">Edit</button>
-                            <button class="btn btn-primary">Lihat</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Orders Section -->
+        <!-- Buyer Orders Section -->
         <div class="profile-section" id="orders-section">
             <div class="orders-container">
+                <div class="orders-header">
+                    <h2 class="orders-title"><i class="fas fa-shopping-cart"></i> Pesanan Saya</h2>
+                    <div class="orders-count">3 pesanan</div>
+                </div>
+                
                 <table class="orders-table">
                     <thead>
                         <tr>
                             <th>Pesanan #</th>
-                            <th>Tanggal</th>
                             <th>Item</th>
                             <th>Total</th>
                             <th>Status</th>
@@ -1250,8 +1613,8 @@
                             <td><span class="order-status status-shipped">Dikirim</span></td>
                             <td>
                                 <div class="order-actions">
-                                    <button class="btn btn-secondary">Lacak</button>
-                                    <button class="btn btn-primary">Detail</button>
+                                    <button class="btn btn-secondary"><i class="fas fa-truck"></i> Lacak</button>
+                                    <button class="btn btn-primary"><i class="fas fa-info-circle"></i> Detail</button>
                                 </div>
                             </td>
                         </tr>
@@ -1265,8 +1628,8 @@
                             <td><span class="order-status status-delivered">Terkirim</span></td>
                             <td>
                                 <div class="order-actions">
-                                    <button class="btn btn-secondary">Ulasan</button>
-                                    <button class="btn btn-primary">Detail</button>
+                                    <button class="btn btn-secondary"><i class="fas fa-star"></i> Ulasan</button>
+                                    <button class="btn btn-primary"><i class="fas fa-info-circle"></i> Detail</button>
                                 </div>
                             </td>
                         </tr>
@@ -1280,8 +1643,8 @@
                             <td><span class="order-status status-processing">Diproses</span></td>
                             <td>
                                 <div class="order-actions">
-                                    <button class="btn btn-secondary">Batal</button>
-                                    <button class="btn btn-primary">Detail</button>
+                                    <button class="btn btn-secondary"><i class="fas fa-times"></i> Batal</button>
+                                    <button class="btn btn-primary"><i class="fas fa-info-circle"></i> Detail</button>
                                 </div>
                             </td>
                         </tr>
@@ -1290,117 +1653,483 @@
             </div>
         </div>
 
-        <!-- Saved Items Section -->
+        <!-- Buyer Saved Items Section -->
         <div class="profile-section" id="saved-section">
+            <div class="saved-header">
+                <h2 class="saved-title"><i class="fas fa-heart"></i> Item Disimpan</h2>
+                <div class="saved-count">4 item</div>
+            </div>
+            
             <div class="saved-grid">
                 <div class="saved-item">
-                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
                     <div class="saved-info">
-                        <h3 class="saved-title">Manik-manik Plastik Daur Ulang</h3>
+                        <h3 class="saved-item-title">Manik-manik Plastik Daur Ulang</h3>
                         <div class="saved-price">Rp 15.000/pak</div>
                         <div class="saved-meta">
-                            <span>Bandung</span>
-                            <span>25 tersedia</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Bandung</span>
+                            <span><i class="fas fa-box-open"></i> 25 tersedia</span>
                         </div>
                         <div class="saved-actions">
-                            <button class="btn btn-secondary">Hapus</button>
-                            <button class="btn btn-primary">Beli Sekarang</button>
+                            <button class="btn btn-secondary"><i class="fas fa-trash"></i> Hapus</button>
+                            <button class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Beli Sekarang</button>
                         </div>
                     </div>
                 </div>
+                
                 <div class="saved-item">
-                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
                     <div class="saved-info">
-                        <h3 class="saved-title">Ubin Keramik Daur Ulang</h3>
+                        <h3 class="saved-item-title">Ubin Keramik Daur Ulang</h3>
                         <div class="saved-price">Rp 30.000/kg</div>
                         <div class="saved-meta">
-                            <span>Jakarta</span>
-                            <span>10 tersedia</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Jakarta</span>
+                            <span><i class="fas fa-box-open"></i> 10 tersedia</span>
                         </div>
                         <div class="saved-actions">
-                            <button class="btn btn-secondary">Hapus</button>
-                            <button class="btn btn-primary">Beli Sekarang</button>
+                            <button class="btn btn-secondary"><i class="fas fa-trash"></i> Hapus</button>
+                            <button class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Beli Sekarang</button>
                         </div>
                     </div>
                 </div>
+                
                 <div class="saved-item">
-                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
                     <div class="saved-info">
-                        <h3 class="saved-title">Koleksi Kancing Vintage</h3>
+                        <h3 class="saved-item-title">Koleksi Kancing Vintage</h3>
                         <div class="saved-price">Rp 45.000/set</div>
                         <div class="saved-meta">
-                            <span>Surabaya</span>
-                            <span>5 tersedia</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Surabaya</span>
+                            <span><i class="fas fa-box-open"></i> 5 tersedia</span>
                         </div>
                         <div class="saved-actions">
-                            <button class="btn btn-secondary">Hapus</button>
-                            <button class="btn btn-primary">Beli Sekarang</button>
+                            <button class="btn btn-secondary"><i class="fas fa-trash"></i> Hapus</button>
+                            <button class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Beli Sekarang</button>
                         </div>
                     </div>
                 </div>
+                
                 <div class="saved-item">
-                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/400x300');"></div>
+                    <div class="saved-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
                     <div class="saved-info">
-                        <h3 class="saved-title">Papan Kayu Bekas</h3>
+                        <h3 class="saved-item-title">Papan Kayu Bekas</h3>
                         <div class="saved-price">Rp 75.000/potong</div>
                         <div class="saved-meta">
-                            <span>Yogyakarta</span>
-                            <span>8 tersedia</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Yogyakarta</span>
+                            <span><i class="fas fa-box-open"></i> 8 tersedia</span>
                         </div>
                         <div class="saved-actions">
-                            <button class="btn btn-secondary">Hapus</button>
-                            <button class="btn btn-primary">Beli Sekarang</button>
+                            <button class="btn btn-secondary"><i class="fas fa-trash"></i> Hapus</button>
+                            <button class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Beli Sekarang</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Settings Section -->
+        <!-- Buyer Settings Section -->
         <div class="profile-section" id="settings-section">
-            <div class="settings-form">
-                <div class="avatar-upload">
-                    <div class="avatar-preview" style="background-image: url('https://via.placeholder.com/120');"></div>
-                    <div class="avatar-actions">
-                        <button class="btn btn-primary">Ganti Foto</button>
-                        <button class="btn btn-secondary">Hapus</button>
+            <div class="settings-container">
+                <div class="settings-header">
+                    <h2 class="settings-title"><i class="fas fa-cog"></i> Pengaturan Akun</h2>
+                </div>
+                
+                <div class="settings-tabs">
+                    <div class="settings-tab active" data-tab="account">
+                        <i class="fas fa-user"></i> Akun Saya
                     </div>
                 </div>
                 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="first-name">Nama Depan</label>
-                        <input type="text" id="first-name" class="form-control" value="Budi">
+                <div class="settings-content">
+                    <!-- Account Settings -->
+                    <div class="settings-section active" id="account-settings">
+                        <div class="avatar-upload">
+                            <div class="avatar-preview" style="background-image: url('https://via.placeholder.com/150');"></div>
+                            <div class="avatar-actions">
+                                <button class="btn btn-primary"><i class="fas fa-camera"></i> Ganti Foto</button>
+                                <button class="btn btn-secondary"><i class="fas fa-trash"></i> Hapus</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name"><i class="fas fa-user"></i> Nama Depan</label>
+                                <input type="text" id="first-name" class="form-control" value="Budi">
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name"><i class="fas fa-user"></i> Nama Belakang</label>
+                                <input type="text" id="last-name" class="form-control" value="Santoso">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="email" class="form-control" value="budi.santoso@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone"><i class="fas fa-phone"></i> Telepon</label>
+                            <input type="tel" id="phone" class="form-control" value="+628123456789">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bio"><i class="fas fa-info-circle"></i> Bio</label>
+                            <textarea id="bio" class="form-control" rows="4">Pecinta daur ulang kreatif dan pembuat produk berkelanjutan dari Jakarta. Spesialis dalam mengubah bahan limbah menjadi barang dekorasi rumah yang indah.</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address"><i class="fas fa-map-marker-alt"></i> Alamat</label>
+                            <textarea id="address" class="form-control" rows="3">Jl. Merdeka No. 123, Jakarta Pusat, 10110</textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-secondary"><i class="fas fa-times"></i> Batal</button>
+                            <button class="btn btn-primary"><i class="fas fa-save"></i> Simpan Perubahan</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="last-name">Nama Belakang</label>
-                        <input type="text" id="last-name" class="form-control" value="Santoso">
+                </div>
+            </div>
+        </div>
+
+        <!-- Seller Overview Section -->
+        <div class="profile-section" id="seller-overview-section">
+            <div class="overview-content">
+                <div class="overview-card">
+                    <h3><i class="fas fa-chart-line"></i> Statistik Toko</h3>
+                    <div class="recent-activity">
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-eye"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-text">1.245 kali dilihat bulan ini</div>
+                                <div class="activity-time">Naik 15% dari bulan lalu</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-text">24 pesanan bulan ini</div>
+                                <div class="activity-time">Total pendapatan Rp 3.450.000</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-star"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-text">Rating toko 4.8 dari 5 bintang</div>
+                                <div class="activity-time">Berdasarkan 56 ulasan</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-recycle"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-text">Anda telah menyelamatkan 245kg bahan dari pembuangan</div>
+                                <div class="activity-time">Setara dengan 12 pohon diselamatkan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="overview-card">
+                    <h3><i class="fas fa-bolt"></i> Aksi Cepat</h3>
+                    <div class="quick-actions">
+                        <div class="quick-action" data-action="add-product">
+                            <div class="quick-action-icon"><i class="fas fa-plus"></i></div>
+                            <div class="quick-action-text">Tambah Produk</div>
+                        </div>
+                        <div class="quick-action" data-action="seller-stats">
+                            <div class="quick-action-icon"><i class="fas fa-chart-bar"></i></div>
+                            <div class="quick-action-text">Lihat Statistik</div>
+                        </div>
+                        <div class="quick-action" data-action="manage-orders">
+                            <div class="quick-action-icon"><i class="fas fa-clipboard-list"></i></div>
+                            <div class="quick-action-text">Kelola Pesanan</div>
+                        </div>
+                        <div class="quick-action" data-action="promotions">
+                            <div class="quick-action-icon"><i class="fas fa-percentage"></i></div>
+                            <div class="quick-action-text">Promosi</div>
+                        </div>
+                        <div class="quick-action" data-action="seller-notifications">
+                            <div class="quick-action-icon"><i class="fas fa-bell"></i></div>
+                            <div class="quick-action-text">Notifikasi</div>
+                        </div>
+                        <div class="quick-action" data-action="eco-impact">
+                            <div class="quick-action-icon"><i class="fas fa-leaf"></i></div>
+                            <div class="quick-action-text">Dampak Ekologis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seller Listings Section -->
+        <div class="profile-section" id="listings-section">
+            <div class="listings-header">
+                <h2 class="listings-title"><i class="fas fa-box-open"></i> Produk Saya</h2>
+                <div class="listings-actions">
+                    <button class="btn btn-primary" id="addListingBtn"><i class="fas fa-plus"></i> Tambah Produk Baru</button>
+                </div>
+            </div>
+            
+            <div class="listings-grid">
+                <div class="listing-card">
+                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+                    <div class="listing-info">
+                        <h3 class="listing-title">Sisa Kain Denim</h3>
+                        <p class="listing-description">Berbagai ukuran kain denim cocok untuk proyek daur ulang. Kondisi masih sangat baik dengan berbagai warna tersedia.</p>
+                        <div class="listing-price">Rp 25.000/kg</div>
+                        <div class="listing-meta">
+                            <div class="listing-views"><i class="fas fa-eye"></i> 124 dilihat</div>
+                            <span class="listing-status status-active">Aktif</span>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</button>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" class="form-control" value="budi.santoso@example.com">
+                <div class="listing-card">
+                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+                    <div class="listing-info">
+                        <h3 class="listing-title">Palet Kayu Bekas</h3>
+                        <p class="listing-description">Palet kayu bekas dalam kondisi baik untuk proyek furnitur atau dekorasi rumah.</p>
+                        <div class="listing-price">Rp 50.000/palet</div>
+                        <div class="listing-meta">
+                            <div class="listing-views"><i class="fas fa-eye"></i> 87 dilihat</div>
+                            <span class="listing-status status-pending">Menunggu</span>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="form-group">
-                    <label for="phone">Telepon</label>
-                    <input type="tel" id="phone" class="form-control" value="+628123456789">
+                <div class="listing-card">
+                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+                    <div class="listing-info">
+                        <h3 class="listing-title">Botol Kaca Bekas</h3>
+                        <p class="listing-description">Berbagai botol kaca untuk proyek dekorasi rumah DIY. Berbagai bentuk dan ukuran tersedia.</p>
+                        <div class="listing-price">Rp 8.000/botol</div>
+                        <div class="listing-meta">
+                            <div class="listing-views"><i class="fas fa-eye"></i> 156 dilihat</div>
+                            <span class="listing-status status-sold">Habis</span>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="form-group">
-                    <label for="bio">Bio</label>
-                    <textarea id="bio" class="form-control" rows="4">Pecinta daur ulang kreatif dan pembuat produk berkelanjutan dari Jakarta. Spesialis dalam mengubah bahan limbah menjadi barang dekorasi rumah yang indah.</textarea>
+                <div class="listing-card">
+                    <div class="listing-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+                    <div class="listing-info">
+                        <h3 class="listing-title">Tutup Botol Plastik</h3>
+                        <p class="listing-description">Tutup botol plastik warna-warni untuk proyek seni dan kerajinan. Dikemas dalam kantong 100 buah.</p>
+                        <div class="listing-price">Rp 2.000/tutup</div>
+                        <div class="listing-meta">
+                            <div class="listing-views"><i class="fas fa-eye"></i> 92 dilihat</div>
+                            <span class="listing-status status-active">Aktif</span>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seller Orders Section -->
+        <div class="profile-section" id="seller-orders-section">
+            <div class="seller-orders-container">
+                <div class="seller-orders-header">
+                    <h2 class="seller-orders-title"><i class="fas fa-clipboard-list"></i> Pesanan Toko</h2>
+                    <div class="seller-orders-count">5 pesanan</div>
                 </div>
                 
-                <div class="form-group">
-                    <label for="address">Alamat</label>
-                    <textarea id="address" class="form-control" rows="3">Jl. Merdeka No. 123, Jakarta Pusat, 10110</textarea>
+                <table class="seller-orders-table">
+                    <thead>
+                        <tr>
+                            <th>Pesanan #</th>
+                            <th>Pembeli</th>
+                            <th>Item</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="seller-order-id">WTW2023-015</div>
+                                <div class="seller-order-date">18 Mei 2023</div>
+                            </td>
+                            <td>Ani Wijaya</td>
+                            <td>3kg Kain Denim</td>
+                            <td>Rp 84.000</td>
+                            <td><span class="seller-order-status status-processing">Diproses</span></td>
+                            <td>
+                                <div class="seller-order-actions">
+                                    <button class="btn btn-primary"><i class="fas fa-truck"></i> Kirim</button>
+                                    <button class="btn btn-secondary"><i class="fas fa-times"></i> Tolak</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="seller-order-id">WTW2023-014</div>
+                                <div class="seller-order-date">16 Mei 2023</div>
+                            </td>
+                            <td>Budi Kurniawan</td>
+                            <td>1 Palet Kayu</td>
+                            <td>Rp 57.500</td>
+                            <td><span class="seller-order-status status-shipped">Dikirim</span></td>
+                            <td>
+                                <div class="seller-order-actions">
+                                    <button class="btn btn-secondary"><i class="fas fa-check"></i> Selesai</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="seller-order-id">WTW2023-013</div>
+                                <div class="seller-order-date">12 Mei 2023</div>
+                            </td>
+                            <td>Cici Amelia</td>
+                            <td>15 Botol Kaca</td>
+                            <td>Rp 142.500</td>
+                            <td><span class="seller-order-status status-delivered">Terkirim</span></td>
+                            <td>
+                                <div class="seller-order-actions">
+                                    <button class="btn btn-primary"><i class="fas fa-star"></i> Ulasan</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="seller-order-id">WTW2023-012</div>
+                                <div class="seller-order-date">10 Mei 2023</div>
+                            </td>
+                            <td>Dedi Pratama</td>
+                            <td>200 Tutup Botol</td>
+                            <td>Rp 40.000</td>
+                            <td><span class="seller-order-status status-cancelled">Dibatalkan</span></td>
+                            <td>
+                                <div class="seller-order-actions">
+                                    <button class="btn btn-secondary"><i class="fas fa-trash"></i> Hapus</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Store Info Settings -->
+        <div class="profile-section" id="store-settings-section">
+            <div class="settings-container">
+                <div class="settings-header">
+                    <h2 class="settings-title"><i class="fas fa-store"></i> Informasi Toko</h2>
                 </div>
                 
-                <div class="form-actions">
-                    <button class="btn btn-secondary">Batal</button>
-                    <button class="btn btn-primary">Simpan Perubahan</button>
+                <div class="settings-tabs">
+                    <div class="settings-tab active" data-tab="store-info">
+                        <i class="fas fa-info-circle"></i> Info Toko
+                    </div>
+                </div>
+                
+                <div class="settings-content">
+                    <div class="settings-section active" id="store-info-settings">
+                        <div class="store-info-grid">
+                            <div>
+                                <div class="store-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+                                <button class="btn btn-primary"><i class="fas fa-camera"></i> Unggah Foto Toko</button>
+                            </div>
+                            
+                            <div>
+                                <div class="form-group">
+                                    <label for="store-name"><i class="fas fa-sign"></i> Nama Toko</label>
+                                    <input type="text" id="store-name" class="form-control" value="Kreasi Daur Ulang Budi">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="store-description"><i class="fas fa-align-left"></i> Deskripsi Toko</label>
+                                    <textarea id="store-description" class="form-control" rows="5">Toko khusus produk daur ulang dan upcycling. Kami mengubah bahan bekas menjadi produk bernilai tinggi dengan desain kreatif dan ramah lingkungan.</textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="store-address"><i class="fas fa-map-marker-alt"></i> Alamat Toko</label>
+                                    <textarea id="store-address" class="form-control" rows="3">Jl. Hijau No. 45, Jakarta Selatan, 12345</textarea>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button class="btn btn-secondary"><i class="fas fa-times"></i> Batal</button>
+                                    <button class="btn btn-primary"><i class="fas fa-save"></i> Simpan Perubahan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shipping Settings -->
+        <div class="profile-section" id="shipping-section">
+            <div class="settings-container">
+                <div class="settings-header">
+                    <h2 class="settings-title"><i class="fas fa-truck"></i> Pengaturan Pengiriman</h2>
+                </div>
+                
+                <div class="settings-content">
+                    <div class="settings-section active" id="shipping-settings">
+                        <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-shipping-fast"></i> Metode Pengiriman</h3>
+                        
+                        <div class="shipping-methods">
+                            <div class="shipping-method">
+                                <div class="shipping-method-header">
+                                    <div class="shipping-method-title">JNE Regular</div>
+                                    <span class="shipping-method-status">Aktif</span>
+                                </div>
+                                <div class="shipping-method-details">
+                                    Estimasi pengiriman 2-5 hari kerja. Biaya pengiriman mulai dari Rp 15.000 tergantung berat dan lokasi.
+                                </div>
+                                <div class="shipping-method-actions">
+                                    <button class="btn btn-secondary"><i class="fas fa-toggle-off"></i> Nonaktifkan</button>
+                                    <button class="btn btn-primary"><i class="fas fa-edit"></i> Edit</button>
+                                </div>
+                            </div>
+                            
+                            <div class="shipping-method">
+                                <div class="shipping-method-header">
+                                    <div class="shipping-method-title">J&T Express</div>
+                                    <span class="shipping-method-status">Aktif</span>
+                                </div>
+                                <div class="shipping-method-details">
+                                    Estimasi pengiriman 1-3 hari kerja. Biaya pengiriman mulai dari Rp 12.000 tergantung berat dan lokasi.
+                                </div>
+                                <div class="shipping-method-actions">
+                                    <button class="btn btn-secondary"><i class="fas fa-toggle-off"></i> Nonaktifkan</button>
+                                    <button class="btn btn-primary"><i class="fas fa-edit"></i> Edit</button>
+                                </div>
+                            </div>
+                            
+                            <div class="shipping-method">
+                                <div class="shipping-method-header">
+                                    <div class="shipping-method-title">Ambil di Tempat</div>
+                                    <span class="shipping-method-status">Aktif</span>
+                                </div>
+                                <div class="shipping-method-details">
+                                    Pembeli dapat mengambil pesanan langsung di alamat toko setelah konfirmasi ketersediaan.
+                                </div>
+                                <div class="shipping-method-actions">
+                                    <button class="btn btn-secondary"><i class="fas fa-toggle-off"></i> Nonaktifkan</button>
+                                    <button class="btn btn-primary"><i class="fas fa-edit"></i> Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" style="margin-top: 2rem;"><i class="fas fa-plus"></i> Tambah Metode Pengiriman</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1409,40 +2138,45 @@
     <footer>
         <div class="footer-content">
             <div class="footer-column">
-                <h3>Perusahaan</h3>
+                <h3>Tentang Kami</h3>
                 <ul>
-                    <li><a href="#">Tentang Kami</a></li>
-                    <li><a href="#">Misi Kami</a></li>
-                    <li><a href="#">Tim</a></li>
-                    <li><a href="#">Karir</a></li>
+                    <li><a href="#"><i class="fas fa-eye"></i> Visi & Misi</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Tim Kami</a></li>
+                    <li><a href="#"><i class="fas fa-briefcase"></i> Karir</a></li>
+                    <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Sumber Daya</h3>
+                <h3>Layanan</h3>
                 <ul>
-                    <li><a href="#">Cara Kerja</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Laporan Keberlanjutan</a></li>
+                    <li><a href="#"><i class="fas fa-recycle"></i> Pasar Daur Ulang</a></li>
+                    <li><a href="#"><i class="fas fa-comments"></i> Komunitas</a></li>
+                    <li><a href="#"><i class="fas fa-graduation-cap"></i> Edukasi</a></li>
+                    <li><a href="#"><i class="fas fa-building"></i> Solusi Perusahaan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h3>Dukungan</h3>
                 <ul>
-                    <li><a href="#">Pusat Bantuan</a></li>
-                    <li><a href="#">Hubungi Kami</a></li>
-                    <li><a href="#">Kebijakan Privasi</a></li>
-                    <li><a href="#">Syarat Layanan</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Pusat Bantuan</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Hubungi Kami</a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Syarat Layanan</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Terhubung</h3>
+                <h3>Hubungi Kami</h3>
                 <ul>
-                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    <li><i class="fas fa-envelope"></i> info@wastetoworth.id</li>
+                    <li><i class="fas fa-phone"></i> +62 21 1234 5678</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
                 </ul>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
         </div>
         <div class="copyright">
@@ -1469,16 +2203,62 @@
             });
         });
 
-        // Profile tab navigation
-        const profileNavItems = document.querySelectorAll('.profile-nav-item');
-        const profileSections = document.querySelectorAll('.profile-section');
+        // Role Switch Functionality
+        const buyerRole = document.getElementById('buyer-role');
+        const sellerRole = document.getElementById('seller-role');
+        const buyerNav = document.querySelector('.buyer-nav');
+        const sellerNav = document.querySelector('.seller-nav');
 
-        profileNavItems.forEach(item => {
+        buyerRole.addEventListener('click', () => {
+            buyerRole.classList.add('active');
+            sellerRole.classList.remove('active');
+            buyerNav.style.display = 'flex';
+            sellerNav.style.display = 'none';
+            
+            // Hide all sections first
+            document.querySelectorAll('.profile-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show buyer overview section
+            document.getElementById('overview-section').classList.add('active');
+            
+            // Reset buyer nav items
+            document.querySelectorAll('.buyer-nav .profile-nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector('.buyer-nav .profile-nav-item[data-tab="overview"]').classList.add('active');
+        });
+
+        sellerRole.addEventListener('click', () => {
+            sellerRole.classList.add('active');
+            buyerRole.classList.remove('active');
+            sellerNav.style.display = 'flex';
+            buyerNav.style.display = 'none';
+            
+            // Hide all sections first
+            document.querySelectorAll('.profile-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show seller overview section
+            document.getElementById('seller-overview-section').classList.add('active');
+            
+            // Reset seller nav items
+            document.querySelectorAll('.seller-nav .profile-nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector('.seller-nav .profile-nav-item[data-tab="seller-overview"]').classList.add('active');
+        });
+
+        // Profile tab navigation for buyer
+        const buyerNavItems = document.querySelectorAll('.buyer-nav .profile-nav-item');
+        buyerNavItems.forEach(item => {
             item.addEventListener('click', () => {
                 const tabId = item.getAttribute('data-tab');
                 
                 // Hide all sections
-                profileSections.forEach(section => {
+                document.querySelectorAll('.profile-section').forEach(section => {
                     section.classList.remove('active');
                 });
                 
@@ -1486,10 +2266,54 @@
                 document.getElementById(`${tabId}-section`).classList.add('active');
                 
                 // Update active nav item
-                profileNavItems.forEach(navItem => {
+                buyerNavItems.forEach(navItem => {
                     navItem.classList.remove('active');
                 });
                 item.classList.add('active');
+            });
+        });
+
+        // Profile tab navigation for seller
+        const sellerNavItems = document.querySelectorAll('.seller-nav .profile-nav-item');
+        sellerNavItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const tabId = item.getAttribute('data-tab');
+                
+                // Hide all sections
+                document.querySelectorAll('.profile-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show selected section
+                document.getElementById(`${tabId}-section`).classList.add('active');
+                
+                // Update active nav item
+                sellerNavItems.forEach(navItem => {
+                    navItem.classList.remove('active');
+                });
+                item.classList.add('active');
+            });
+        });
+
+        // Settings tab navigation
+        const settingsTabs = document.querySelectorAll('.settings-tab');
+        settingsTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Hide all sections
+                document.querySelectorAll('.settings-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show selected section
+                document.getElementById(`${tabId}-settings`).classList.add('active');
+                
+                // Update active tab
+                settingsTabs.forEach(tabItem => {
+                    tabItem.classList.remove('active');
+                });
+                tab.classList.add('active');
             });
         });
 
@@ -1497,18 +2321,69 @@
         const quickActions = document.querySelectorAll('.quick-action');
         quickActions.forEach(action => {
             action.addEventListener('click', () => {
-                const actionText = action.querySelector('.quick-action-text').textContent;
-                alert(`Anda mengklik aksi "${actionText}"`);
+                const actionType = action.getAttribute('data-action');
+                let message = '';
+                
+                switch(actionType) {
+                    case 'add-listing':
+                        message = 'Membuka form untuk menambahkan daftar produk baru';
+                        break;
+                    case 'stats':
+                        message = 'Menampilkan statistik penjualan dan aktivitas Anda';
+                        break;
+                    case 'messages':
+                        message = 'Membuka kotak pesan pribadi Anda';
+                        break;
+                    case 'resources':
+                        message = 'Menampilkan sumber daya edukasi daur ulang';
+                        break;
+                    case 'notifications':
+                        message = 'Menampilkan notifikasi terbaru';
+                        break;
+                    case 'eco-impact':
+                        message = 'Menampilkan dampak ekologis dari aktivitas Anda';
+                        break;
+                    case 'add-product':
+                        message = 'Membuka form untuk menambahkan produk baru';
+                        document.querySelector('[data-tab="listings"]').click();
+                        document.getElementById('addListingBtn').scrollIntoView({ behavior: 'smooth' });
+                        break;
+                    case 'seller-stats':
+                        message = 'Menampilkan statistik toko Anda';
+                        break;
+                    case 'manage-orders':
+                        message = 'Membuka halaman pengelolaan pesanan';
+                        document.querySelector('[data-tab="seller-orders"]').click();
+                        break;
+                    case 'promotions':
+                        message = 'Membuka halaman promosi toko';
+                        break;
+                    case 'seller-notifications':
+                        message = 'Menampilkan notifikasi toko terbaru';
+                        break;
+                    default:
+                        message = 'Aksi dipilih';
+                }
+                
+                alert(message);
             });
         });
 
+        // Add listing button
+        const addListingBtn = document.getElementById('addListingBtn');
+        addListingBtn.addEventListener('click', () => {
+            alert('Membuka form untuk menambahkan produk baru');
+        });
+
         // Form submission
-        const settingsForm = document.querySelector('.settings-form');
-        const saveButton = settingsForm.querySelector('.btn-primary');
-        
-        saveButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Perubahan profil berhasil disimpan!');
+        const saveButtons = document.querySelectorAll('.btn-primary:not(.quick-action):not(.profile-nav-item):not(.settings-tab):not(.role-option)');
+        saveButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (!button.hasAttribute('data-action') && button.id !== 'addListingBtn') {
+                    e.preventDefault();
+                    alert('Perubahan berhasil disimpan!');
+                }
+            });
         });
 
         // Active nav link
