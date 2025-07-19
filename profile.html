@@ -287,14 +287,15 @@
             height: 150px;
             border-radius: 50%;
             background-color: #eee;
-            background-image: url('https://via.placeholder.com/150');
-            background-size: cover;
+            background-image: url('./profile-1.jpg');
+            background-size: contain;
             background-position: center;
             border: 5px solid var(--secondary);
             flex-shrink: 0;
             transition: var(--transition);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
 
         .profile-avatar:hover {
             transform: scale(1.03);
@@ -1449,20 +1450,7 @@
                 <h1 class="profile-name">Budi Santoso</h1>
                 <p class="profile-bio">Pecinta daur ulang kreatif dan pembuat produk berkelanjutan dari Jakarta</p>
                 
-                <div class="profile-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">24</div>
-                        <div class="stat-label">Daftar</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">156</div>
-                        <div class="stat-label">Pengikut</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">89</div>
-                        <div class="stat-label">Mengikuti</div>
-                    </div>
-                </div>
+               <!-- ditambah ecotracker -->
                 
                 <div class="profile-actions">
                     <button class="btn btn-primary"><i class="fas fa-edit"></i> Edit Profil</button>
@@ -1490,7 +1478,7 @@
                 <i class="fas fa-shopping-cart"></i> Pesanan Saya
             </div>
             <div class="profile-nav-item" data-tab="saved">
-                <i class="fas fa-heart"></i> Disimpan
+                <i class="fas fa-heart"></i> Wishlist
             </div>
             <div class="profile-nav-item" data-tab="settings">
                 <i class="fas fa-cog"></i> Pengaturan
@@ -1511,9 +1499,9 @@
             <div class="profile-nav-item" data-tab="store-settings">
                 <i class="fas fa-store"></i> Informasi Toko
             </div>
-            <div class="profile-nav-item" data-tab="shipping">
+            <!-- <div class="profile-nav-item" data-tab="shipping">
                 <i class="fas fa-truck"></i> Pengiriman
-            </div>
+            </div> -->
         </div>
 
         <!-- Buyer Overview Section -->
@@ -1552,35 +1540,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="overview-card">
-                    <h3><i class="fas fa-bolt"></i> Aksi Cepat</h3>
-                    <div class="quick-actions">
-                        <div class="quick-action" data-action="add-listing">
-                            <div class="quick-action-icon"><i class="fas fa-plus"></i></div>
-                            <div class="quick-action-text">Tambah Daftar</div>
-                        </div>
-                        <div class="quick-action" data-action="stats">
-                            <div class="quick-action-icon"><i class="fas fa-chart-bar"></i></div>
-                            <div class="quick-action-text">Lihat Statistik</div>
-                        </div>
-                        <div class="quick-action" data-action="messages">
-                            <div class="quick-action-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="quick-action-text">Pesan</div>
-                        </div>
-                        <div class="quick-action" data-action="resources">
-                            <div class="quick-action-icon"><i class="fas fa-book"></i></div>
-                            <div class="quick-action-text">Sumber Daya</div>
-                        </div>
-                        <div class="quick-action" data-action="notifications">
-                            <div class="quick-action-icon"><i class="fas fa-bell"></i></div>
-                            <div class="quick-action-text">Notifikasi</div>
-                        </div>
-                        <div class="quick-action" data-action="eco-impact">
-                            <div class="quick-action-icon"><i class="fas fa-leaf"></i></div>
-                            <div class="quick-action-text">Dampak Ekologis</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -1610,7 +1569,7 @@
                             </td>
                             <td>2 Palet Kayu</td>
                             <td>Rp 115.000</td>
-                            <td><span class="order-status status-shipped">Dikirim</span></td>
+                            <td><span class="order-status status-shipped">Diterima</span></td>
                             <td>
                                 <div class="order-actions">
                                     <button class="btn btn-secondary"><i class="fas fa-truck"></i> Lacak</button>
@@ -1625,7 +1584,7 @@
                             </td>
                             <td>5kg Kain Denim</td>
                             <td>Rp 140.000</td>
-                            <td><span class="order-status status-delivered">Terkirim</span></td>
+                            <td><span class="order-status status-delivered">Belum diterima</span></td>
                             <td>
                                 <div class="order-actions">
                                     <button class="btn btn-secondary"><i class="fas fa-star"></i> Ulasan</button>
@@ -1640,7 +1599,22 @@
                             </td>
                             <td>10 Botol Kaca</td>
                             <td>Rp 95.000</td>
-                            <td><span class="order-status status-processing">Diproses</span></td>
+                            <td><span class="order-status status-processing">Dikembalikan</span></td>
+                            <td>
+                                <div class="order-actions">
+                                    <button class="btn btn-secondary"><i class="fas fa-times"></i> Batal</button>
+                                    <button class="btn btn-primary"><i class="fas fa-info-circle"></i> Detail</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="order-id">WTW2023-007</div>
+                                <div class="order-date">5 Mei 2023</div>
+                            </td>
+                            <td>10 Botol Kaca</td>
+                            <td>Rp 95.000</td>
+                            <td><span class="order-status status-processing">Ditolak</span></td>
                             <td>
                                 <div class="order-actions">
                                     <button class="btn btn-secondary"><i class="fas fa-times"></i> Batal</button>
@@ -2074,7 +2048,7 @@
         </div>
 
         <!-- Shipping Settings -->
-        <div class="profile-section" id="shipping-section">
+        <!-- <div class="profile-section" id="shipping-section">
             <div class="settings-container">
                 <div class="settings-header">
                     <h2 class="settings-title"><i class="fas fa-truck"></i> Pengaturan Pengiriman</h2>
@@ -2132,7 +2106,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </main>
 
     <footer>

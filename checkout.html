@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste to Worth - Checkout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS dari halaman sebelumnya untuk konsistensi */
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #60ad5e;
+            --primary-dark: #005005;
+            --secondary: #ffab00;
+            --secondary-light: #ffdd4b;
+            --secondary-dark: #c67c00;
+            --background: #f8f9fa;
+            --surface: #ffffff;
+            --error: #c62828;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --text-on-primary: #ffffff;
+            --text-on-secondary: #000000;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+         header {
+            background-color: var(--primary);
+            color: var(--text-on-primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+         .header-left {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+         .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 50px;
+            object-fit: contain;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-on-primary);
+        }
+
+        /* Navigation */
+       /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-on-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav a:hover {
+            opacity: 0.9;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        nav a.active::after,
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+      .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius);
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--text-on-secondary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-on-primary);
+            border: 1px solid var(--text-on-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: var(--text-on-primary);
+            background-color: transparent;
+            border: none;
+        }
+
+        .btn-icon:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid var(--secondary);
+            transition: var(--transition);
+        }
+
+        .user-profile:hover {
+            transform: scale(1.05);
+        }
+
+        .user-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Cart Styles */
+        .cart-container {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--error);
+            color: var(--text-on-primary);
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            border: 1px solid var(--primary);
+            transform: translate(25%, -25%);
+        }
+        
+        .cart-dropdown {
+            position: absolute;
+            top: calc(100% + 15px);
+            right: 0;
+            width: 380px; /* Diperbesar */
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1001;
+            color: var(--text-primary);
+            padding: 1rem;
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .cart-dropdown.active {
+            display: flex;
+        }
+        
+        .cart-dropdown h3 {
+            margin: 0;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+        
+        .cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding-right: 0.5rem; /* Ruang untuk scrollbar */
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .cart-item img {
+            width: 60px; /* Sedikit diperbesar */
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+        }
+        
+        .cart-item-info h4 {
+            font-size: 0.9rem;
+            margin: 0 0 0.25rem 0;
+        }
+
+        .cart-item-info p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-quantity-btn {
+            width: 24px;
+            height: 24px;
+            border: 1px solid #ddd;
+            background-color: #f5f5f5;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-quantity-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .cart-item-controls input {
+            width: 30px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            font-weight: 500;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--error);
+            cursor: pointer;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+        }
+        
+        .cart-empty {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 2rem 0;
+        }
+        
+        .cart-footer {
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 25px;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-on-primary);
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--primary-dark);
+            padding: 5rem 2rem;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu a {
+            color: var(--text-on-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu .user-actions {
+            margin-top: 2rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        /* CSS Baru untuk Halaman Checkout */
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .checkout-form, .order-summary {
+            background-color: var(--surface);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .payment-option {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .payment-option:hover, .payment-option.selected {
+            border-color: var(--primary);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .payment-option input[type="radio"] {
+            margin-right: 1rem;
+        }
+        .payment-option .fab, .payment-option .fas {
+            margin-right: 0.5rem;
+            color: var(--primary);
+            width: 20px;
+        }
+
+        .order-summary h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        #checkout-summary-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        .summary-item .item-name {
+            color: var(--text-secondary);
+        }
+
+        .summary-calculation {
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .summary-total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+            border-top: 2px solid #ddd;
+            padding-top: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn-pay {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 850px) { nav { display: none; } .hamburger { display: flex; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="logo">
+                <img src="./logo-wow-2.png" alt="Waste to Worth Logo">
+                <h1>Waste to Worth</h1>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <!-- <li><a href="profile.html">Profile</a></li> -->
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="header-right">
+             <div class="user-actions">
+                <div class="cart-container">
+                    <button class="btn btn-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">15</span>
+                    </button>
+                    <div class="cart-dropdown" id="cartDropdown">
+                        <h3>Keranjang Belanja</h3>
+                        <div class="cart-items" id="cartItems">
+                            </div>
+                        <div class="cart-footer" id="cartFooter" style="display: none;">
+                            <div class="cart-total">
+                                <span>Total:</span>
+                                <span id="cartTotal">Rp 0</span>
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%;">Checkout</button>
+                        </div>
+                    </div>
+                </div>
+                 <div class="user-profile">
+                     <img src="./profile-1.jpg" alt="Profil Pengguna">
+                 </div>
+             </div>
+    
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+     
+    <div class="mobile-menu" id="mobileMenu">
+        </div>
+
+    <main>
+        <div class="checkout-grid">
+            <div class="checkout-form">
+                <div class="form-section">
+                    <h3>Detail Kontak & Pengiriman</h3>
+                    <div class="form-group">
+                        <label for="fullName">Nama Lengkap</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Masukkan nama lengkap Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Alamat Email</label>
+                        <input type="email" id="email" name="email" placeholder="contoh@email.com" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="phone">Nomor Telepon</label>
+                        <input type="tel" id="phone" name="phone" placeholder="08xxxxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Alamat Lengkap</label>
+                        <input type="text" id="address" name="address" placeholder="Nama jalan, nomor rumah, RT/RW" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Metode Pembayaran</h3>
+                    <div class="payment-options">
+                        <label class="payment-option selected">
+                            <input type="radio" name="payment" value="va" checked>
+                            <i class="fas fa-university"></i>
+                            Virtual Account (BCA, Mandiri, BRI)
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="ewallet">
+                             <i class="fas fa-wallet"></i>
+                            E-Wallet (GoPay, OVO, Dana)
+                        </label>
+                         <label class="payment-option">
+                            <input type="radio" name="payment" value="cc">
+                             <i class="fas fa-credit-card"></i>
+                            Kartu Kredit / Debit
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <h3>Ringkasan Pesanan</h3>
+                <div id="checkout-summary-items">
+                    </div>
+                <div class="summary-calculation">
+                     <div class="summary-item">
+                        <span>Subtotal</span>
+                        <span id="summary-subtotal">Rp 0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Ongkos Kirim</span>
+                        <span id="summary-shipping">Rp 15.000</span>
+                    </div>
+                     <div class="summary-item summary-total">
+                        <span>Total</span>
+                        <span id="summary-total">Rp 0</span>
+                    </div>
+                </div>
+                <a href="/checkout-berhasil.html" class="btn btn-primary btn-pay" style="text-decoration: none;">
+                    <i class="fas fa-lock"></i> Bayar Sekarang
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            </div>
+        <div class="copyright">
+            <p>&copy; 2025 Waste to Worth. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menggunakan script yang sama untuk menjaga fungsionalitas navbar dan cart
+        document.addEventListener('DOMContentLoaded', () => {
+            // Data cart (sama seperti sebelumnya)
+            let cart = [
+                { id: 'plastic01', name: 'Botol Plastik PET', price: 3000, image: 'https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=60', quantity: 5 },
+                { id: 'cardboard02', name: 'Kardus Bekas', price: 1500, image: 'https://images.unsplash.com/photo-1594312646569-d7b686b97643?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=60', quantity: 10 }
+            ];
+
+            // Fungsi utilitas format Rupiah
+             function formatRupiah(number) {
+                return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
+            }
+
+            // --- FUNGSI BARU: Mengisi Ringkasan Checkout ---
+            function populateCheckoutSummary() {
+                const itemsContainer = document.getElementById('checkout-summary-items');
+                const subtotalEl = document.getElementById('summary-subtotal');
+                const shippingEl = document.getElementById('summary-shipping');
+                const totalEl = document.getElementById('summary-total');
+
+                if (!itemsContainer) return; // Hanya berjalan di halaman checkout
+
+                itemsContainer.innerHTML = '';
+                let subtotal = 0;
+                const shippingCost = 15000;
+
+                cart.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('summary-item');
+                    itemDiv.innerHTML = `
+                        <span class="item-name">${item.name} (x${item.quantity})</span>
+                        <strong>${formatRupiah(item.price * item.quantity)}</strong>
+                    `;
+                    itemsContainer.appendChild(itemDiv);
+                    subtotal += item.price * item.quantity;
+                });
+
+                subtotalEl.textContent = formatRupiah(subtotal);
+                shippingEl.textContent = formatRupiah(shippingCost);
+                totalEl.textContent = formatRupiah(subtotal + shippingCost);
+            }
+            
+            // Panggil fungsi untuk mengisi data checkout saat halaman dimuat
+            populateCheckoutSummary();
+
+            // Menambahkan event listener untuk tombol Bayar
+            document.getElementById('pay-now-btn').addEventListener('click', () => {
+                alert('Terima kasih! Pesanan Anda sedang diproses.');
+                // Di aplikasi nyata, ini akan mengarahkan ke halaman pembayaran atau success
+            });
+
+            // Menambahkan interaktivitas untuk pilihan pembayaran
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+            // Kode untuk fungsionalitas navbar, cart, dll (disederhanakan untuk contoh)
+            const cartCount = document.getElementById('cartCount');
+            if(cartCount) {
+                cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            }
+        });
+    </script>
+</body>
+</html>

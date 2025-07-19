@@ -46,6 +46,7 @@
         }
 
         /* Header Styles */
+         /* Header Styles */
         header {
             background-color: var(--primary);
             color: var(--text-on-primary);
@@ -59,7 +60,13 @@
             z-index: 1000;
         }
 
-        .logo {
+         .header-left {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+         .logo {
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -67,8 +74,8 @@
         }
 
         .logo img {
-            height: 40px;
-            width: 40px;
+            height: 50px;
+            width: 50px;
             object-fit: contain;
         }
 
@@ -79,6 +86,7 @@
         }
 
         /* Navigation */
+       /* Navigation */
         nav {
             display: flex;
             align-items: center;
@@ -98,6 +106,9 @@
             padding: 0.5rem 0;
             position: relative;
             font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         nav a:hover {
@@ -114,9 +125,16 @@
             background-color: var(--secondary);
             transition: var(--transition);
         }
-
+        
+        nav a.active::after,
         nav a:hover::after {
             width: 100%;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .user-actions {
@@ -125,7 +143,7 @@
             align-items: center;
         }
 
-        .btn {
+      .btn {
             padding: 0.6rem 1.2rem;
             border-radius: var(--border-radius);
             border: none;
@@ -166,6 +184,13 @@
             border-radius: 50%;
             width: 40px;
             height: 40px;
+            color: var(--text-on-primary);
+            background-color: transparent;
+            border: none;
+        }
+
+        .btn-icon:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .user-profile {
@@ -186,6 +211,152 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        
+        /* Cart Styles */
+        .cart-container {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--error);
+            color: var(--text-on-primary);
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            border: 1px solid var(--primary);
+            transform: translate(25%, -25%);
+        }
+        
+        .cart-dropdown {
+            position: absolute;
+            top: calc(100% + 15px);
+            right: 0;
+            width: 380px; /* Diperbesar */
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1001;
+            color: var(--text-primary);
+            padding: 1rem;
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .cart-dropdown.active {
+            display: flex;
+        }
+        
+        .cart-dropdown h3 {
+            margin: 0;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+        
+        .cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding-right: 0.5rem; /* Ruang untuk scrollbar */
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .cart-item img {
+            width: 60px; /* Sedikit diperbesar */
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+        }
+        
+        .cart-item-info h4 {
+            font-size: 0.9rem;
+            margin: 0 0 0.25rem 0;
+        }
+
+        .cart-item-info p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-quantity-btn {
+            width: 24px;
+            height: 24px;
+            border: 1px solid #ddd;
+            background-color: #f5f5f5;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-quantity-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .cart-item-controls input {
+            width: 30px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            font-weight: 500;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--error);
+            cursor: pointer;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+        }
+        
+        .cart-empty {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 2rem 0;
+        }
+        
+        .cart-footer {
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
 
         /* Hamburger Menu */
@@ -249,7 +420,9 @@
             color: var(--text-on-primary);
             text-decoration: none;
             font-size: 1.1rem;
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
             padding: 0.5rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -465,6 +638,14 @@
 
         .feature-image {
             flex: 1;
+            /* min-height: 300px; */
+            border-radius: var(--border-radius);
+            /* background-size: cover; */
+            /* background-position: center; */
+            /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+        }
+        .feature-image-ai {
+            flex: 1;
             min-height: 300px;
             border-radius: var(--border-radius);
             background-size: cover;
@@ -513,13 +694,13 @@
 
         /* Visual Search */
         .visual-search-container {
-            background-color: var(--surface);
-            border-radius: var(--border-radius);
+            /* background-color: var(--surface); */
+            /* border-radius: var(--border-radius); */
             padding: 3rem;
             margin-bottom: 4rem;
-            box-shadow: var(--box-shadow);
+            /* box-shadow: var(--box-shadow); */
             text-align: center;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            /* border: 1px solid rgba(0, 0, 0, 0.05); */
         }
 
         .visual-search-title {
@@ -641,13 +822,13 @@
 
         /* Eco Impact Section */
         .eco-impact {
-            background-color: var(--surface);
-            border-radius: var(--border-radius);
+            /* background-color: var(--surface);
+            border-radius: var(--border-radius); */
             padding: 3rem;
             margin-bottom: 4rem;
-            box-shadow: var(--box-shadow);
+            /* box-shadow: var(--box-shadow); */
             text-align: center;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            /* border: 1px solid rgba(0, 0, 0, 0.05); */
         }
 
         .eco-impact h3 {
@@ -700,7 +881,7 @@
 
         .impact-graph {
             height: 220px;
-            background-color: #f5f5f5;
+            /* background-color: #f5f5f5; */
             border-radius: var(--border-radius);
             margin-top: 1.5rem;
             position: relative;
@@ -1269,35 +1450,57 @@
     </style>
 </head>
 <body>
-    <header>
-        <a href="index.html" class="logo">
-            <img src="https://via.placeholder.com/40" alt="Waste to Worth Logo">
-            <h1>Waste to Worth</h1>
-        </a>
-        
-        <!-- Hamburger Menu -->
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+   <header>
+        <div class="header-left">
+            <a href="index.html" class="logo">
+                <img src="./logo-wow-2.png" alt="Waste to Worth Logo">
+                <h1>Waste to Worth</h1>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <!-- <li><a href="profile.html">Profile</a></li> -->
+                </ul>
+            </nav>
         </div>
         
-        <!-- Desktop Navigation -->
-        <nav class="desktop-nav">
-            <ul>
-                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Beranda</a></li>
-                <li><a href="marketplace.html"><i class="fas fa-store"></i> Pasar</a></li>
-                <li><a href="community.html"><i class="fas fa-users"></i> Komunitas</a></li>
-                <li><a href="education.html"><i class="fas fa-graduation-cap"></i> Edukasi</a></li>
-                <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
-            </ul>
-        </nav>
-        
-        <div class="user-actions">
-            <button class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i> Masuk</button>
-            <button class="btn btn-primary"><i class="fas fa-user-plus"></i> Daftar</button>
-            <div class="user-profile">
-                <img src="https://via.placeholder.com/40" alt="Profil Pengguna">
+        <div class="header-right">
+             <div class="user-actions">
+                <div class="cart-container">
+                    <button class="btn btn-icon" id="cartIcon">
+                        <i class="fas fa-comment"></i>
+                        <span class="cart-count" id="cartCount">15</span>
+                    </button>
+                    <button class="btn btn-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">15</span>
+                    </button>
+                    <div class="cart-dropdown" id="cartDropdown">
+                        <h3>Keranjang Belanja</h3>
+                        <div class="cart-items" id="cartItems">
+                            </div>
+                        <div class="cart-footer" id="cartFooter" style="display: none;">
+                            <div class="cart-total">
+                                <span>Total:</span>
+                                <span id="cartTotal">Rp 0</span>
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%;">Checkout</button>
+                        </div>
+                    </div>
+                </div>
+                 <div class="user-profile">
+                     <img src="./profile-1.jpg" alt="Profil Pengguna">
+                 </div>
+             </div>
+    
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </header>
@@ -1305,15 +1508,15 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Beranda</a></li>
-            <li><a href="marketplace.html"><i class="fas fa-store"></i> Pasar</a></li>
-            <li><a href="community.html"><i class="fas fa-users"></i> Komunitas</a></li>
-            <li><a href="education.html"><i class="fas fa-graduation-cap"></i> Edukasi</a></li>
-            <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="marketplace.html"><i class="fas fa-store"></i> Marketplace</a></li>
+            <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+            <li><a href="education.html"><i class="fas fa-graduation-cap"></i> Education</a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
         </ul>
         <div class="user-actions">
-            <button class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i> Masuk</button>
-            <button class="btn btn-primary"><i class="fas fa-user-plus"></i> Daftar</button>
+            <button class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+            <button class="btn btn-primary"><i class="fas fa-user-plus"></i> Sign up</button>
         </div>
     </div>
 
@@ -1355,7 +1558,7 @@
         <section class="feature-details">
             <!-- Chatbot Feature -->
             <div class="feature-detail">
-                <div class="feature-image" style="background-image: url('https://images.unsplash.com/photo-1577565177023-d0f29c354b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80')"></div>
+                <div class="feature-image-ai" style="background-image: url('https://images.unsplash.com/photo-1577565177023-d0f29c354b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80')"></div>
                 <div class="feature-content">
                     <h3><i class="fas fa-robot"></i> Asisten AI untuk Daur Ulang</h3>
                     <p>Chatbot cerdas kami siap membantu 24/7 dengan pengetahuan luas tentang daur ulang, upcycling, dan cara menggunakan platform kami. Dapatkan jawaban instan untuk semua pertanyaan Anda.</p>
@@ -1379,56 +1582,8 @@
 
             <!-- Visual Search Feature -->
             <div class="feature-detail reverse">
-                <div class="feature-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80')"></div>
-                <div class="feature-content">
-                    <h3><i class="fas fa-camera-retro"></i> Pencarian Visual Canggih</h3>
-                    <p>Tidak yakin apa nama bahan yang Anda lihat? Unggah foto dan biarkan AI kami yang mengenalinya. Sistem kami akan mencocokkan gambar Anda dengan database bahan daur ulang kami.</p>
-                    <div class="feature-benefits">
-                        <div class="benefit-item">
-                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
-                            <div class="benefit-text">Identifikasi bahan hanya dengan foto</div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
-                            <div class="benefit-text">Temukan alternatif bahan yang serupa</div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
-                            <div class="benefit-text">Dapatkan ide proyek berdasarkan bahan yang Anda miliki</div>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" style="margin-top: 1rem;"><i class="fas fa-images"></i> Unggah Gambar</button>
-                </div>
-            </div>
-
-            <!-- Eco Tracker Feature -->
-            <div class="feature-detail">
-                <div class="feature-image" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80')"></div>
-                <div class="feature-content">
-                    <h3><i class="fas fa-chart-pie"></i> Pantau Dampak Lingkungan Anda</h3>
-                    <p>Eco Tracker kami menghitung secara real-time bagaimana aktivitas Anda di platform berkontribusi pada penyelamatan lingkungan. Lihat berapa banyak sampah yang berhasil Anda alihkan dari TPA.</p>
-                    <div class="feature-benefits">
-                        <div class="benefit-item">
-                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
-                            <div class="benefit-text">Statistik pribadi dampak lingkungan</div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
-                            <div class="benefit-text">Visualisasi data yang mudah dipahami</div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
-                            <div class="benefit-text">Bagikan pencapaian Anda di media sosial</div>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" style="margin-top: 1rem;"><i class="fas fa-trophy"></i> Lihat Pencapaian</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Visual Search Demo -->
-        <section class="visual-search-container">
-            <h3 class="visual-search-title"><i class="fas fa-search-plus"></i> Coba Pencarian Visual Kami</h3>
+                <div class="feature-image">
+                    <div class="visual-search-container">
             <div class="visual-search-box" id="visualSearchBox">
                 <div class="visual-search-icon"><i class="fas fa-images"></i></div>
                 <div class="visual-search-text">Seret & lepas gambar di sini atau klik untuk menjelajah</div>
@@ -1452,30 +1607,34 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+                    
 
-        <!-- Eco Impact Section -->
-        <section class="eco-impact">
-            <h3><i class="fas fa-globe-asia"></i> Dampak Lingkungan Anda</h3>
-            <p>Lihat bagaimana aktivitas Anda di platform berkontribusi pada lingkungan yang lebih baik</p>
-            <div class="impact-stats">
-                <div class="stat-item">
-                    <div class="stat-value">7 <small>kg</small></div>
-                    <div class="stat-label"><i class="fas fa-trash-restore"></i> Sampah Tersalurkan</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-value">2</div>
-                    <div class="stat-label"><i class="fas fa-tree"></i> Setara Pohon Ditanam</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">15 <small>kWh</small></div>
-                    <div class="stat-label"><i class="fas fa-bolt"></i> Energi Tersimpan</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">3</div>
-                    <div class="stat-label"><i class="fas fa-exchange-alt"></i> Transaksi</div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-camera-retro"></i> Pencarian Visual Canggih</h3>
+                    <p>Tidak yakin apa nama bahan yang Anda lihat? Unggah foto dan biarkan AI kami yang mengenalinya. Sistem kami akan mencocokkan gambar Anda dengan database bahan daur ulang kami.</p>
+                    <div class="feature-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="benefit-text">Identifikasi bahan hanya dengan foto</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="benefit-text">Temukan alternatif bahan yang serupa</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="benefit-text">Dapatkan ide proyek berdasarkan bahan yang Anda miliki</div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Eco Tracker Feature -->
+            <div class="feature-detail">
+                <div class="feature-image">
+                    <div class="eco-impact">
             <div class="impact-graph">
                 <div class="graph-bar"></div>
                 <div class="graph-bar"></div>
@@ -1488,8 +1647,32 @@
                 <div><i class="fas fa-tree"></i> Kayu</div>
                 <div><i class="fas fa-hammer"></i> Logam</div>
             </div>
-            <button class="btn btn-primary" style="margin-top: 2rem;"><i class="fas fa-chart-bar"></i> Lihat Detail Dampak</button>
+            
+        </div>
+                </div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-chart-pie"></i> Pantau Dampak Lingkungan Anda</h3>
+                    <p>Eco Tracker kami menghitung secara real-time bagaimana aktivitas Anda di platform berkontribusi pada penyelamatan lingkungan. Lihat berapa banyak sampah yang berhasil Anda alihkan dari TPA.</p>
+                    <div class="feature-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="benefit-text">Statistik pribadi dampak lingkungan</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="benefit-text">Visualisasi data yang mudah dipahami</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: 2rem;"><i class="fas fa-chart-bar"></i> Lihat Detail Dampak</button>
+                </div>
+            </div>
         </section>
+
+        <!-- Visual Search Demo -->
+        
+
+        <!-- Eco Impact Section -->
+        
 
         <!-- Community Section -->
         <section class="community-section">
@@ -1499,37 +1682,10 @@
         </section>
 
         <!-- Education Section -->
-        <section class="education-section">
-            <div class="section-title">
-                <h2><i class="fas fa-graduation-cap"></i> Edukasi Daur Ulang</h2>
-                <p>Pelajari lebih lanjut tentang praktik daur ulang dan upcycling yang berkelanjutan</p>
-            </div>
-            <div class="education-cards">
-                <div class="education-card">
-                    <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80')"></div>
-                    <div class="education-info">
-                        <h3><i class="fas fa-recycle"></i> Dasar-dasar Daur Ulang</h3>
-                        <p>Pelajari cara memilah sampah dengan benar dan memahami proses daur ulang berbagai jenis bahan.</p>
-                        <a href="#" class="education-link"><i class="fas fa-book-open"></i> Pelajari lebih lanjut <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="education-card">
-                    <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1595475207225-428b62bda831?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80')"></div>
-                    <div class="education-info">
-                        <h3><i class="fas fa-lightbulb"></i> Proyek Upcycling Sederhana</h3>
-                        <p>Ide kreatif untuk mengubah barang bekas menjadi produk berguna dengan langkah mudah.</p>
-                        <a href="#" class="education-link"><i class="fas fa-book-open"></i> Pelajari lebih lanjut <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="education-card">
-                    <div class="education-image" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80')"></div>
-                    <div class="education-info">
-                        <h3><i class="fas fa-business-time"></i> Memulai Bisnis Daur Ulang</h3>
-                        <p>Panduan untuk mengubah passion daur ulang menjadi sumber penghasilan yang berkelanjutan.</p>
-                        <a href="#" class="education-link"><i class="fas fa-book-open"></i> Pelajari lebih lanjut <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
+        <section class="community-section">
+            <h3><i class="fas fa-graduation-cap"></i> Edukasi Daur Ulang</h3>
+            <p>Pelajari lebih lanjut tentang praktik daur ulang dan upcycling yang berkelanjutan</p>
+            <button class="community-btn"><i class="fas fa-graduation-cap"></i> Jelajahi Edukasi</button>
         </section>
 
         <!-- Solution Categories -->
@@ -1551,10 +1707,6 @@
                     <div class="benefit-item">
                         <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
                         <div class="benefit-text">Sistem penjadwalan pengambilan bahan yang fleksibel</div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
-                        <div class="benefit-text">Pelacakan volume dan jenis limbah secara real-time</div>
                     </div>
                     <div class="benefit-item">
                         <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
@@ -1654,28 +1806,18 @@
             <div class="footer-column">
                 <h3><i class="fas fa-info-circle"></i> Tentang Kami</h3>
                 <ul>
-                    <li><a href="#"><i class="fas fa-eye"></i> Visi & Misi</a></li>
-                    <li><a href="#"><i class="fas fa-users"></i> Tim Kami</a></li>
-                    <li><a href="#"><i class="fas fa-briefcase"></i> Karir</a></li>
-                    <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li><a href="#"><i class="fa-solid fa-user-group"></i></i> Profile</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h3><i class="fas fa-concierge-bell"></i> Layanan</h3>
                 <ul>
-                    <li><a href="#"><i class="fas fa-store"></i> Pasar Daur Ulang</a></li>
-                    <li><a href="#"><i class="fas fa-users"></i> Komunitas</a></li>
-                    <li><a href="#"><i class="fas fa-graduation-cap"></i> Edukasi</a></li>
-                    <li><a href="#"><i class="fas fa-building"></i> Solusi Perusahaan</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3><i class="fas fa-question-circle"></i> Dukungan</h3>
-                <ul>
-                    <li><a href="#"><i class="fas fa-question"></i> Pusat Bantuan</a></li>
-                    <li><a href="#"><i class="fas fa-envelope"></i> Hubungi Kami</a></li>
-                    <li><a href="#"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</a></li>
-                    <li><a href="#"><i class="fas fa-file-alt"></i> Syarat Layanan</a></li>
+                    <li><a href="#"><i class="fas fa-store"></i> Marketplace</a></li>
+                    <li><a href="#"><i class="fas fa-comment"></i> Chatbot</a></li>
+                    <li><a href="#"><i class="fas fa-search-plus"></i> Visual Search</a></li>
+                    <li><a href="#"><i class="fas fa-chart-pie"></i> Ecotracker</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Community</a></li>
+                    <li><a href="#"><i class="fas fa-graduation-cap"></i> Education</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -1683,7 +1825,7 @@
                 <ul>
                     <li><i class="fas fa-envelope"></i> info@wastetoworth.id</li>
                     <li><i class="fas fa-phone"></i> +62 21 1234 5678</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Tasikmalaya, Indonesia</li>
                 </ul>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1695,7 +1837,7 @@
             </div>
         </div>
         <div class="copyright">
-            <i class="far fa-copyright"></i> 2023 Waste to Worth. Semua hak dilindungi.
+            <i class="far fa-copyright"></i> 2025 Waste to Worth. All rights reserved.
         </div>
     </footer>
 
@@ -1870,3 +2012,5 @@
     </script>
 </body>
 </html>
+
+
